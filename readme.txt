@@ -7,3 +7,5 @@ test. check remote repo!
 4. i made one more change in file.
 
 5. ==-++++++++-======
+
+6. wrote something
