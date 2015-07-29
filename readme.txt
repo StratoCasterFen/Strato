@@ -5,6 +5,7 @@ test. check remote repo!
 3. i made changes in file.
 
 4. i made one more change in file.
+4.1. find error
 
 5. ==-++++++++-======
 
