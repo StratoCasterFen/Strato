@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="htt�://maven.apache.org/POM/4.0.0" xmlns:xsi="htt�://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="htt�://maven.apache.org/POM/4.0.0 htt�://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>${myapp.groupid}</groupId>
+	<artifactId>main</artifactId>
+	<packaging>pom</packaging>
+	<version>${myapp.version}</version>
+	<name>main</name>
+	<modules>
+		<module>web</module>
+		<module>dao</module>
+		<module>service</module>
+  </modules>
+	
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>2.5.1</version>
+					<configuration>
+						<source>1.7</source>
+						<target>1.7</target>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+	
+	<!-- Project properties -->
+	<properties>
+		<myapp.groupid>by.academy</myapp.groupid>
+		<myapp.version>1.0</myapp.version>
+		<myapp.finalname>${artifactId}-${myapp.version}</myapp.finalname>
+	</properties>
+</project>
