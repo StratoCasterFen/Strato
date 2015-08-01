@@ -1,7 +1,7 @@
 -- --------------------------------------------------------
 -- Хост:                         127.0.0.1
 -- Версия сервера:               5.6.23-log - MySQL Community Server (GPL)
--- ОС Сервера:                   Win32
+-- ОС Сервера:                   Win64
 -- HeidiSQL Версия:              9.1.0.4867
 -- --------------------------------------------------------
 
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `roles` (
   `IdRole` int(11) NOT NULL AUTO_INCREMENT,
   `RoleName` varchar(30) DEFAULT '0',
   PRIMARY KEY (`IdRole`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы policestation.roles: ~0 rows (приблизительно)
 DELETE FROM `roles`;
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `UserName` varchar(50) DEFAULT '0',
   `Password` varchar(50) DEFAULT '0',
   PRIMARY KEY (`UserId`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы policestation.users: ~0 rows (приблизительно)
 DELETE FROM `users`;
@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `user_role` (
   PRIMARY KEY (`idUR`),
   KEY `User_key` (`UserId`),
   KEY `Role_key` (`RoleId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы policestation.user_role: ~0 rows (приблизительно)
 DELETE FROM `user_role`;
