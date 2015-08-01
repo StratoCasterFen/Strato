@@ -8,7 +8,7 @@ xsi:schemaLocation="httр://maven.apache.org/POM/4.0.0 httр://maven.apache.org/
 	</parent>
 	<groupId>${myapp.groupid}</groupId>
 	<artifactId>web</artifactId>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<version>${myapp.version}</version>
 	<name>web container</name>
 
