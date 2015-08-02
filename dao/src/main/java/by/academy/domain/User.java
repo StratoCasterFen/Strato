@@ -7,13 +7,7 @@ public class User {
 	private String UserName;
 	private String Password;
 	
-	public User(Integer userId, String userName, String password) {
-		super();
-		UserId = userId;
-		UserName = userName;
-		Password = password;
-	}
-	
+
 	public Integer getUserId() {
 		return UserId;
 	}

@@ -1,13 +1,15 @@
 package by.academy.mydao;
-	
-public interface DaoFactory<Context> {
 
-	public interface DaoCreator<Context> {
-		public GenericDao create(Context context);
+import java.sql.SQLException;
+
+public interface DaoFactory<Connection> {
+
+	public interface DaoCreator<Connection> {
+		public GenericDao create(Connection connection);
 	}
 
-	public Context getContext() throws DaoException;
+	public Connection getConnection() throws DaoException, SQLException;
 
-	public GenericDao getDao(Context context, Class dtoClass) throws DaoException;
+	public GenericDao getDao(Connection connection, Class dtoClass) throws DaoException;
 
 }
