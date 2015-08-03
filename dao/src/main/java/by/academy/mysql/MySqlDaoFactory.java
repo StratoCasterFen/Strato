@@ -12,15 +12,18 @@ import by.academy.mydao.DaoFactory;
 import by.academy.mydao.GenericDao;
 import by.academy.mysql.ConnectionPool;
 
-
-
 public class MySqlDaoFactory implements DaoFactory<Connection> {
 	
 	private Map<Class, DaoCreator> creators;
 
-	public Connection getConnection() throws DaoException, SQLException {
+	public Connection getConnection() {
 		ConnectionPool connectionPool = ConnectionPool.getInstance();
-		return connectionPool.getConnection();
+		try {
+			return connectionPool.getConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	public GenericDao getDao(Connection connection, Class dtoClass) throws DaoException {

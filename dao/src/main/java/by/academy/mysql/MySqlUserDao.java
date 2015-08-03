@@ -20,16 +20,12 @@ public class MySqlUserDao extends AbstractDao<User, Integer>{
 		super(parentFactory, connection);
 	}
 
+
 	public User create() throws DaoException {
         User u = new User();
         return u;
 	}
 
-
-	public void delete(User object) throws DaoException {
-		// TODO Auto-generated method stub
-		
-	}
 
 	public List<User> getAll() throws DaoException {
 		// TODO Auto-generated method stub
@@ -38,27 +34,22 @@ public class MySqlUserDao extends AbstractDao<User, Integer>{
 
 	@Override
 	public String getSelectQuery() {
-		// TODO Auto-generated method stub
-		return null;
+		return ResourceBundle.getBundle("queries").getString("SelectUser");
 	}
 
 	@Override
 	public String getCreateQuery() {
-		// TODO Auto-generated method stub
-		return null;
+		return ResourceBundle.getBundle("queries").getString("CreateUser");
 	}
 
 	@Override
 	public String getUpdateQuery() {
-
 		return ResourceBundle.getBundle("queries").getString("UpdateUser");
-	
 	}
 
 	@Override
 	public String getDeleteQuery() {
-		// TODO Auto-generated method stub
-		return null;
+		return ResourceBundle.getBundle("queries").getString("DeleteUser");
 	}
 
 	@Override
@@ -67,17 +58,29 @@ public class MySqlUserDao extends AbstractDao<User, Integer>{
 		return null;
 	}
 
+    @Override
+    protected void prepareStatementForInsert(PreparedStatement statement, User object) throws DaoException {
+        try {
+            statement.setString(1, object.getUserName());
+            statement.setString(2, object.getPassword());
+        } catch (Exception e) {
+            throw new DaoException(e);
+        }
+    }
+	
 	@Override
 	protected void prepareStatementForUpdate(PreparedStatement statement, User object) throws DaoException {
         try {
             statement.setString(1, object.getUserName());
             statement.setString(2, object.getPassword());
-            statement.setInt(3, object.getUserId());
+            statement.setInt(3, object.getId());
         } catch (Exception e) {
             throw new DaoException(e);
         }	
 	}
 
+	
+	
 	@Override
 	public User persist(User object) throws DaoException {
 		// TODO Auto-generated method stub

@@ -4,7 +4,8 @@ import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface GenericDao <T, PK extends Serializable> {
+
+public interface GenericDao <T extends Identified<PK>, PK extends Serializable> {
 
     /** Создает новую запись и соответствующий ей объект */
     public T create() throws DaoException;

@@ -20,12 +20,18 @@ CREATE TABLE IF NOT EXISTS `criminalevents` (
   `EventId` int(11) NOT NULL AUTO_INCREMENT,
   `EventName` varchar(70) DEFAULT '0',
   `EventDescription` varchar(700) DEFAULT NULL,
-  PRIMARY KEY (`EventId`)
+  `EventDate` date DEFAULT NULL,
+  `CriminalId` int(11) NOT NULL,
+  PRIMARY KEY (`EventId`),
+  KEY `CriminalIdKey` (`CriminalId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы policestation.criminalevents: ~0 rows (приблизительно)
 DELETE FROM `criminalevents`;
 /*!40000 ALTER TABLE `criminalevents` DISABLE KEYS */;
+INSERT INTO `criminalevents` (`EventId`, `EventName`, `EventDescription`, `EventDate`, `CriminalId`) VALUES
+	(1, 'Взлом', 'Сломал Телефонную будку', '2015-08-03', 1),
+	(2, 'Ограбление', 'Ограбление банка JP Morgan', '2014-02-07', 2);
 /*!40000 ALTER TABLE `criminalevents` ENABLE KEYS */;
 
 
@@ -41,37 +47,23 @@ CREATE TABLE IF NOT EXISTS `criminals` (
 -- Дамп данных таблицы policestation.criminals: ~0 rows (приблизительно)
 DELETE FROM `criminals`;
 /*!40000 ALTER TABLE `criminals` DISABLE KEYS */;
+INSERT INTO `criminals` (`CriminalId`, `Name`, `SurName`, `Birthday`) VALUES
+	(1, 'Kevin', 'Mitnik', '1970-01-04'),
+	(2, 'Dguliko', 'Banditto', '1972-05-06');
 /*!40000 ALTER TABLE `criminals` ENABLE KEYS */;
-
-
--- Дамп структуры для таблица policestation.logevents
-CREATE TABLE IF NOT EXISTS `logevents` (
-  `LogId` int(11) NOT NULL AUTO_INCREMENT,
-  `EventId` int(11) NOT NULL,
-  `EventDate` date DEFAULT NULL,
-  `CriminalId` int(11) NOT NULL,
-  PRIMARY KEY (`LogId`),
-  KEY `Event_Key` (`EventId`),
-  KEY `Criminal_key` (`CriminalId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Дамп данных таблицы policestation.logevents: ~0 rows (приблизительно)
-DELETE FROM `logevents`;
-/*!40000 ALTER TABLE `logevents` DISABLE KEYS */;
-/*!40000 ALTER TABLE `logevents` ENABLE KEYS */;
 
 
 -- Дамп структуры для таблица policestation.roles
 CREATE TABLE IF NOT EXISTS `roles` (
-  `IdRole` int(11) NOT NULL AUTO_INCREMENT,
+  `RoleId` int(11) NOT NULL AUTO_INCREMENT,
   `RoleName` varchar(30) DEFAULT '0',
-  PRIMARY KEY (`IdRole`)
+  PRIMARY KEY (`RoleId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы policestation.roles: ~0 rows (приблизительно)
+-- Дамп данных таблицы policestation.roles: ~1 rows (приблизительно)
 DELETE FROM `roles`;
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
-INSERT INTO `roles` (`IdRole`, `RoleName`) VALUES
+INSERT INTO `roles` (`RoleId`, `RoleName`) VALUES
 	(1, 'administrator');
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 
@@ -84,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`UserId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы policestation.users: ~0 rows (приблизительно)
+-- Дамп данных таблицы policestation.users: ~1 rows (приблизительно)
 DELETE FROM `users`;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`UserId`, `UserName`, `Password`) VALUES
@@ -102,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `user_role` (
   KEY `Role_key` (`RoleId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы policestation.user_role: ~0 rows (приблизительно)
+-- Дамп данных таблицы policestation.user_role: ~1 rows (приблизительно)
 DELETE FROM `user_role`;
 /*!40000 ALTER TABLE `user_role` DISABLE KEYS */;
 INSERT INTO `user_role` (`idUR`, `UserId`, `RoleId`) VALUES

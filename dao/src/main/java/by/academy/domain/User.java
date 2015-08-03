@@ -1,35 +1,36 @@
 package by.academy.domain;
 
-import by.academy.mydao.GenericDao;
+import by.academy.mydao.Identified;
 
-public class User {
-	private Integer UserId=null;
-	private String UserName;
-	private String Password;
-	
+public class User implements Identified<Integer>{
+	private Integer id=null;
+	private String  userName;
+	private String  password;
 
-	public Integer getUserId() {
-		return UserId;
+	public Integer getId() {
+		return id;
 	}
-	public void setUserId(Integer userId) {
-		UserId = userId;
+	public void setId(int id) {
+		this.id = id;
 	}
 	public String getUserName() {
-		return UserName;
+		return userName;
 	}
 	public void setUserName(String userName) {
-		UserName = userName;
+		this.userName = userName;
 	}
 	public String getPassword() {
-		return Password;
+		return password;
 	}
 	public void setPassword(String password) {
-		Password = password;
+		this.password = password;
 	}
 	
 	@Override
 	public String toString() {
-		return "User [UserId=" + UserId + ", UserName=" + UserName + "]";
+		return "User [UserId=" + id + ", UserName=" + userName + "]";
 	}
+
+
 		
 }
