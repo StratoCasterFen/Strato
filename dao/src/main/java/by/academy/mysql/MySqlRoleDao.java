@@ -12,8 +12,8 @@ import by.academy.mydao.DaoFactory;
 
 public class MySqlRoleDao extends AbstractDao<Role, Integer>{
 
-	public MySqlRoleDao(DaoFactory<Connection> parentFactory, Connection connection) {
-		super(parentFactory, connection);
+	public MySqlRoleDao(Connection connection) {
+		super(connection);
 		// TODO Auto-generated constructor stub
 	}
 

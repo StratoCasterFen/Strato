@@ -1,20 +1,18 @@
 package by.academy.mysql;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import by.academy.domain.Criminal;
 import by.academy.domain.CriminalEvent;
 import by.academy.mydao.AbstractDao;
+import by.academy.mydao.ConvertDate;
 import by.academy.mydao.DaoException;
-import by.academy.mydao.DaoFactory;
-import ru.dokwork.daotalk.dao.PersistException;
-import ru.dokwork.daotalk.domain.Student;
-import ru.dokwork.daotalk.mysql.MySqlStudentDao.PersistStudent;
+
 
 public class MySqlCriminalEventDao extends AbstractDao<CriminalEvent, Integer>{
 
@@ -69,20 +67,38 @@ public class MySqlCriminalEventDao extends AbstractDao<CriminalEvent, Integer>{
 	                result.add(student);
 	            }
 	        } catch (Exception e) {
-	            throw new PersistException(e);
+	            throw new DaoException(e);
 	        }
 	        return result;
 	}
 
 	@Override
-	protected void prepareStatementForUpdate(PreparedStatement statement, CriminalEvent object) throws DaoException {
-		// TODO Auto-generated method stub
-		
+	protected void prepareStatementForUpdate(PreparedStatement statement, CriminalEvent object) throws DaoException{
+		try {
+			Date sqlDate = ConvertDate.convert(object.getEventDate());
+            statement.setString(1, object.getEventName());
+            statement.setString(2, object.getEventDescription());
+            statement.setDate(3, sqlDate);
+            statement.setInt(4, object.getCriminalId());
+            statement.setInt(5, object.getUserId());
+            statement.setInt(6, object.getId());
+        } catch (Exception e) {
+            throw new DaoException(e);
+        }
 	}
 
 	@Override
 	protected void prepareStatementForInsert(PreparedStatement statement, CriminalEvent object) throws DaoException {
-		// TODO Auto-generated method stub
+		try {
+			Date sqlDate = ConvertDate.convert(object.getEventDate());
+            statement.setString(1, object.getEventName());
+            statement.setString(2, object.getEventDescription());
+            statement.setDate(3, sqlDate);
+            statement.setInt(4, object.getCriminalId());
+            statement.setInt(5, object.getUserId());
+        } catch (Exception e) {
+            throw new DaoException(e);
+        }
 		
 	}
 
