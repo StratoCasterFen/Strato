@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.List;
 import by.academy.mydao.DaoFactory;
 
+
 public abstract class AbstractDao <T extends Identified<PK>, PK extends Integer> implements GenericDao<T, PK> {
 	
 	public abstract String getSelectQuery(); //S
@@ -15,14 +16,59 @@ public abstract class AbstractDao <T extends Identified<PK>, PK extends Integer>
 	
 	protected abstract List<T> parseResultSet(ResultSet rs) throws DaoException;
 	
-    private DaoFactory<Connection> parentFactory;
+
     private Connection connection;
+    
+    
+    @Override
+    public T persist(T object) throws DaoException {
+        T persistInstance;
+        // Добавляем запись
+        String sql = getCreateQuery();
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            prepareStatementForInsert(statement, object);
+            int count = statement.executeUpdate();
+            if (count != 1) {
+                throw new DaoException("On persist modify more then 1 record: " + count);
+            }
+        } catch (Exception e) {
+            throw new DaoException(e);
+        }
+        // Получаем только что вставленную запись
+        sql = getSelectQuery() + " WHERE id = last_insert_id();";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            ResultSet rs = statement.executeQuery();
+            List<T> list = parseResultSet(rs);
+            if ((list == null) || (list.size() != 1)) {
+                throw new DaoException("Exception on findByPK new persist data.");
+            }
+            persistInstance = list.iterator().next();
+        } catch (Exception e) {
+            throw new DaoException(e);
+        }
+        return persistInstance;
+    }
+
     
     public T getByPK(Integer key) throws DaoException {
         
     	List<T> list;
-                
-        return null;
+        String sql = getSelectQuery();
+        sql += " WHERE id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, key);
+            ResultSet rs = statement.executeQuery();
+            list = parseResultSet(rs);
+        } catch (Exception e) {
+            throw new DaoException(e);
+        }
+        if (list == null || list.size() == 0) {
+            throw new DaoException("Record with PK = " + key + " not found.");
+        }
+        if (list.size() > 1) {
+            throw new DaoException("Received more than one record.");
+        }
+        return list.iterator().next();
     }
 
     @Override
@@ -38,8 +84,7 @@ public abstract class AbstractDao <T extends Identified<PK>, PK extends Integer>
         return list;
     }
     
-    public AbstractDao(DaoFactory<Connection> parentFactory, Connection connection) {
-        this.parentFactory = parentFactory;
+    public AbstractDao(Connection connection) {
         this.connection = connection;
     }
     

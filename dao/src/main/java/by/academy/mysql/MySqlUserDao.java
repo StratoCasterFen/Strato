@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -13,24 +14,25 @@ import by.academy.mydao.DaoException;
 import by.academy.mydao.DaoFactory;
 
 
+
 public class MySqlUserDao extends AbstractDao<User, Integer>{
 
-
-	public MySqlUserDao(DaoFactory<Connection> parentFactory, Connection connection) {
-		super(parentFactory, connection);
+	private class PersistUser extends User {
+        public void setId(int id) {
+            super.setId(id);
+        }
+    }
+	
+	public MySqlUserDao(Connection connection) {
+		super(connection);
 	}
 
 
 	public User create() throws DaoException {
         User u = new User();
-        return u;
+        return persist(u);
 	}
 
-
-	public List<User> getAll() throws DaoException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public String getSelectQuery() {
@@ -54,8 +56,19 @@ public class MySqlUserDao extends AbstractDao<User, Integer>{
 
 	@Override
 	protected List<User> parseResultSet(ResultSet rs) throws DaoException {
-		// TODO Auto-generated method stub
-		return null;
+		LinkedList<User> result = new LinkedList<User>();
+        try {
+            while (rs.next()) {
+                PersistUser user = new PersistUser();
+                user.setId(rs.getInt("UserId"));
+                user.setUserName(rs.getString("UserName"));
+                //user.setPassword(rs.getString("password"));
+                result.add(user);
+            }
+        } catch (Exception e) {
+            throw new DaoException(e);
+        }
+        return result;
 	}
 
     @Override
@@ -80,12 +93,5 @@ public class MySqlUserDao extends AbstractDao<User, Integer>{
 	}
 
 	
-	
-	@Override
-	public User persist(User object) throws DaoException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 
 }

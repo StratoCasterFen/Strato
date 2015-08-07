@@ -9,7 +9,8 @@ public class CriminalEvent implements Identified<Integer>{
 	private String   eventName;
 	private String   eventDescription;
 	private Date     eventDate;
-	private Criminal criminal;
+	private Integer  criminalId;
+	private Integer  userId;
 	
 	public Integer getId() {
 		return id;
@@ -35,17 +36,23 @@ public class CriminalEvent implements Identified<Integer>{
 	public void setEventDate(Date eventDate) {
 		this.eventDate = eventDate;
 	}
-	public Criminal getCriminal() {
-		return criminal;
+	public Integer getCriminalId() {
+		return criminalId;
 	}
-	public void setCriminal(Criminal criminal) {
-		this.criminal = criminal;
+	public void setCriminalId(Integer criminalId) {
+		this.criminalId = criminalId;
+	}
+	public Integer getUserId() {
+		return userId;
+	}
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 	
 	@Override
 	public String toString() {
 		return "CriminalEvent [id=" + id + ", eventName=" + eventName + ", eventDescription="
-				+ eventDescription + ", eventDate=" + eventDate + ", criminal=" + criminal + "]";
+				+ eventDescription + ", eventDate=" + eventDate + ", criminal=" + criminalId + ", user=" + userId+"]";
 	}
 	
 }

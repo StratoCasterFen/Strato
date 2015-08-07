@@ -3,14 +3,14 @@ package by.academy.mydao;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public interface DaoFactory<C> {
+public interface DaoFactory<Connection> {
 
-	public interface DaoCreator<C> {
-		public GenericDao create(C connection);
+	public interface DaoCreator<Connection> {
+		public GenericDao create(Connection connection);
 	}
 
-	public C getConnection() throws DaoException, SQLException;
+	public Connection getConnection() throws DaoException, SQLException;
 
-	public GenericDao getDao(C connection, Class dtoClass) throws DaoException;
+	public GenericDao getDao(Connection connection, Class dtoClass) throws DaoException;
 
 }

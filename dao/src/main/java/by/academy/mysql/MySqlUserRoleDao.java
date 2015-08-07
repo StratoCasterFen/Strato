@@ -13,7 +13,7 @@ import by.academy.mydao.DaoFactory;
 public class MySqlUserRoleDao extends AbstractDao<UserRole, Integer>{
 
 	public MySqlUserRoleDao(DaoFactory<Connection> parentFactory, Connection connection) {
-		super(parentFactory, connection);
+		super(connection);
 	}
 
 	@Override

@@ -40,8 +40,10 @@ public class MySqlDaoFactory implements DaoFactory<Connection> {
 		creators.put(User.class, new DaoCreator<Connection>() {
 			@Override
 			public GenericDao create(Connection connection) {
-				return new MySqlUserDao(MySqlDaoFactory.this, connection);
+				return new MySqlUserDao(connection);
 			}
 		});
 	}
+
+
 }
