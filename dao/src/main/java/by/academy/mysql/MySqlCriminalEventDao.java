@@ -58,13 +58,14 @@ public class MySqlCriminalEventDao extends AbstractDao<CriminalEvent, Integer>{
 		 LinkedList<CriminalEvent> result = new LinkedList<CriminalEvent>();
 	        try {
 	            while (rs.next()) {
-	                PersistCriminalEvent student = new PersistCriminalEvent();
-	                student.setId(rs.getInt("Eventid"));
-	                student.setEventName(rs.getString("Eventname"));
-	                student.setEventDescription(rs.getString("EventDescription"));
-	                student.setEventDate(rs.getDate("Eventdate"));
-	                student.setCriminalId(rs.getInt("group_id"));
-	                result.add(student);
+	                PersistCriminalEvent criminalEvent = new PersistCriminalEvent();
+	                criminalEvent.setId(rs.getInt("Eventid"));
+	                criminalEvent.setEventName(rs.getString("Eventname"));
+	                criminalEvent.setEventDescription(rs.getString("EventDescription"));
+	                criminalEvent.setEventDate(rs.getDate("Eventdate"));
+	                criminalEvent.setCriminalId(rs.getInt("CriminalId"));
+	                criminalEvent.setCriminalId(rs.getInt("UserId"));
+	                result.add(criminalEvent);
 	            }
 	        } catch (Exception e) {
 	            throw new DaoException(e);

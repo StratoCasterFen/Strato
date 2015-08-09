@@ -6,7 +6,11 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+import by.academy.domain.Criminal;
+import by.academy.domain.CriminalEvent;
+import by.academy.domain.Role;
 import by.academy.domain.User;
+import by.academy.domain.UserRole;
 import by.academy.mydao.DaoException;
 import by.academy.mydao.DaoFactory;
 import by.academy.mydao.GenericDao;
@@ -41,6 +45,30 @@ public class MySqlDaoFactory implements DaoFactory<Connection> {
 			@Override
 			public GenericDao create(Connection connection) {
 				return new MySqlUserDao(connection);
+			}
+		});
+		creators.put(Role.class, new DaoCreator<Connection>() {
+			@Override
+			public GenericDao create(Connection connection) {
+				return new MySqlRoleDao(connection);
+			}
+		});
+		creators.put(UserRole.class, new DaoCreator<Connection>() {
+			@Override
+			public GenericDao create(Connection connection) {
+				return new MySqlUserRoleDao(connection);
+			}
+		});
+		creators.put(Criminal.class, new DaoCreator<Connection>() {
+			@Override
+			public GenericDao create(Connection connection) {
+				return new MySqlCriminalDao(connection);
+			}
+		});
+		creators.put(CriminalEvent.class, new DaoCreator<Connection>() {
+			@Override
+			public GenericDao create(Connection connection) {
+				return new MySqlCriminalEventDao(connection);
 			}
 		});
 	}

@@ -4,8 +4,8 @@ import by.academy.mydao.Identified;
 
 public class UserRole implements Identified<Integer>{
 	private Integer id=null;
-	private User User;
-	private Role Role;
+	private Integer userId;
+	private Integer roleId;
 		
 	public Integer getId() {
 		return id;
@@ -14,23 +14,23 @@ public class UserRole implements Identified<Integer>{
 		this.id = id;
 	}
 
-	public User getUser() {
-		return User;
+	public Integer getUserId() {
+		return userId;
 	}
-	public void setUser(User user) {
-		User = user;
+	public void setUserId(int userId) {
+		userId = userId;
 	}
 
-	public Role getRole() {
-		return Role;
+	public Integer getRoleId() {
+		return roleId;
 	}
-	public void setRole(Role role) {
-		Role = role;
+	public void setRoleId(int roleId) {
+		roleId = roleId;
 	}
 
 	@Override
 	public String toString() {
-		return "UserRole [id=" + id + ", User=" + User.getUserName() + ", Role=" + Role.getRoleName() + "]";
+		return "UserRole [id=" + id + ", User=" + userId + ", Role=" + roleId + "]";
 	}
 
 }

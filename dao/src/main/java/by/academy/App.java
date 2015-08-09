@@ -5,7 +5,10 @@ import java.sql.SQLException;
 import java.sql.Connection;
 
 import by.academy.domain.Criminal;
+import by.academy.domain.CriminalEvent;
+import by.academy.domain.Role;
 import by.academy.domain.User;
+import by.academy.domain.UserRole;
 import by.academy.mydao.DaoException;
 import by.academy.mydao.DaoFactory;
 import by.academy.mydao.GenericDao;
@@ -23,7 +26,7 @@ public class App
         
         MySqlDaoFactory factory = new MySqlDaoFactory();
         Connection connection =  factory.getConnection(); 
-        GenericDao dao = factory.getDao(connection, Criminal.class);
+        GenericDao dao = factory.getDao(connection, UserRole.class);
 
         System.out.println(dao.getAll());
     }
