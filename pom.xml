@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="htt�://maven.apache.org/POM/4.0.0" xmlns:xsi="htt�://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="htt�://maven.apache.org/POM/4.0.0 htt�://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>${myapp.groupid}</groupId>
+	<groupId>by.academy</groupId>
 	<artifactId>main</artifactId>
 	<packaging>pom</packaging>
-	<version>${myapp.version}</version>
+	<version>1.0</version>
 	<name>main</name>
 	<modules>
 		<module>web</module>
@@ -29,9 +29,4 @@
 	</build>
 	
 	<!-- Project properties -->
-	<properties>
-		<myapp.groupid>by.academy</myapp.groupid>
-		<myapp.version>1.0</myapp.version>
-		<myapp.finalname>${artifactId}-${myapp.version}</myapp.finalname>
-	</properties>
 </project>

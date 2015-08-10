@@ -3,15 +3,14 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>${myapp.groupid}</groupId>
+		<groupId>by.academy</groupId>
 		<artifactId>main</artifactId>
-		<version>${myapp.version}</version>
+		<version>1.0</version>
 	</parent>
 	
-	<groupId>${myapp.groupid}</groupId>
 	<packaging>jar</packaging>
 	<artifactId>service</artifactId>
-	<version>${myapp.version}</version>
+	<version>1.0</version>
 	<name>service container</name>
 	<url>http://maven.apache.org</url>
 	

@@ -3,13 +3,11 @@ xsi:schemaLocation="httр://maven.apache.org/POM/4.0.0 httр://maven.apache.org/
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<artifactId>main</artifactId>
-		<groupId>${myapp.groupid}</groupId>
-		<version>${myapp.version}</version>
+		<groupId>by.academy</groupId>
+		<version>1.0</version>
 	</parent>
-	<groupId>${myapp.groupid}</groupId>
 	<artifactId>web</artifactId>
-	<packaging>jar</packaging>
-	<version>${myapp.version}</version>
+	<packaging>war</packaging>
 	<name>web container</name>
 
 	<dependencies>
@@ -71,4 +69,10 @@ xsi:schemaLocation="httр://maven.apache.org/POM/4.0.0 httр://maven.apache.org/
             </plugin>
         </plugins>
     </build>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<version>1.0</version>
+	<groupId>by.academy</groupId>
 </project>

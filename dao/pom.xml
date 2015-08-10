@@ -3,10 +3,10 @@ xsi:schemaLocation="httр://maven.apache.org/POM/4.0.0 httр://maven.apache.org/
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<artifactId>main</artifactId>
-		<groupId>${myapp.groupid}</groupId>
-		<version>${myapp.version}</version>
+		<groupId>by.academy</groupId>
+		<version>1.0</version>
 	</parent>
-	<artifactId>matsak-dao</artifactId>
+	<artifactId>dao</artifactId>
 	<packaging>jar</packaging>
 	<name>dao container</name>
 
@@ -124,5 +124,5 @@ xsi:schemaLocation="httр://maven.apache.org/POM/4.0.0 httр://maven.apache.org/
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-	<groupId>${myapp.groupid}</groupId>
+	<version>1.0</version>
 </project>

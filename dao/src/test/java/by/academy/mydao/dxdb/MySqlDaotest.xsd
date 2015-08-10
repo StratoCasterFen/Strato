@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" xmlns="app_test" targetNamespace="app_test">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" xmlns="MySqlDaotest" targetNamespace="MySqlDaotest">
 	<xsd:element name="user" type="user__type" />
 	<xsd:element name="user_role" type="user_role__type" />
 	<xsd:element name="role" type="role__type" />
