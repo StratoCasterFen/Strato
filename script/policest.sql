@@ -22,16 +22,17 @@ CREATE TABLE IF NOT EXISTS `criminalevents` (
   `EventDescription` varchar(700) DEFAULT NULL,
   `EventDate` date DEFAULT NULL,
   `CriminalId` int(11) NOT NULL,
+  `UserId` int(11) DEFAULT NULL,
   PRIMARY KEY (`EventId`),
   KEY `CriminalIdKey` (`CriminalId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы policestation.criminalevents: ~0 rows (приблизительно)
+-- Дамп данных таблицы policestation.criminalevents: ~2 rows (приблизительно)
 DELETE FROM `criminalevents`;
 /*!40000 ALTER TABLE `criminalevents` DISABLE KEYS */;
-INSERT INTO `criminalevents` (`EventId`, `EventName`, `EventDescription`, `EventDate`, `CriminalId`) VALUES
-	(1, 'Взлом', 'Сломал Телефонную будку', '2015-08-03', 1),
-	(2, 'Ограбление', 'Ограбление банка JP Morgan', '2014-02-07', 2);
+INSERT INTO `criminalevents` (`EventId`, `EventName`, `EventDescription`, `EventDate`, `CriminalId`, `UserId`) VALUES
+	(1, 'Взлом', 'Сломал Телефонную будку', '2015-08-03', 1, NULL),
+	(2, 'Ограбление', 'Ограбление банка JP Morgan', '2014-02-07', 2, NULL);
 /*!40000 ALTER TABLE `criminalevents` ENABLE KEYS */;
 
 
@@ -42,9 +43,9 @@ CREATE TABLE IF NOT EXISTS `criminals` (
   `SurName` varchar(50) DEFAULT '0',
   `Birthday` date DEFAULT NULL,
   PRIMARY KEY (`CriminalId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы policestation.criminals: ~0 rows (приблизительно)
+-- Дамп данных таблицы policestation.criminals: ~2 rows (приблизительно)
 DELETE FROM `criminals`;
 /*!40000 ALTER TABLE `criminals` DISABLE KEYS */;
 INSERT INTO `criminals` (`CriminalId`, `Name`, `SurName`, `Birthday`) VALUES
@@ -74,13 +75,13 @@ CREATE TABLE IF NOT EXISTS `users` (
   `UserName` varchar(50) DEFAULT '0',
   `Password` varchar(50) DEFAULT '0',
   PRIMARY KEY (`UserId`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы policestation.users: ~1 rows (приблизительно)
+-- Дамп данных таблицы policestation.users: ~5 rows (приблизительно)
 DELETE FROM `users`;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`UserId`, `UserName`, `Password`) VALUES
-	(3, 'admin', '123');
+	(3, 'admin', 'b1374a31148f365f61e1b30e655f1d6');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 

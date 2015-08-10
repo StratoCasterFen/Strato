@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" xmlns:dflt="app_test">
+	<xsd:import namespace="app_test" schemaLocation="app_test.xsd" />
+	<xsd:element name="dataset">
+		<xsd:complexType>
+			<xsd:choice minOccurs="0" maxOccurs="unbounded">
+				<xsd:element name="user" type="dflt:user__type" />
+				<xsd:element name="role" type="dflt:role__type" />
+				<xsd:element name="user_role" type="dflt:user_role__type" />
+				<xsd:element name="criminal" type="dflt:criminal__type" />
+				<xsd:element name="criminalevent" type="dflt:criminalevent__type" />
+				<xsd:any namespace="app_test" />
+			</xsd:choice>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

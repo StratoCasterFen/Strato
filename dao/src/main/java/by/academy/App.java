@@ -12,6 +12,7 @@ import by.academy.domain.UserRole;
 import by.academy.mydao.DaoException;
 import by.academy.mydao.DaoFactory;
 import by.academy.mydao.GenericDao;
+import by.academy.mydao.MD5;
 import by.academy.mysql.MySqlDaoFactory;
 
 /**
@@ -29,5 +30,10 @@ public class App
         GenericDao dao = factory.getDao(connection, UserRole.class);
 
         System.out.println(dao.getAll());
+        String md5Password;
+        MD5 md5 = new MD5();
+        md5Password = md5.getHash(md5.getHash("123") + md5.getHash("Fender"));
+
+        System.out.println(md5Password);
     }
 }

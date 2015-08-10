@@ -18,19 +18,19 @@ public class UserRole implements Identified<Integer>{
 		return userId;
 	}
 	public void setUserId(int userId) {
-		userId = userId;
+		this.userId = userId;
 	}
 
 	public Integer getRoleId() {
 		return roleId;
 	}
 	public void setRoleId(int roleId) {
-		roleId = roleId;
+		this.roleId = roleId;
 	}
 
 	@Override
 	public String toString() {
-		return "UserRole [id=" + id + ", User=" + userId + ", Role=" + roleId + "]";
+		return "UserRole [id=" + id + ", Userid=" + userId + ", Roleid=" + roleId + "]";
 	}
 
 }
