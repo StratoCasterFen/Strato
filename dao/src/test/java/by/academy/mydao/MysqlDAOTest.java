@@ -47,44 +47,44 @@ import javax.sql.DataSource;
 
 import static org.junit.Assert.assertNotNull;
 
-@DataSet
-@RunWith(UnitilsJUnit4TestClassRunner.class)
-public class MysqlDAOTest {
+//@DataSet
+//@RunWith(UnitilsJUnit4TestClassRunner.class)
+//public class MysqlDAOTest {
 
-    @TestDataSource
-    private DataSource dataSource;
-
-    //private LanguageDAO dao;
-
-    @Before
-    public void setUp() throws Exception {
-	//dao = new LanguageDAOOracleImpl1(dataSource);
-    }
-
-    @Test
-    public void testGetUsers() throws Exception {
-    
-        System.out.println("testGetUsers");
-        
-        Connection cnnx = dataSource.getConnection();
-        Statement stmt = cnnx.createStatement();
-        
-        ResultSet rs = null;
-        try {
-            // check that the GG_LANGUAGES1 table exists
-            rs = stmt.executeQuery("SELECT * FROM users");
-
-            // check that the GG_POC table exists
-            rs = stmt.executeQuery("SELECT * FROM roles");
-
-            System.out.println("testGetUsers succeeded");
-        } finally {
-            if (rs != null) {
-                rs.close();
-            }
-        }
-        stmt.close();
-        cnnx.close();
-        
-    }
-}
+//    @TestDataSource
+//    private DataSource dataSource;
+//
+//    //private LanguageDAO dao;
+//
+//    @Before
+//    public void setUp() throws Exception {
+//	//dao = new LanguageDAOOracleImpl1(dataSource);
+//    }
+//
+//    @Test
+//    public void testGetUsers() throws Exception {
+//    
+//        System.out.println("testGetUsers");
+//        
+//        Connection cnnx = dataSource.getConnection();
+//        Statement stmt = cnnx.createStatement();
+//        
+//        ResultSet rs = null;
+//        try {
+//            // check that the GG_LANGUAGES1 table exists
+//            rs = stmt.executeQuery("SELECT * FROM users");
+//
+//            // check that the GG_POC table exists
+//            rs = stmt.executeQuery("SELECT * FROM roles");
+//
+//            System.out.println("testGetUsers succeeded");
+//        } finally {
+//            if (rs != null) {
+//                rs.close();
+//            }
+//        }
+//        stmt.close();
+//        cnnx.close();
+//        
+//    }
+//}

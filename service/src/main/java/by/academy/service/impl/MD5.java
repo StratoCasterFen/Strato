@@ -1,4 +1,4 @@
-package by.academy.mydao;
+package by.academy.service.impl;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

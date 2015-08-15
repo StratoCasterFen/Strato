@@ -12,6 +12,7 @@ import by.academy.domain.User;
 import by.academy.mydao.AbstractDao;
 import by.academy.mydao.DaoException;
 import by.academy.mydao.DaoFactory;
+import by.academy.mydao.GenericDao;
 
 
 
@@ -60,9 +61,8 @@ public class MySqlUserDao extends AbstractDao<User, Integer>{
         try {
             while (rs.next()) {
                 PersistUser user = new PersistUser();
-                user.setId(rs.getInt("UserId"));
+                user.setId(rs.getInt("id"));
                 user.setUserName(rs.getString("UserName"));
-                //user.setPassword(rs.getString("password"));
                 result.add(user);
             }
         } catch (Exception e) {
@@ -91,7 +91,52 @@ public class MySqlUserDao extends AbstractDao<User, Integer>{
             throw new DaoException(e);
         }	
 	}
+	
+	public User getUserByNameAndPassword(User user) throws DaoException {
+		 
+		 String sql = ResourceBundle.getBundle("queries").getString("SelectUserByNamePassword");
+		 
+		 List<User> list;
+	       
+	       try (PreparedStatement statement = connection.prepareStatement(sql)) {
+	            statement.setString(1, user.getUserName());
+	            statement.setString(2, user.getPassword());
+	            ResultSet rs = statement.executeQuery();
+	            list = parseResultSet(rs);
+	        } catch (Exception e) {
+	            throw new DaoException(e);
+	        }
+	        if (list == null || list.size() == 0) {
+	         //   throw new DaoException("User and password not exist.");
+	            return null;
+	        }
+	        if (list.size() > 1) {
+	            throw new DaoException("Users with this name more than one record.");
+	        }
+	        return list.iterator().next();
+	}
 
+	public User getUserByName(User user) throws DaoException {
+		 
+		 String sql = ResourceBundle.getBundle("queries").getString("SelectUserByName");
+		 
+		 List<User> list;
+	       
+	       try (PreparedStatement statement = connection.prepareStatement(sql)) {
+	            statement.setString(1, user.getUserName());
+	            ResultSet rs = statement.executeQuery();
+	            list = parseResultSet(rs);
+	        } catch (Exception e) {
+	            throw new DaoException(e);
+	        }
+	        if (list == null || list.size() == 0) {
+	            return null;
+	        }
+	        if (list.size() > 1) {
+	            throw new DaoException("Users with this name more than one record.");
+	        }
+	        return list.iterator().next();
+	}
 	
 
 }

@@ -12,8 +12,9 @@ import by.academy.domain.UserRole;
 import by.academy.mydao.DaoException;
 import by.academy.mydao.DaoFactory;
 import by.academy.mydao.GenericDao;
-import by.academy.mydao.MD5;
+
 import by.academy.mysql.MySqlDaoFactory;
+import by.academy.mysql.MySqlUserDao;
 
 /**
  * Hello world!
@@ -27,13 +28,17 @@ public class App
         
         MySqlDaoFactory factory = new MySqlDaoFactory();
         Connection connection =  factory.getConnection(); 
-        GenericDao dao = factory.getDao(connection, UserRole.class);
+        GenericDao dao = factory.getDao(connection, User.class);
+        User u=new User();
+        u.setUserName("Ivanko");
+        u.setPassword("133");
+        dao.persist(u);
+        MySqlUserDao use = new MySqlUserDao(connection);
+        System.out.println(use.getUserByNameAndPassword(u));
+       // String md5Password;
+//        MD5 md5 = new MD5();
+  //      md5Password = md5.getHash(md5.getHash("123") + md5.getHash("Fender"));
 
-        System.out.println(dao.getAll());
-        String md5Password;
-        MD5 md5 = new MD5();
-        md5Password = md5.getHash(md5.getHash("123") + md5.getHash("Fender"));
-
-        System.out.println(md5Password);
+      //  System.out.println(md5Password);
     }
 }

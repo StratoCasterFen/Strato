@@ -59,7 +59,7 @@ public class MySqlCriminalEventDao extends AbstractDao<CriminalEvent, Integer>{
 	        try {
 	            while (rs.next()) {
 	                PersistCriminalEvent criminalEvent = new PersistCriminalEvent();
-	                criminalEvent.setId(rs.getInt("Eventid"));
+	                criminalEvent.setId(rs.getInt("id"));
 	                criminalEvent.setEventName(rs.getString("Eventname"));
 	                criminalEvent.setEventDescription(rs.getString("EventDescription"));
 	                criminalEvent.setEventDate(rs.getDate("Eventdate"));

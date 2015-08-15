@@ -6,20 +6,39 @@
 		<groupId>by.academy</groupId>
 		<artifactId>main</artifactId>
 		<version>1.0</version>
+		<relativePath>../</relativePath>
 	</parent>
 	
 	<packaging>jar</packaging>
 	<artifactId>service</artifactId>
-	<version>1.0</version>
 	<name>service container</name>
-	<url>http://maven.apache.org</url>
 	
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>by.academy</groupId>
+			<artifactId>dao</artifactId>
+			</dependency>
 	</dependencies>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>by.academy</groupId>
+				<artifactId>dao</artifactId>
+				<version>1.0</version>
+			</dependency>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>3.8.1</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+   
+      
 </project>

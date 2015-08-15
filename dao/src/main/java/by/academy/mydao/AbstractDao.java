@@ -17,7 +17,7 @@ public abstract class AbstractDao <T extends Identified<PK>, PK extends Integer>
 	protected abstract List<T> parseResultSet(ResultSet rs) throws DaoException;
 	
 
-    private Connection connection;
+	protected Connection connection;
     
     
     @Override

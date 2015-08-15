@@ -5,6 +5,7 @@ xsi:schemaLocation="httр://maven.apache.org/POM/4.0.0 httр://maven.apache.org/
 		<artifactId>main</artifactId>
 		<groupId>by.academy</groupId>
 		<version>1.0</version>
+		<relativePath>../</relativePath>
 	</parent>
 	<artifactId>dao</artifactId>
 	<packaging>jar</packaging>
@@ -123,6 +124,6 @@ xsi:schemaLocation="httр://maven.apache.org/POM/4.0.0 httр://maven.apache.org/
     </build>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jdk.version>1.7</jdk.version>
 	</properties>
-	<version>1.0</version>
-</project>
+	</project>

@@ -59,7 +59,7 @@ public class MySqlUserRoleDao extends AbstractDao<UserRole, Integer>{
         try {
             while (rs.next()) {
                 PersistUserRole userRole = new PersistUserRole();
-                userRole.setId(rs.getInt("IdUR"));
+                userRole.setId(rs.getInt("id"));
                 userRole.setUserId(rs.getInt("UserId"));
                 userRole.setRoleId(rs.getInt("RoleId"));
                 result.add(userRole);

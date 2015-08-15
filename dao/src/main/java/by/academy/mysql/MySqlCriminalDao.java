@@ -60,7 +60,7 @@ public class MySqlCriminalDao extends AbstractDao<Criminal, Integer>{
         try {
             while (rs.next()) {
                 PersistCriminal criminal = new PersistCriminal();
-                criminal.setId(rs.getInt("CriminalId"));
+                criminal.setId(rs.getInt("id"));
                 criminal.setCriminalName(rs.getString("Name"));
                 criminal.setCriminalSurname(rs.getString("SurName"));
                 criminal.setBirthday(rs.getDate("Birthday"));
