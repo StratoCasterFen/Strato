@@ -32,6 +32,7 @@ package by.academy.mydao;
 //
 //}
 
+import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -39,52 +40,53 @@ import org.unitils.UnitilsJUnit4TestClassRunner;
 import org.unitils.database.annotations.TestDataSource;
 import org.unitils.dbunit.annotation.DataSet;
 
+import by.academy.mysql.MySqlUserDao;
+
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
-import javax.sql.DataSource;
-//import java.util.List;
 
+import javax.sql.DataSource;
 import static org.junit.Assert.assertNotNull;
 
-@DataSet
+
 @RunWith(UnitilsJUnit4TestClassRunner.class)
-public class MysqlDAOTest {
-
-	    @TestDataSource
-   private DataSource dataSource;
-
-    //private LanguageDAO dao;
+public class DbTest {
+	static Logger logger= Logger.getLogger(DbTest.class.getName());
+	{logger.info("+Start DBTest");}
+	
+	@TestDataSource
+	private DataSource dataSource;
 
     @Before
     public void setUp() throws Exception {
-	//dao = new LanguageDAOOracleImpl1(dataSource);
+    	logger.debug("+Before");
+    	MySqlUserDao userdao = new MySqlUserDao(dataSource.getConnection());
     }
 
+    @DataSet
     @Test
     public void testGetUsers() throws Exception {
     
-        System.out.println("testGetUsers");
-        
-        Connection cnnx = dataSource.getConnection();
-        Statement stmt = cnnx.createStatement();
-////        
-        ResultSet rs = null;
-        try {
-            // check that the GG_LANGUAGES1 table exists
-            rs = stmt.executeQuery("SELECT * FROM users");
+		logger.debug("+testGetUsers");
 
-            // check that the GG_POC table exists
-            rs = stmt.executeQuery("SELECT * FROM roles");
+		Connection cnnx = dataSource.getConnection();
+		Statement stmt = cnnx.createStatement();
 
-            System.out.println("testGetUsers succeeded");
-        } finally {
-            if (rs != null) {
-                rs.close();
-            }
-        }
-        stmt.close();
-        cnnx.close();
-        
+		ResultSet rs = null;
+		try {
+
+			rs = stmt.executeQuery("SELECT * FROM users");
+			logger.info("testGetUsers succeeded");
+			System.out.println("testGetUsers succeeded");
+
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+		}
+
+		stmt.close();
+		cnnx.close();
     }
 }

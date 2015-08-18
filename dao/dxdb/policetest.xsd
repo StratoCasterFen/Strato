@@ -10,24 +10,24 @@
 		<xsd:attribute name="EventDate" use="optional" />
 		<xsd:attribute name="CriminalId" use="optional" />
 		<xsd:attribute name="UserId" use="optional" />
-		<xsd:attribute name="EventId" use="optional" />
+		<xsd:attribute name="Id" use="optional" />
 		<xsd:attribute name="EventName" use="optional" />
 		<xsd:attribute name="EventDescription" use="optional" />
 	</xsd:complexType>
 	<xsd:complexType name="user_role__type">
 		<xsd:attribute name="UserId" use="optional" />
-		<xsd:attribute name="idUR" use="optional" />
+		<xsd:attribute name="id" use="optional" />
 		<xsd:attribute name="RoleId" use="optional" />
 	</xsd:complexType>
 	<xsd:complexType name="criminals__type">
-		<xsd:attribute name="CriminalId" use="optional" />
 		<xsd:attribute name="Birthday" use="optional" />
+		<xsd:attribute name="Id" use="optional" />
 		<xsd:attribute name="SurName" use="optional" />
 		<xsd:attribute name="Name" use="optional" />
 	</xsd:complexType>
 	<xsd:complexType name="roles__type">
 		<xsd:attribute name="RoleName" use="optional" />
-		<xsd:attribute name="RoleId" use="optional" />
+		<xsd:attribute name="Id" use="optional" />
 	</xsd:complexType>
 	<xsd:complexType name="dbmaintain_scripts__type">
 		<xsd:attribute name="file_name" use="optional" />
@@ -38,8 +38,8 @@
 		<xsd:attribute name="succeeded" use="optional" />
 	</xsd:complexType>
 	<xsd:complexType name="users__type">
-		<xsd:attribute name="UserName" use="optional" />
-		<xsd:attribute name="UserId" use="optional" />
-		<xsd:attribute name="Password" use="optional" />
+		<xsd:attribute name="password" use="optional" />
+		<xsd:attribute name="id" use="optional" />
+		<xsd:attribute name="username" use="optional" />
 	</xsd:complexType>
 </xsd:schema>

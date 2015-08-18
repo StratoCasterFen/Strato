@@ -4,7 +4,7 @@ import by.academy.mydao.Identified;
 
 public class User implements Identified<Integer>{
 	private Integer id=null;
-	private String  userName;
+	private String  username;
 	private String  password;
 
 	public Integer getId() {
@@ -14,10 +14,10 @@ public class User implements Identified<Integer>{
 		this.id = id;
 	}
 	public String getUserName() {
-		return userName;
+		return username;
 	}
 	public void setUserName(String userName) {
-		this.userName = userName;
+		this.username = username;
 	}
 	public String getPassword() {
 		return password;
@@ -28,7 +28,7 @@ public class User implements Identified<Integer>{
 	
 	@Override
 	public String toString() {
-		return "User [UserId=" + id + ", UserName=" + userName + "]";
+		return "User [UserId=" + id + ", UserName=" + username + "]";
 	}
 
 
