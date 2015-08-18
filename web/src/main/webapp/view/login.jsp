@@ -6,11 +6,12 @@
 		<title>ARM Police station</title>
 	</head>
 	<body>
-		this is login page
-		<FORM ACTION="eventlist.jsp" method=”POST”>
+		Enter login and password:
+		<FORM ACTION="events" method=”POST”>
 			<INPUT TYPE=text NAME=user VALUE="Admin">
 			<INPUT TYPE=password NAME=pass>
-			<INPUT TYPE="submit" value="Отправить" />
-		</FORM>>	
+			<INPUT TYPE="submit" value="SignIn" />
+			<INPUT name="command" type="hidden" value="SIGNIN">
+		</FORM>	
 	</body>
 </html>

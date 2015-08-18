@@ -1,25 +1,26 @@
 package by.academy.service.impl;
 
 import java.util.List;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import by.academy.domain.CriminalEvent;
 import by.academy.domain.Role;
 import by.academy.domain.User;
 import by.academy.mydao.DaoException;
 import by.academy.mydao.GenericDao;
+import by.academy.mysql.MySqlCriminalEventDao;
 import by.academy.mysql.MySqlDaoFactory;
 import by.academy.mysql.MySqlUserDao;
 import by.academy.service.exception.ServiceException;
 import by.academy.service.interf.UserService;
 
 public class UserServiceImpl implements UserService {
-	
+	private MySqlUserDao daoUser;
 	final static String SALT="Fender";
-	private static Logger logger = Logger.getLogger(UserServiceImpl.class.getName());
-
+	
+	static Logger logger= Logger.getLogger(UserServiceImpl.class.getName());
+	
 	@Override
 	public User authorization(String userName, String password) throws ServiceException, DaoException {
 
@@ -55,7 +56,7 @@ public class UserServiceImpl implements UserService {
 		
 		User existingUser = daoUser.getUserByName(user);
 		if (existingUser == null) {
-
+			logger.info("+add user");
 			GenericDao dao = factory.getDao(factory.getConnection(), User.class);
 
 			String password = user.getPassword(); // должен быть не хешированный
@@ -65,14 +66,28 @@ public class UserServiceImpl implements UserService {
 			user.setPassword(md5Password);
 
 			dao.persist(user);
+			logger.info("-add user");
 		} else {
+			logger.error("user exist");
 			throw new ServiceException("User name exist.");
 		}
 	}
 
 	@Override
 	public void addEvent(CriminalEvent event) throws ServiceException {
-		// TODO Auto-generated method stub
+		logger.info("+add event.");
+		try {
+			MySqlDaoFactory factory = new MySqlDaoFactory();
+			MySqlCriminalEventDao daoEvent= new MySqlCriminalEventDao(factory.getConnection());
+			GenericDao dao = factory.getDao(factory.getConnection(), CriminalEvent.class);
+			dao.persist(event);
+		} catch (DaoException e) {
+			logger.error("could not add event");
+				e.printStackTrace();
+		} finally {
+			
+		}
+		logger.info("-add event.");
 
 	}
 
@@ -104,6 +119,12 @@ public class UserServiceImpl implements UserService {
 	public User getUserByName(String userName) throws ServiceException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void setUserDAO(MySqlUserDao daoUser) {
+		logger.info("Set daoUser.");
+		this.daoUser = daoUser;
 	}
 
 

@@ -3,6 +3,7 @@ package by.academy.service.interf;
 import java.util.List;
 import by.academy.domain.*;
 import by.academy.mydao.DaoException;
+import by.academy.mysql.MySqlUserDao;
 import by.academy.service.exception.ServiceException;
 
 public interface UserService {
@@ -22,5 +23,8 @@ public interface UserService {
 	List<Role> getRoleByUserId(int userId) throws ServiceException;
 	
 	User getUserByName(String userName) throws ServiceException;
+
+	void setUserDAO(MySqlUserDao daoUser);
+
 	
 }

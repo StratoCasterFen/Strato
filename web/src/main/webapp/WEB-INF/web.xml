@@ -7,17 +7,17 @@
 	<servlet>
 		<description>
 		</description>
-		<display-name>MyServlet</display-name>
-		<servlet-name>MyServlet</servlet-name>
-		<servlet-class>by.academy.servlets.MyServlet</servlet-class>
+		<display-name>Controller</display-name>
+		<servlet-name>Controller</servlet-name>
+		<servlet-class>by.academy.controller.Controller</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>MyServlet</servlet-name>
-		<url-pattern>/Co</url-pattern>
+		<servlet-name>Controller</servlet-name>
+		<url-pattern>/events</url-pattern>
 	</servlet-mapping>
 	
 	<error-page>
 	 	<error-code>400</error-code>
-	 	<location>/WEB-INF/jsp/errors/400.jsp</location>
+	 	<location>/view/errors/400.jsp</location>
 	</error-page>
 </web-app>

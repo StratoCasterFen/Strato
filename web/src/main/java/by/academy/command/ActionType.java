@@ -1,14 +1,19 @@
 package by.academy.command;
 
 public enum ActionType {
+	SIGNIN(){
+		public ICommand getCommand() {return new SignInCommand();}
+	},  
+	REGISTRATION(){
+		public ICommand getCommand() {return new RegCommand();} 
+	},
+	VIEWEVENTS(){
+		public ICommand getCommand() {return new ViewEventsCommand();}
+	};
 
-	 SIGNIN 		(new SignInCommand()),  
-	 REGISTRATION 	(new RegCommand()), 
-	 VIEWEVENTS 	(new ViewEventsCommand());
+	public abstract ICommand getCommand(); 
 	 
-	 private ICommand command; 
-	 private void ActionTypes (ICommand command) {this.command = command;}
 	 
-	 public ICommand getCommand() {return command;}
+	 //public ICommand getCommand() {return command;}
 	 
 }
