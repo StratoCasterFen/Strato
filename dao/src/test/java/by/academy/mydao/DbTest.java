@@ -64,8 +64,9 @@ public class DbTest {
     	MySqlUserDao userdao = new MySqlUserDao(dataSource.getConnection());
     }
 
-    @DataSet
+    
     @Test
+    @DataSet("DbTest.xml")
     public void testGetUsers() throws Exception {
     
 		logger.debug("+testGetUsers");

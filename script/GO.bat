@@ -21,18 +21,18 @@ md %repo%
 rem import git db
 %git_cmd% clone --recursive %remoteRepo% %repo%
 cd %repo%
-%git_cmd% checkout develop
+%git_cmd% checkout dev
 
 
 rem import sql dump
-set sql_cmd="C:\Program Files\MySQL\MySQL Server 5.6\bin\mysql.exe"
-%sql_cmd% -u root -pqwe321 -B -s -f policestation "%repo%\script\policest.sql"
+REM set sql_cmd="C:\Program Files\MySQL\MySQL Server 5.6\bin\mysql.exe"
+REM %sql_cmd% -u root -pqwe321 -B -s -f policestation "%repo%\script\policest.sql"
 
 rem maven 
 cd %repo%
 mvn clean install
 
 rem start
-java -jar %repo%\dao\target\matsak-dao-1.0.jar
+rem java -jar %repo%\dao\target\matsak-dao-1.0.jar
 pause
 
