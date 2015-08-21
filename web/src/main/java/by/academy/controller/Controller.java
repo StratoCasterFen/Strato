@@ -10,16 +10,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import by.academy.command.CommandFactory;
 import by.academy.command.ICommand;
 
-/**
- * Servlet implementation class MyServlet
- */
 
 public class Controller extends HttpServlet {
- 
+	public static Logger Log = LogManager.getLogger(Controller.class.getName());
+	
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
                           throws ServletException, IOException {
@@ -29,20 +29,19 @@ public class Controller extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
                                                     throws ServletException, IOException {
-            response.setContentType("text/html");
-     
-            String eventname = "Hello World!";
-            request.setAttribute("textA", eventname);
-            String varTextB = "It JSP.";
-            request.setAttribute("textB", varTextB);
-     
-            request.setAttribute("loc", Locale.getDefault());
-        //    System.out.println("gggggggggggggggg");
-          request.getSession().setAttribute("calend", Calendar.getInstance());
-          request.getRequestDispatcher("/view/eventlist.jsp").forward(request,
-        		  response);
-            //RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
-            //dispatcher.forward(request, response);
+		response.setContentType("text/html");
+
+		String eventname = "Hello World!";
+		request.setAttribute("textA", eventname);
+		String varTextB = "It JSP.";
+		request.setAttribute("textB", varTextB);
+
+		request.setAttribute("loc", Locale.getDefault());
+		request.getSession().setAttribute("calend", Calendar.getInstance());
+		request.getRequestDispatcher("/WEB-INF/view/eventlist.jsp").forward(request, response);
+		// RequestDispatcher dispatcher =
+		// request.getRequestDispatcher("login.jsp");
+		// dispatcher.forward(request, response);
     }
     
     private void performAction(HttpServletRequest request, HttpServletResponse response) {

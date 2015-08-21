@@ -5,61 +5,112 @@ xsi:schemaLocation="httр://maven.apache.org/POM/4.0.0 httр://maven.apache.org/
 		<artifactId>main</artifactId>
 		<groupId>by.academy</groupId>
 		<version>1.0</version>
+		<relativePath>../</relativePath>
 	</parent>
-	<artifactId>web</artifactId>
-	<packaging>war</packaging>
-	<name>web container</name>
+	<artifactId>hiperdao</artifactId>
+	<packaging>jar</packaging>
+	<name>hiperdao container</name>
 
 	<dependencies>
-		
+		<!-- HIBERNATE-->
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
-			<scope>test</scope>
+			<groupId>org.hibernate</groupId>
+			<artifactId>ejb3-persistence</artifactId>
+			<version>1.0.2.GA</version>
 		</dependency>
         <dependency>
-		    <groupId>javax.servlet</groupId>
-		    <artifactId>servlet-api</artifactId>
-		    <version>3.0-alpha-1</version>
-		    <scope>provided</scope>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>4.3.11.Final</version>
 		</dependency>
-		 
-		<dependency>
-		    <groupId>javaee</groupId>
-		    <artifactId>javaee-api</artifactId>
-		    <version>5</version>
+        <dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>4.3.11.Final</version>
 		</dependency>
-		 
-		<dependency>
-		    <groupId>javax</groupId>
-		    <artifactId>javaee-web-api</artifactId>
-		    <version>6.0</version>
-		    <scope>provided</scope>
-		</dependency>
+
+		
+		
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+			<type>jar</type>
 		</dependency>
+		<!--
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.12</version>
+		</dependency>
+		-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.13</version>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+		
+		<dependency>
+			<groupId>org.unitils</groupId>
+			<artifactId>unitils-core</artifactId>
+			<version>3.1</version>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>junit</artifactId>
+					<groupId>junit</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+	
+		<dependency>
+			<groupId>org.unitils</groupId>
+			<artifactId>unitils-dbunit</artifactId>
+			<version>3.1</version>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>jta</artifactId>
+					<groupId>javax.transaction</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+	
+		<dependency>
+			<groupId>dbunit</groupId>
+			<artifactId>dbunit</artifactId>
+			<version>2.2</version>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>junit</artifactId>
+					<groupId>junit</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		
+		
+        <dependency>
+        	<groupId>commons-dbcp</groupId>
+        	<artifactId>commons-dbcp</artifactId>
+        	<version>1.4</version>
+        </dependency>
 	</dependencies>
 	
 	<build>
+	<!--
         <plugins>
-		
-<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<version>2.2</version>
-				<configuration>
-					<url>http://localhost:8080/manager/text</url>
-					<server>tomcat</server>
-					<path>/war-1.0</path>
-				</configuration>
-			</plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.5.1</version>
                 <configuration>
                     <source>1.7</source>
                     <target>1.7</target>
@@ -67,6 +118,7 @@ xsi:schemaLocation="httр://maven.apache.org/POM/4.0.0 httр://maven.apache.org/
             </plugin>
 
             <plugin>
+			
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.4</version>
@@ -75,7 +127,7 @@ xsi:schemaLocation="httр://maven.apache.org/POM/4.0.0 httр://maven.apache.org/
                         <index>true</index>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>by.academy.matsak-web.Main</mainClass>
+                            <mainClass>by.academy.App</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -102,21 +154,13 @@ xsi:schemaLocation="httр://maven.apache.org/POM/4.0.0 httр://maven.apache.org/
                     </execution>
                 </executions>
             </plugin>
-            
-        </plugins>
+			
+			
+        </plugins>-->
     </build>
-	<url>http://maven.apache.org</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jdk.version>1.7</jdk.version>
+		<hibernate.version>4.3.11.Final</hibernate.version>
 	</properties>
-	<groupId>by.academy</groupId>
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>javax.servlet</groupId>
-				<artifactId>jstl</artifactId>
-				<version>1.2</version>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
-</project>
+	</project>
