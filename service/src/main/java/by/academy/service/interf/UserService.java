@@ -12,13 +12,13 @@ public interface UserService {
 	
 	void addUser(User user) throws ServiceException, DaoException;
 	
-	void addEvent(CriminalEvent event) throws ServiceException;
+	//void addEvent(CriminalEvent event) throws ServiceException;
 	
-	void updateEvent(CriminalEvent event) throws ServiceException;
+	//void updateEvent(CriminalEvent event) throws ServiceException;
 	
-	void deleteEventById(int eventIid) throws ServiceException;
+	//void deleteEventById(int eventIid) throws ServiceException;
 	
-	List<CriminalEvent> getOrdersByUserId(int userId) throws ServiceException;
+	//List<CriminalEvent> getOrdersByUserId(int userId) throws ServiceException;
 	
 	List<Role> getRoleByUserId(int userId) throws ServiceException;
 	

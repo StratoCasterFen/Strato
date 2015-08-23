@@ -7,8 +7,7 @@ public class RegCommand implements ICommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-		return null;
+		return "/WEB-INF/view/errors/400.jsp";
 	}
 
 }

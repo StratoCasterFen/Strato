@@ -7,6 +7,7 @@ import by.academy.mydao.DaoException;
 import by.academy.mydao.GenericDao;
 import by.academy.mysql.MySqlDaoFactory;
 import by.academy.service.exception.ServiceException;
+import by.academy.service.impl.EventServiceImpl;
 import by.academy.service.impl.UserServiceImpl;
 
 /**
@@ -19,12 +20,16 @@ public class App
     {
         System.out.println( "Hello World!" );
         
-        UserServiceImpl u=new UserServiceImpl();
-        System.out.println(u.authorization("Ivanko", "123"));
+//        UserServiceImpl u=new UserServiceImpl();
+//        System.out.println(u.authorization("Ivanko", "123"));
+//        
+//        MySqlDaoFactory factory = new MySqlDaoFactory();
+//        Connection connection =  factory.getConnection(); 
+//        GenericDao dao = factory.getDao(connection, User.class);
+
+        EventServiceImpl eventService = new EventServiceImpl();
+        System.out.println(eventService.getEvents());
         
-        MySqlDaoFactory factory = new MySqlDaoFactory();
-        Connection connection =  factory.getConnection(); 
-        GenericDao dao = factory.getDao(connection, User.class);
       //  User u=new User();
      //   u.setUserName("Ivanko");
       //  u.setPassword("133");
