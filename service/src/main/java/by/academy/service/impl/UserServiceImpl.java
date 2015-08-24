@@ -36,9 +36,7 @@ public class UserServiceImpl implements UserService {
 		MySqlUserDao daoUser= new MySqlUserDao(factory.getConnection());
 		User existingUser = null;
 		
-		// synchronized(existingUser)  {
-			existingUser = daoUser.getUserByNameAndPassword(user);
-	//	} 
+		existingUser = daoUser.getUserByNameAndPassword(user);
 		
 		if (existingUser == null) {
 			logger.error("Didn't find user");
@@ -78,53 +76,17 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
-//	@Override
-//	public void addEvent(CriminalEvent event) throws ServiceException {
-//		logger.info("+add event.");
-//		try {
-//			MySqlDaoFactory factory = new MySqlDaoFactory();
-//			MySqlCriminalEventDao daoEvent= new MySqlCriminalEventDao(factory.getConnection());
-//			GenericDao dao = factory.getDao(factory.getConnection(), CriminalEvent.class);
-//			dao.persist(event);
-//		} catch (DaoException e) {
-//			logger.error("could not add event");
-//				e.printStackTrace();
-//		} finally {
-//			
-//		}
-//		logger.info("-add event.");
-//
-//	}
-
-//	@Override
-//	public void updateEvent(CriminalEvent event) throws ServiceException {
-//		// TODO Auto-generated method stub
-//
-//	}
-//
-//	@Override
-//	public void deleteEventById(int eventIid) throws ServiceException {
-//		// TODO Auto-generated method stub
-//
-//	}
-//
-//	@Override
-//	public List<CriminalEvent> getOrdersByUserId(int userId) throws ServiceException {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-
 	@Override
 	public List<Role> getRoleByUserId(int userId) throws ServiceException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
-	public User getUserByName(String userName) throws ServiceException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public User getUserByName(String userName) throws ServiceException {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 	@Override
 	public void setUserDAO(MySqlUserDao daoUser) {
@@ -132,6 +94,22 @@ public class UserServiceImpl implements UserService {
 		this.daoUser = daoUser;
 	}
 
-
+	@Override
+	public List<User> getAllUsers() throws DaoException{
+		logger.info("Getting all users");
+		List<User> users;
+		MySqlDaoFactory factory = new MySqlDaoFactory();
+		MySqlUserDao daoUser = new MySqlUserDao(factory.getConnection());
+		try {
+			users = daoUser.getAll();
+			logger.info("Returning all users");
+			return users;
+		} catch (DaoException e) {
+			logger.error("e");
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
 	
 }

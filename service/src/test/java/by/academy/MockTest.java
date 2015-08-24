@@ -1,19 +1,11 @@
 package by.academy;
 
-import static org.mockito.Mockito.*;
-
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.integration.junit4.JUnit4Mockery;
 
-import static org.junit.Assert.*;
-
-import java.util.Iterator;
-
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
 
 import by.academy.domain.User;
 import by.academy.mydao.DaoException;
@@ -21,42 +13,59 @@ import by.academy.mydao.GenericDao;
 import by.academy.mysql.MySqlDaoFactory;
 import by.academy.mysql.MySqlUserDao;
 import by.academy.service.exception.ServiceException;
-import by.academy.service.impl.EventServiceImpl;
 import by.academy.service.impl.ModelUser;
 import by.academy.service.impl.UserServiceImpl;
 import by.academy.service.interf.UserService;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import java.sql.Connection;
+import org.apache.log4j.Logger;
 
 public class MockTest {
 	
 	static Logger logger= Logger.getLogger(MockTest.class.getName());
 	
-	
 	private Mockery mockingContext = new JUnit4Mockery();
 	private ModelUser mUser;
-	private MySqlUserDao daoUser;
-	private UserService userService = new UserServiceImpl();
-	{logger.info("end init "+ mUser);}
+	private UserService mockedUserService;
+	private GenericDao daoUser;
+	
+	private List<User> users = new ArrayList<User>();
+	//protected MySqlUserDao daoUser;
+	
+	{logger.info("end init "+ users);}
 	
 	@Before
 	public void setUp() throws DaoException{
-		logger.info("setup");
-		mUser= new ModelUser("Ivanko5","798454");
-//		user.setId(100);
-//		user.setUserName("Ivanko");
-//		user.setPassword("7895");
-//		
-		daoUser=mockingContext.mock(MySqlUserDao.class);
-//		MySqlDaoFactory factory=new MySqlDaoFactory();
-//		//Connection connection =  factory.getConnection(); 
-//		GenericDao dao = factory.getDao(factory.getConnection(), User.class);
-//		dao.persist(user);
-		logger.info(user);
-		//userService = mockingContext.mock(UserServiceImpl.class);
+		logger.info("setup before test");
+		mUser = new ModelUser("admin", "123");
+
+		MySqlDaoFactory factory = new MySqlDaoFactory();
+		daoUser = factory.getDao(factory.getConnection(), User.class);
+
+		User user = new User();
+		user.setId(79);
+		user.setUserName("Ivanko");
+		user.setPassword("133");
+
+		User user1 = new User();
+		user1.setId(66);
+		user1.setUserName("Pervanuk");
+		user1.setPassword("415133");
+
+		User user2 = new User();
+		user2.setId(3);
+		user2.setUserName("admin");
+		user2.setPassword("b1374a31148f365f61e1b30e655f1d6");
+
+		users.add(user2);
+		users.add(user1);
+		users.add(user);
+
+		mockedUserService = mockingContext.mock(UserService.class);
+		daoUser = mockingContext.mock(GenericDao.class);
+		
 	}
 	
 	@Test
@@ -64,16 +73,27 @@ public class MockTest {
 		logger.info("test addUser");
 		mockingContext.checking(new Expectations() {
 			{
-				oneOf(daoUser).getUserByName(user);
-				will(returnValue(null));
-				daoUser.persist(user);
-				oneOf(daoUser).getUserByName(user);
-				will(returnValue(user));				
+				oneOf(mockedUserService).addUser(mUser);
+				will(returnValue(null));	
 			}
 		});
-		
-		userService.setUserDAO(daoUser);
-		userService.addUser(user);
-		
+		mockedUserService.addUser(mUser);
+		logger.info("--test addUser");
     }
+	
+	@Test
+	public void getAllUsers() throws ServiceException, DaoException {
+		logger.info("test getAllUsers");
+		mockingContext.checking(new Expectations() {
+			{
+				oneOf(daoUser).getAll();
+				will(returnValue(users));
+				logger.info(users);
+			}
+		});
+		mockedUserService=new UserServiceImpl();
+		mockedUserService.getAllUsers();
+		logger.info("mo"+mockedUserService.getAllUsers());
+	}
+	
 }

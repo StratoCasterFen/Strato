@@ -9,9 +9,11 @@ import java.util.List;
 
 public interface EventService {
 	
-	int add(CriminalEvent event ) throws DaoException;
+	void add(CriminalEvent event ) throws DaoException;
 	
-	void deleteByID(int eventId) throws DaoException;
+	void deleteByID(Integer eventId) throws ServiceException;
+	
+	CriminalEvent getEventByID(Integer eventId) throws ServiceException;
 	
 	List<CriminalEvent> getEventsByUserId(int userId) throws DaoException;
 	

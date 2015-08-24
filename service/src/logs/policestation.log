@@ -1,0 +1,8 @@
+2015-08-25 01:20:20 INFO  EventServiceImpl:70 - run method getEvents()
+2015-08-25 01:20:24 INFO  EventServiceImpl:26 - +add event.
+2015-08-25 01:20:31 INFO  EventServiceImpl:35 - -add event.
+2015-08-25 01:20:49 INFO  EventServiceImpl:40 - +delete event.
+2015-08-25 01:20:57 INFO  EventServiceImpl:94 - +getEvent
+2015-08-25 01:25:45 INFO  EventServiceImpl:102 - -getEvent. Return event: 6
+2015-08-25 01:28:28 ERROR EventServiceImpl:46 - can not delete event 6. by.academy.mydao.DaoException: by.academy.mydao.DaoException: On delete modify more then 1 record: 0
+2015-08-25 01:28:36 INFO  EventServiceImpl:49 - -delete event.

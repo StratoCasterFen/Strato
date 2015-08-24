@@ -16,9 +16,8 @@ public interface UserService {
 	void addUser(ModelUser user) throws ServiceException, DaoException;
 	
 	List<Role> getRoleByUserId(int userId) throws ServiceException;
-	
-	User getUserByName(String userName) throws ServiceException;
 
 	void setUserDAO(MySqlUserDao daoUser);
-
+	
+	List<User> getAllUsers() throws  DaoException;
 }
