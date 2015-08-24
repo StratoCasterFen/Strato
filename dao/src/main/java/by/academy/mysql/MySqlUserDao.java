@@ -116,14 +116,14 @@ public class MySqlUserDao extends AbstractDao<User, Integer>{
 	        return list.iterator().next();
 	}
 
-	public User getUserByName(User user) throws DaoException {
+	public User getUserByName(String userName) throws DaoException {
 		 
 		 String sql = ResourceBundle.getBundle("queries").getString("SelectUserByName");
 		 
 		 List<User> list;
 	       
 	       try (PreparedStatement statement = connection.prepareStatement(sql)) {
-	            statement.setString(1, user.getUserName());
+	            statement.setString(1, userName);
 	            ResultSet rs = statement.executeQuery();
 	            list = parseResultSet(rs);
 	        } catch (Exception e) {

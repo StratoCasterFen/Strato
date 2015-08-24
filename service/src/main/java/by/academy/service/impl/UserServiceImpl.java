@@ -49,24 +49,28 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void addUser(User user) throws ServiceException, DaoException {
+	public void addUser(ModelUser mUser) throws ServiceException, DaoException {
 		MySqlDaoFactory factory = new MySqlDaoFactory();
 		MySqlUserDao daoUser= new MySqlUserDao(factory.getConnection());
 		
-		String userName = user.getUserName();
+		String userName = mUser.getUserName();
 		
-		User existingUser = daoUser.getUserByName(user);
+		User existingUser = daoUser.getUserByName(userName);
+		
 		if (existingUser == null) {
 			logger.info("+add user");
 			GenericDao dao = factory.getDao(factory.getConnection(), User.class);
-
-			String password = user.getPassword(); // должен быть не хешированный
+			
+			String password = mUser.getPassword(); 
 			String md5Password;
 			MD5 md5 = new MD5();
 			md5Password = md5.getHash(md5.getHash(password) + md5.getHash(SALT));
-			user.setPassword(md5Password);
+			
+			User newUser=new User();
+			newUser.setUserName(userName);
+			newUser.setPassword(md5Password);
 
-			dao.persist(user);
+			dao.persist(newUser);
 			logger.info("-add user");
 		} else {
 			logger.error("user exist");

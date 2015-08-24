@@ -1,24 +1,19 @@
 package by.academy.service.interf;
 
 import java.util.List;
-import by.academy.domain.*;
+
+import by.academy.domain.Role;
+import by.academy.domain.User;
 import by.academy.mydao.DaoException;
 import by.academy.mysql.MySqlUserDao;
 import by.academy.service.exception.ServiceException;
+import by.academy.service.impl.ModelUser;
 
 public interface UserService {
 
 	User authorization(String userName, String password) throws ServiceException, DaoException;
 	
-	void addUser(User user) throws ServiceException, DaoException;
-	
-	//void addEvent(CriminalEvent event) throws ServiceException;
-	
-	//void updateEvent(CriminalEvent event) throws ServiceException;
-	
-	//void deleteEventById(int eventIid) throws ServiceException;
-	
-	//List<CriminalEvent> getOrdersByUserId(int userId) throws ServiceException;
+	void addUser(ModelUser user) throws ServiceException, DaoException;
 	
 	List<Role> getRoleByUserId(int userId) throws ServiceException;
 	
@@ -26,5 +21,4 @@ public interface UserService {
 
 	void setUserDAO(MySqlUserDao daoUser);
 
-	
 }
