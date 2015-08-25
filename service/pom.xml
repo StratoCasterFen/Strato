@@ -51,7 +51,7 @@
 		<dependency>
 			<groupId>by.academy</groupId>
 			<artifactId>dao</artifactId>
-			</dependency>
+		</dependency>
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>

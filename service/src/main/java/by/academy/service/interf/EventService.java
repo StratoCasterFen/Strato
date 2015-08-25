@@ -2,23 +2,26 @@ package by.academy.service.interf;
 
 import by.academy.domain.CriminalEvent;
 import by.academy.mydao.DaoException;
+import by.academy.service.exception.ServiceException;
 
 import java.util.Date;
 import java.util.List;
 
 public interface EventService {
 	
-	int add(CriminalEvent event ) throws DaoException;
+	void add(CriminalEvent event ) throws DaoException, ServiceException;
 	
-	void deleteByID(int eventId) throws DaoException;
+	void deleteByID(Integer eventId) throws ServiceException;
 	
-	List<CriminalEvent> getEventsByUserId(int userId) throws DaoException;
+	CriminalEvent getEventByID(Integer eventId) throws ServiceException;
 	
-	List<CriminalEvent> getEventsByDate(Date date) throws DaoException;
+	List<CriminalEvent> getEventsByUserId(int userId) throws DaoException, ServiceException;
 	
-	List<CriminalEvent> getEvents() throws DaoException;
+	List<CriminalEvent> getEventsByDate(Date date) throws DaoException, ServiceException;
 	
-	List<CriminalEvent> getEventsByCriminalId(int criminalId) throws DaoException;
+	List<CriminalEvent> getEvents() throws ServiceException, DaoException;
+	
+	List<CriminalEvent> getEventsByCriminalId(int criminalId) throws DaoException, ServiceException;
 	
 	
 }

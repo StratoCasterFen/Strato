@@ -1,5 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <html>
 <head>
@@ -10,25 +10,28 @@
 	<html:errors />
 	<table>
 		<thead>
-			<tr><c:forEach var="column"
+		<!-- 	<tr><c:forEach var="column"
 				items="Event name, Description, date">
-			<th><c:out value="${column}"/></th>
+			<th><c:out value="${textA}"/></th>
 				</c:forEach>
 			</tr>
+		-->	
 		</thead>
 		<tbody>
+		 <!-- 
 			<c:forEach var="item" items="${events}">
 			<tr><td><c:out value="${eventname}"/></td>
-			   <!--  <td><c:out value="${event.description}"/></td>
+			   <td><c:out value="${event.description}"/></td>
 				<td><c:out value="${event.date}"/></td>
 				<td><html:form action="orderItem">
 				<input type="hidden" name="id" value="<c:out value=’${event.id}’/>"/>
-				-->
+				
+				
 				<html:text property="quantity"/>
 				<html:submit />
 				</html:form></td>
 			</tr>
-			</c:forEach>
+			</c:forEach>-->
 		</tbody>
 	</table>
 	<p><html:link page="/addevent.do">add</html:link>

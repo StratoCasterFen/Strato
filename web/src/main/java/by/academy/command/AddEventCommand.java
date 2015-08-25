@@ -3,7 +3,7 @@ package by.academy.command;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class RegCommand implements ICommand {
+public class AddEventCommand implements ICommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {

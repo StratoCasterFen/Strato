@@ -5,18 +5,18 @@ import java.util.Date;
 import by.academy.mydao.Identified;
 
 public class CriminalEvent implements Identified<Integer>{
-	private Integer  id=null;
-	private String   eventName;
-	private String   eventDescription;
-	private Date     eventDate;
-	private Integer  criminalId;
-	private Integer  userId;
-	
+	private Integer id;
+	private String eventName;
+	private String eventDescription;
+	private Date eventDate;
+	private Integer criminalId;
+	private Integer userId;
+
 	public Integer getId() {
 		return id;
 	}
 	public void setId(int id) {
-		id = id;
+		this.id = id;
 	}
 	public String getEventName() {
 		return eventName;

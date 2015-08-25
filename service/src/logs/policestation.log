@@ -1,0 +1,7 @@
+2015-08-25 15:47:50 INFO  EventServiceImpl:107 - run method setEventDao
+2015-08-25 15:47:50 INFO  CriminalServiceImpl:88 - run method setEventDao
+2015-08-25 15:47:50 INFO  AbstractDao:57 - +getByPK.
+2015-08-25 15:47:50 INFO  AbstractDao:77 - -getByPK. return object.
+2015-08-25 15:47:50 INFO  CriminalServiceImpl:63 - +updateCriminal 2
+2015-08-25 15:47:50 INFO  CriminalServiceImpl:41 - run method getCriminalDao
+2015-08-25 15:47:51 INFO  CriminalServiceImpl:70 - -updateCriminal successfully.

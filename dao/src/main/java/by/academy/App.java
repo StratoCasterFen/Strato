@@ -12,7 +12,7 @@ import by.academy.domain.UserRole;
 import by.academy.mydao.DaoException;
 import by.academy.mydao.DaoFactory;
 import by.academy.mydao.GenericDao;
-
+import by.academy.mysql.MySqlCriminalEventDao;
 import by.academy.mysql.MySqlDaoFactory;
 import by.academy.mysql.MySqlUserDao;
 
@@ -35,6 +35,9 @@ public class App
         dao.persist(u);
         MySqlUserDao use = new MySqlUserDao(connection);
         System.out.println(use.getUserByNameAndPassword(u));
+        
+        MySqlCriminalEventDao mce= new MySqlCriminalEventDao(connection);
+        System.out.println(mce.getAll());
        // String md5Password;
 //        MD5 md5 = new MD5();
   //      md5Password = md5.getHash(md5.getHash("123") + md5.getHash("Fender"));
