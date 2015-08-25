@@ -3,16 +3,19 @@ package by.academy.mydao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
-import by.academy.mydao.DaoFactory;
 
+import org.apache.log4j.Logger;
 
 public abstract class AbstractDao <T extends Identified<PK>, PK extends Integer> implements GenericDao<T, PK> {
 	
-	public abstract String getSelectQuery(); //S
-	public abstract String getCreateQuery(); //C
-	public abstract String getUpdateQuery(); //U
-	public abstract String getDeleteQuery(); //D
+	static Logger logger= Logger.getLogger(AbstractDao.class.getName());
+	
+	public abstract String getSelectQuery() throws DaoException; //S
+	public abstract String getCreateQuery() throws DaoException; //C
+	public abstract String getUpdateQuery() throws DaoException; //U
+	public abstract String getDeleteQuery() throws DaoException; //D
 	
 	protected abstract List<T> parseResultSet(ResultSet rs) throws DaoException;
 	
@@ -51,24 +54,28 @@ public abstract class AbstractDao <T extends Identified<PK>, PK extends Integer>
 
     
     public T getByPK(Integer key) throws DaoException {
-        
+    	logger.info("+getByPK.");
     	List<T> list;
         String sql = getSelectQuery();
         sql += " WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, key);
+            statement.setInt(1, key.intValue());
             ResultSet rs = statement.executeQuery();
             list = parseResultSet(rs);
-        } catch (Exception e) {
-            throw new DaoException(e);
+        } catch (SQLException e) {
+        	logger.error("can't  get result from sql."); 
+            throw new DaoException("can't  get result from sql.", e);
         }
         if (list == null || list.size() == 0) {
+        	logger.error("Record with PK = " + key + " not found."); 
             throw new DaoException("Record with PK = " + key + " not found.");
         }
         if (list.size() > 1) {
+        	logger.error("Received more than one record."); 
             throw new DaoException("Received more than one record.");
         }
-        return list.iterator().next();
+        logger.info("-getByPK. return object.");
+        return list.iterator().next();    
     }
 
     @Override
@@ -100,29 +107,42 @@ public abstract class AbstractDao <T extends Identified<PK>, PK extends Integer>
 			
 			int count = statement.executeUpdate();
 			if (count != 1) {
+				logger.info("On update modify more then 1 record: " + count);
 				throw new DaoException("On update modify more then 1 record: " + count);
 			}
 		} catch (Exception e) {
-			throw new DaoException(e);
+			logger.warn("invalid update sql");
+			throw new DaoException("invalid sql",e);
 		}
 	}
 
     @Override
     public void delete(T object) throws DaoException {
+    	logger.info("+delete.");
         String sql = getDeleteQuery();
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             try {
                 statement.setObject(1, object.getId());
             } catch (Exception e) {
-                throw new DaoException(e);
+            	logger.error("can't  get result from sql."); 
+                throw new DaoException("can't  get result from sql.",e);
             }
             int count = statement.executeUpdate();
             if (count != 1) {
-                throw new DaoException("On delete modify more then 1 record: " + count);
+				if (count > 1) {
+					logger.error("On delete modify more then 1 record:"+count);
+					throw new DaoException(
+							"On delete modify more then 1 record: " + count);
+				} else {
+					logger.error("On delete can not find record: " + count);
+					throw new DaoException(
+							"On delete can not find record: " + count);
+				}
             }
             statement.close();
         } catch (Exception e) {
-            throw new DaoException(e);
+        	logger.error("On delete can not perform sql.");
+            throw new DaoException("On delete can not perform sql.",e);
         }
     }
 

@@ -1,7 +1,6 @@
 package by.academy.mysql;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.LinkedList;
@@ -11,8 +10,6 @@ import java.util.ResourceBundle;
 import by.academy.domain.User;
 import by.academy.mydao.AbstractDao;
 import by.academy.mydao.DaoException;
-import by.academy.mydao.DaoFactory;
-import by.academy.mydao.GenericDao;
 
 
 
@@ -136,6 +133,12 @@ public class MySqlUserDao extends AbstractDao<User, Integer>{
 	            throw new DaoException("Users with this name more than one record.");
 	        }
 	        return list.iterator().next();
+	}
+
+
+	public User getByName(String userName) {
+		
+		return null;
 	}
 	
 

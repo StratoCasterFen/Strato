@@ -32,8 +32,7 @@ public class MySqlCriminalDao extends AbstractDao<Criminal, Integer>{
         return persist(criminal);
 	}
 
-	
-	
+
 	@Override
 	public String getSelectQuery() {
 		return ResourceBundle.getBundle("queries").getString("SelectCriminal");

@@ -1,28 +1,29 @@
 package by.academy.service.impl;
 
 import java.util.List;
-import org.apache.log4j.LogManager;
+
 import org.apache.log4j.Logger;
 
-import by.academy.domain.CriminalEvent;
+import by.academy.domain.Criminal;
 import by.academy.domain.Role;
 import by.academy.domain.User;
 import by.academy.mydao.DaoException;
 import by.academy.mydao.GenericDao;
-import by.academy.mysql.MySqlCriminalEventDao;
+import by.academy.mysql.MySqlCriminalDao;
 import by.academy.mysql.MySqlDaoFactory;
 import by.academy.mysql.MySqlUserDao;
 import by.academy.service.exception.ServiceException;
 import by.academy.service.interf.UserService;
 
 public class UserServiceImpl implements UserService {
-	private MySqlUserDao daoUser;
+	static Logger logger= Logger.getLogger(UserServiceImpl.class.getName());
+	private GenericDao<User, Integer> userDao;
+	private MySqlUserDao mUser = (MySqlUserDao) userDao;
+	
 	final static String SALT="Fender";
 	
-	static Logger logger= Logger.getLogger(UserServiceImpl.class.getName());
-	
 	@Override
-	public User authorization(String userName, String password) throws ServiceException, DaoException {
+	public User authorization(String userName, String password) throws ServiceException {
 
 		User user = new User();
 		user.setUserName(userName);
@@ -31,45 +32,42 @@ public class UserServiceImpl implements UserService {
         MD5 md5 = new MD5();
         md5Password = md5.getHash(md5.getHash(password) + md5.getHash(SALT));
 		user.setPassword(md5Password);
-		
-		MySqlDaoFactory factory = new MySqlDaoFactory();
-		MySqlUserDao daoUser= new MySqlUserDao(factory.getConnection());
+
 		User existingUser = null;
 		
-		existingUser = daoUser.getUserByNameAndPassword(user);
+		try {
+			existingUser = mUser.getUserByNameAndPassword(user);
+		} catch (DaoException e) {
+			logger.error("Can't get user by Name & password");
+			throw new ServiceException("Can't get user by Name & password");
+		}
 		
 		if (existingUser == null) {
 			logger.error("Didn't find user");
-			throw new ServiceException("Login or password is incorrect.");
+			throw new ServiceException("Didn't find user");
 		}
-		logger.info("End authoruthation.");
+		logger.info("Authoruthation successfully!");
 		return existingUser;
 	}
 
 	@Override
-	public void addUser(ModelUser mUser) throws ServiceException, DaoException {
-		MySqlDaoFactory factory = new MySqlDaoFactory();
-		MySqlUserDao daoUser= new MySqlUserDao(factory.getConnection());
+	public void addUser(ModelUser modelUser) throws ServiceException, DaoException {
+		logger.info("+addUser");
 		
-		String userName = mUser.getUserName();
-		
-		User existingUser = daoUser.getUserByName(userName);
+		User existingUser = mUser.getUserByName(modelUser.getUserName());
 		
 		if (existingUser == null) {
-			logger.info("+add user");
-			GenericDao dao = factory.getDao(factory.getConnection(), User.class);
-			
-			String password = mUser.getPassword(); 
+			String password = modelUser.getPassword(); 
 			String md5Password;
 			MD5 md5 = new MD5();
 			md5Password = md5.getHash(md5.getHash(password) + md5.getHash(SALT));
 			
 			User newUser=new User();
-			newUser.setUserName(userName);
+			newUser.setUserName(modelUser.getUserName());
 			newUser.setPassword(md5Password);
 
-			dao.persist(newUser);
-			logger.info("-add user");
+			mUser.persist(newUser);
+			logger.info("-addUser successfully");
 		} else {
 			logger.error("user exist");
 			throw new ServiceException("User name exist.");
@@ -77,39 +75,50 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<Role> getRoleByUserId(int userId) throws ServiceException {
+	public List<Role> getRolesByUserId(int userId) throws ServiceException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-//	@Override
-//	public User getUserByName(String userName) throws ServiceException {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-
 	@Override
-	public void setUserDAO(MySqlUserDao daoUser) {
-		logger.info("Set daoUser.");
-		this.daoUser = daoUser;
+	public User getUserByName(String userName) throws ServiceException {
+		logger.info("+getUserByName");
+		try {
+			logger.info("-getUserByName");
+			return mUser.getByName(userName);
+		} catch (DaoException e) {
+			logger.error("need userDao in UserService.");
+			throw new ServiceException("need userDao in UserService.");
+		}
 	}
 
 	@Override
-	public List<User> getAllUsers() throws DaoException{
+	public void setUserDAO(GenericDao<User, Integer> userDao) {
+		logger.info("Set userDao.");
+		this.userDao = userDao;
+	}
+
+	public GenericDao<User, Integer> getUserDao() throws ServiceException {
+		logger.info("run method getUserDao");
+		if (userDao == null) {
+			logger.error("error. need userDao in UserService");
+			throw new ServiceException("need userDao in UserService");
+		}
+		return userDao;
+	}
+
+	@Override
+	public List<User> getAllUsers() throws DaoException, ServiceException {
 		logger.info("Getting all users");
 		List<User> users;
-		MySqlDaoFactory factory = new MySqlDaoFactory();
-		MySqlUserDao daoUser = new MySqlUserDao(factory.getConnection());
 		try {
-			users = daoUser.getAll();
+			users = mUser.getAll();
 			logger.info("Returning all users");
 			return users;
 		} catch (DaoException e) {
-			logger.error("e");
-			e.printStackTrace();
+			logger.error("Can not get user list. ");
+			throw new ServiceException("Can not get user list. " + e);
 		}
-		return null;
-		
 	}
 	
 }

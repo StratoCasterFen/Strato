@@ -5,7 +5,7 @@ import java.util.List;
 import by.academy.domain.Role;
 import by.academy.domain.User;
 import by.academy.mydao.DaoException;
-import by.academy.mysql.MySqlUserDao;
+import by.academy.mydao.GenericDao;
 import by.academy.service.exception.ServiceException;
 import by.academy.service.impl.ModelUser;
 
@@ -15,9 +15,11 @@ public interface UserService {
 	
 	void addUser(ModelUser user) throws ServiceException, DaoException;
 	
-	List<Role> getRoleByUserId(int userId) throws ServiceException;
+	List<Role> getRolesByUserId(int userId) throws ServiceException;
 
-	void setUserDAO(MySqlUserDao daoUser);
+	void setUserDAO(GenericDao<User, Integer> userDao);
 	
-	List<User> getAllUsers() throws  DaoException;
+	List<User> getAllUsers() throws  DaoException, ServiceException;
+
+	User getUserByName(String userName) throws ServiceException;
 }
