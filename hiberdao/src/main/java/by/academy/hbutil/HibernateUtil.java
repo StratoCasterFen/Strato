@@ -1,7 +1,8 @@
 package by.academy.hbutil;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.hibernate.*;
 import org.hibernate.cfg.*;
  
@@ -14,7 +15,7 @@ import by.academy.domain.User;
 public class HibernateUtil {
 	
 	private static final SessionFactory sessionFactory;
-	private static Logger Log = LogManager.getLogger(HibernateUtil.class.getName());
+	private static Logger logger = LogManager.getLogger(HibernateUtil.class.getName());
 	
 	static{
 	    try{
@@ -23,12 +24,12 @@ public class HibernateUtil {
 	      .addAnnotatedClass(User.class)
 	      .addAnnotatedClass(CriminalEvent.class)
 	      .addAnnotatedClass(Role.class);
-	      Log.info("Create SessionFactory");
+	      logger.info("Create SessionFactory");
 	      Configuration conf = aconf.configure();
 	      
 	      sessionFactory = conf.buildSessionFactory();
 	    } catch (Throwable ex) {         
-	    	Log.error("Initial SessionFactory creation failed", ex); 
+	    	logger.error("Initial SessionFactory creation failed", ex); 
             throw new ExceptionInInitializerError(ex); 
         }
 	}
