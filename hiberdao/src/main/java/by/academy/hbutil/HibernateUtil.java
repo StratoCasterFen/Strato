@@ -1,49 +1,39 @@
 package by.academy.hbutil;
 
-
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.hibernate.*;
-import org.hibernate.cfg.*;
- 
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.AnnotationConfiguration;
+import org.hibernate.ejb.Ejb3Configuration;
 
-import by.academy.domain.Criminal;
-import by.academy.domain.CriminalEvent;
-import by.academy.domain.Role;
-import by.academy.domain.User;
+import by.academy.pojos.Criminal;
 
 public class HibernateUtil {
-	
-	private static final SessionFactory sessionFactory;
 	private static Logger logger = LogManager.getLogger(HibernateUtil.class.getName());
-	
-	static{
-	    try{
-	      AnnotationConfiguration aconf = new AnnotationConfiguration()
-	      .addAnnotatedClass(Criminal.class)
-	      .addAnnotatedClass(User.class)
-	      .addAnnotatedClass(CriminalEvent.class)
-	      .addAnnotatedClass(Role.class);
-	      logger.info("Create SessionFactory");
-	      Configuration conf = aconf.configure();
-	      
-	      sessionFactory = conf.buildSessionFactory();
-	    } catch (Throwable ex) {         
-	    	logger.error("Initial SessionFactory creation failed", ex); 
-            throw new ExceptionInInitializerError(ex); 
-        }
+
+	private static final SessionFactory sessionFactory;
+	private static final Ejb3Configuration ejb3Configuration;
+
+	static {
+		try {
+			sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
+			ejb3Configuration = new Ejb3Configuration().configure("/hibernate.cfg.xml");
+		} catch (Throwable ex) {
+			logger.error("Initial SessionFactory creation failed." + ex);
+			throw new ExceptionInInitializerError(ex);
+		}
 	}
 
-	public static SessionFactory getSessionFactory() throws HibernateException{
+	public static SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
-
 	public static Session getSession() throws HibernateException {
-		// Session session = getSessionFactory().openSession();
-
 		return sessionFactory.openSession();
 	}
-		    
-	public static Session getCurrentSession() throws HibernateException { 
-		return sessionFactory.getCurrentSession(); }
+
+	public static Ejb3Configuration getEjb3Configuration() {
+		return ejb3Configuration;
+	}
 }

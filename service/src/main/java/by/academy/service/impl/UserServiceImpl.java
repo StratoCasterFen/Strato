@@ -4,13 +4,10 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import by.academy.domain.Criminal;
 import by.academy.domain.Role;
 import by.academy.domain.User;
 import by.academy.mydao.DaoException;
 import by.academy.mydao.GenericDao;
-import by.academy.mysql.MySqlCriminalDao;
-import by.academy.mysql.MySqlDaoFactory;
 import by.academy.mysql.MySqlUserDao;
 import by.academy.service.exception.ServiceException;
 import by.academy.service.interf.UserService;
@@ -84,11 +81,10 @@ public class UserServiceImpl implements UserService {
 	public User getUserByName(String userName) throws ServiceException {
 		logger.info("+getUserByName");
 		try {
-			logger.info("-getUserByName");
-			return mUser.getByName(userName);
+			return mUser.getUserByName(userName);
 		} catch (DaoException e) {
-			logger.error("need userDao in UserService.");
-			throw new ServiceException("need userDao in UserService.");
+			logger.error("cant perform user");
+			throw new ServiceException("cant perform user");
 		}
 	}
 
@@ -112,7 +108,7 @@ public class UserServiceImpl implements UserService {
 		logger.info("Getting all users");
 		List<User> users;
 		try {
-			users = mUser.getAll();
+			users = getUserDao().getAll();
 			logger.info("Returning all users");
 			return users;
 		} catch (DaoException e) {
@@ -120,5 +116,5 @@ public class UserServiceImpl implements UserService {
 			throw new ServiceException("Can not get user list. " + e);
 		}
 	}
-	
+
 }

@@ -1,13 +1,11 @@
 package by.academy;
 
-import java.net.URL;
+import javax.persistence.EntityManager;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
-
-import by.academy.domain.Criminal;
 import by.academy.hbutil.HibernateUtil;
+import by.academy.pojos.Criminal;
 
 public class App {
 
@@ -17,11 +15,24 @@ public class App {
 		criminal.setCriminalSurname("Bonicals");
 		
 		Session session = HibernateUtil.getSession();
-		session.beginTransaction();
-		session.saveOrUpdate(criminal);
+//		session.beginTransaction();
+//		session.saveOrUpdate(criminal);
+//	
+//		session.getTransaction().commit();
+//		session.close();
+		
+		
+		EntityManager em = HibernateUtil.getEjb3Configuration()
+			    .buildEntityManagerFactory().createEntityManager();
+
+		em.getTransaction().begin();
+
+		//выполняем некоторую обработку бизнес объектов
+		em.persist(criminal);
 	
-		session.getTransaction().commit();
-		session.close();
+		//завершаем транзакцию 
+		em.getTransaction().commit();
+		em.close();
 	}
 
 }

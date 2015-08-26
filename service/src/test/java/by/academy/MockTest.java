@@ -3,7 +3,6 @@ package by.academy;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.integration.junit4.JUnit4Mockery;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -30,9 +29,11 @@ public class MockTest {
 	private ModelUser mUser;
 	private UserService mockedUserService;
 	private GenericDao daoUser;
-	
+	private GenericDao userDao;
 	private List<User> users = new ArrayList<User>();
-	//protected MySqlUserDao daoUser;
+	private String userName;
+	private User user; 
+	private GenericDao/*MySqlUserDao*/ myUser;
 	
 	{logger.info("end init "+ users);}
 	
@@ -43,8 +44,11 @@ public class MockTest {
 
 		MySqlDaoFactory factory = new MySqlDaoFactory();
 		daoUser = factory.getDao(factory.getConnection(), User.class);
-
-		User user = new User();
+		
+		
+		userDao=daoUser;
+		// users must equals data in database
+		user = new User();
 		user.setId(79);
 		user.setUserName("Ivanko");
 		user.setPassword("133");
@@ -64,8 +68,11 @@ public class MockTest {
 		users.add(user);
 
 		mockedUserService = mockingContext.mock(UserService.class);
-		daoUser = mockingContext.mock(GenericDao.class);
+		myUser = mockingContext.mock(MySqlUserDao.class);
+		daoUser=mockingContext.mock(GenericDao.class);
+	//	myUser=(MySqlUserDao)daoUser;
 		
+		userName ="Ivanko";
 	}
 	
 	@Test
@@ -81,7 +88,7 @@ public class MockTest {
 		logger.info("--test addUser");
     }
 	
-	@Test
+	@Test  
 	public void getAllUsers() throws ServiceException, DaoException {
 		logger.info("test getAllUsers");
 		mockingContext.checking(new Expectations() {
@@ -92,8 +99,24 @@ public class MockTest {
 			}
 		});
 		mockedUserService=new UserServiceImpl();
+		mockedUserService.setUserDAO(userDao);
 		mockedUserService.getAllUsers();
-		logger.info("mo"+mockedUserService.getAllUsers());
+		logger.info("mo "+mockedUserService.getAllUsers());
 	}
+	
+	@Test
+	public void getUserByName() throws DaoException, ServiceException {
+		logger.info("test getUserByName");
+		mockingContext.checking(new Expectations() {
+			{
+				oneOf((MySqlUserDao)myUser).getUserByName(userName);
+				will(returnValue(user));
+				logger.info(user);
+			}
+		});
+		mockedUserService.getUserByName(userName);
+	}
+	
+	
 	
 }

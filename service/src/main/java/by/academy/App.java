@@ -2,21 +2,16 @@ package by.academy;
 
 import java.sql.Connection;
 import java.util.Calendar;
-import java.sql.Date;
-
 import by.academy.domain.Criminal;
 import by.academy.domain.CriminalEvent;
-import by.academy.domain.User;
 import by.academy.mydao.ConvertDate;
 import by.academy.mydao.DaoException;
 import by.academy.mydao.GenericDao;
 import by.academy.mysql.MySqlCriminalDao;
-import by.academy.mysql.MySqlCriminalEventDao;
 import by.academy.mysql.MySqlDaoFactory;
 import by.academy.service.exception.ServiceException;
 import by.academy.service.impl.CriminalServiceImpl;
 import by.academy.service.impl.EventServiceImpl;
-import by.academy.service.impl.UserServiceImpl;
 
 /**
  * Hello world!

@@ -136,10 +136,5 @@ public class MySqlUserDao extends AbstractDao<User, Integer>{
 	}
 
 
-	public User getByName(String userName) {
-		
-		return null;
-	}
-	
 
 }

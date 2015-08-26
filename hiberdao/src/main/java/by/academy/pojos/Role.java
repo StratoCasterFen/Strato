@@ -1,4 +1,4 @@
-package by.academy.domain;
+package by.academy.pojos;
 
 import java.io.Serializable;
 
