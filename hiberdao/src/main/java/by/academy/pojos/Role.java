@@ -1,30 +1,35 @@
 package by.academy.pojos;
 
 import java.io.Serializable;
+import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-//import by.academy.mydao.Identified;
 @Entity
 @Table(name= "roles")
+@Access(AccessType.FIELD)
 public class Role implements Serializable{
+	private static final long serialVersionUID = 1L;
 	
 	@Id
     @Column(name= "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id=null;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 	
 	@Column(name= "RoleName")
 	private String  roleName;
 	
+	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "roles",
+	cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	private Set<User> users;
 	
 	public Role() {
 	}
+	
+	public Role(String roleName) {
+		this.roleName = roleName;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -37,6 +42,15 @@ public class Role implements Serializable{
 	public void setRoleName(String roleName) {
 		this.roleName = roleName;
 	}
+	
+	public Set<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(Set<User> users) {
+		this.users = users;
+	}
+
 	@Override
 	public String toString() {
 		return "Role [Id=" + id + ", roleName=" + roleName + "]";

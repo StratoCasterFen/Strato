@@ -5,7 +5,7 @@
 <hibernate-configuration>
   <session-factory>
 	<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-	<property name="connection.url">jdbc:mysql://localhost:3306/policestation</property>
+	<property name="connection.url">jdbc:mysql://localhost:3306/hiberpolice</property>
 	<property name="connection.username">root</property>
 	<property name="connection.password">qwe321</property>
 	<property name="connection.pool_size">10</property>

@@ -123,6 +123,11 @@ xsi:schemaLocation="httр://maven.apache.org/POM/4.0.0 httр://maven.apache.org/
         	<artifactId>commons-dbcp</artifactId>
         	<version>1.4</version>
         </dependency>
+        <dependency>
+        	<groupId>org.eclipse.persistence</groupId>
+        	<artifactId>org.eclipse.persistence.jpa</artifactId>
+        	<version>2.5.0</version>
+        </dependency>
 	</dependencies>
 	
 	<build>

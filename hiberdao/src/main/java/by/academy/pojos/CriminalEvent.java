@@ -2,14 +2,18 @@ package by.academy.pojos;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -20,9 +24,14 @@ import javax.persistence.TemporalType;
 @Table(name= "criminalevents")
 public class CriminalEvent implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
     @Column(name= "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer  id=null;
 	
 	@Column(name= "EventName")
@@ -42,6 +51,17 @@ public class CriminalEvent implements Serializable{
 	@ManyToOne
 	@JoinColumn(name= "UserId")
 	private User  user;
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "criminalEvent")
+	private Set<EventType> eventType;
+	 
+	public Set<EventType> getEventType() {
+	    return eventType;
+	}
+	 
+	public void setUsers(Set<EventType> eventType) {
+	    this.eventType = eventType;
+	}
 	
 	
 	public CriminalEvent() {

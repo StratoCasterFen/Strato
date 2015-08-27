@@ -1,29 +1,39 @@
 package by.academy.pojos;
 
 import java.io.Serializable;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
+import javax.persistence.*;
 
 @Entity
+@Access(AccessType.FIELD)
 @Table(name= "users")
 public class User implements Serializable{
+	private static final long serialVersionUID = 1L;
 	
 	@Id
     @Column(name= "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id=null;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+/*	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="user_seq")
+	@SequenceGenerator(
+		name="user_seq",
+		sequenceName="user_sequence",
+		allocationSize=20
+	)*/
+	private Integer id;
 	
 	@Column(name= "UserName")
 	private String  username;
 	
 	@Column(name= "Password")
 	private String  password;
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name="user_role",
+	        joinColumns = @JoinColumn(name="Userid", referencedColumnName="id"),
+	        inverseJoinColumns = @JoinColumn(name="Roleid", referencedColumnName="id")
+	)
+    private List<Role> roles;
 
 	public User() {
 	}
@@ -37,7 +47,7 @@ public class User implements Serializable{
 	public String getUserName() {
 		return username;
 	}
-	public void setUserName(String userName) {
+	public void setUserName(String username) {
 		this.username = username;
 	}
 	public String getPassword() {
@@ -47,6 +57,14 @@ public class User implements Serializable{
 		this.password = password;
 	}
 	
+	public List<Role> getUser_role() {
+		return roles;
+	}
+
+	public void setUser_role(List<Role> roles) {
+		this.roles = roles;
+	}
+
 	@Override
 	public String toString() {
 		return "User [UserId=" + id + ", UserName=" + username + "]";
