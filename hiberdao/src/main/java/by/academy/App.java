@@ -21,7 +21,7 @@ private static Logger logger = LogManager.getLogger(App.class.getName());
 	public static void main(String[] args) {
 		
 		EntityManagerFactory emf = Persistence
-				.createEntityManagerFactory("hiberpolice");
+				.createEntityManagerFactory("hiberpolice_test");
 		EntityManager em = emf.createEntityManager();
 
 		em.getTransaction().begin();
@@ -31,12 +31,12 @@ private static Logger logger = LogManager.getLogger(App.class.getName());
         List<Role> roles = new ArrayList<Role>();
         Role role1=new Role("Admin");
         roles.add(role1);
-        em.persist(role1);
+        //em.persist(role1);
         Role role2=new Role("Guest");
         roles.add(role2);
         logger.info("+pers role");
-        em.persist(role2);
-        logger.info("-pers role");
+       // em.persist(role2);
+        
         user.setUser_role(roles);
 
 		
@@ -44,7 +44,9 @@ private static Logger logger = LogManager.getLogger(App.class.getName());
 		em.persist(user);
 		
 		em.getTransaction().commit();
-
+		logger.info("good!");
+	       em.close();
+	        emf.close();
 	}
 
 }

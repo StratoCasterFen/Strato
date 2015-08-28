@@ -1,6 +1,12 @@
 package by.academy;
 
-import static junit.framework.Assert.assertEquals;
+//import static junit.framework.Assert.assertEquals;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +18,7 @@ import javax.persistence.Persistence;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.dbunit.Assertion;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,7 +37,7 @@ public class JPATests {
     	logger.info("init");
     	try{
     	 logger.info(emf);	
-        emf = Persistence.createEntityManagerFactory("hiberpolice");
+        emf = Persistence.createEntityManagerFactory("hiberpolice_test");
        
     	}catch (Exception e){
     		 logger.error(e);
@@ -38,22 +45,26 @@ public class JPATests {
         em = emf.createEntityManager();
     }
     
-    @Test
-    public void saveTest() {
+
+	@Test
+    public void saveTest() throws Exception {
 		logger.info("saveTest");
 		persistSimplePOJO();
 		try {
-//			List results = em.createQuery("SELECT COUNT(id) FROM hiberpolice.users id")
-//					.getResultList();
-//			long size = results.isEmpty() ? 0 : (Long) results.get(0);
-		//	assertEquals(1L, size);
+			List results = em.createQuery("SELECT COUNT(u) FROM User u").getResultList();
+			long size = results.isEmpty() ? 0 : (Long) results.get(0);
+			
+			assertEquals(24L, size);
+			logger.error("Users table have "+size+"records");
 		} catch (Exception e) {
 			logger.error("cant to perform result",e);
+			throw new Exception("kk",e);
 		}
 
 	}
     
-    @Test
+
+	@Test
     public void manyToManyTest() {
         persistSimplePOJO();
         logger.info("saveTest");
