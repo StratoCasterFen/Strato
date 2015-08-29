@@ -20,7 +20,7 @@ public class Role implements Serializable{
 	private String  roleName;
 	
 	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "roles",
-	cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	cascade = CascadeType.ALL)
 	private Set<User> users;
 	
 	public Role() {

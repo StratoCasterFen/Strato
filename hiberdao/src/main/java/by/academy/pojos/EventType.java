@@ -1,16 +1,22 @@
 package by.academy.pojos;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
+@Entity
+@Table(name= "EVENTTYPE")
 public class EventType implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -21,33 +27,32 @@ public class EventType implements Serializable {
 	private Integer id;
 	
 	@Column(name= "TypeName")
-	private String  EventtypeName;
-	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-	@JoinColumn(name = "id", nullable = false)
-	private CriminalEvent criminalEvent;
-	 
-	public CriminalEvent getEventT() {
-	    return criminalEvent;
+	private String  eventTypeName;
+
+	@OneToMany(targetEntity=CriminalEvent.class, cascade = CascadeType.ALL, mappedBy = "eventType" )
+	private Set<CriminalEvent> criminalEvents;
+
+	public Set<CriminalEvent> getCriminalEvents() {
+		return criminalEvents;
 	}
-	 
-	public void setBook(CriminalEvent criminalEvent) {
-	    this.criminalEvent = criminalEvent;
+
+	public void setCriminalEvents(Set<CriminalEvent> criminalEvents) {
+		this.criminalEvents = criminalEvents;
 	}
-	
+
 	public EventType() {
 	}
 	
-	public EventType(String eventtypeName) {
-		EventtypeName = eventtypeName;
+	public EventType(String eventTypeName) {
+		this.eventTypeName = eventTypeName;
 	}
 
-	public String getEventtypeName() {
-		return EventtypeName;
+	public String getEventTypeName() {
+		return eventTypeName;
 	}
 
-	public void setEventtypeName(String eventtypeName) {
-		EventtypeName = eventtypeName;
+	public void setEventTypeName(String eventTypeName) {
+		this.eventTypeName = eventTypeName;
 	}
 
 	@Override
@@ -55,7 +60,7 @@ public class EventType implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
-				+ ((EventtypeName == null) ? 0 : EventtypeName.hashCode());
+				+ ((eventTypeName == null) ? 0 : eventTypeName.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
@@ -69,10 +74,10 @@ public class EventType implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		EventType other = (EventType) obj;
-		if (EventtypeName == null) {
-			if (other.EventtypeName != null)
+		if (eventTypeName == null) {
+			if (other.eventTypeName != null)
 				return false;
-		} else if (!EventtypeName.equals(other.EventtypeName))
+		} else if (!eventTypeName.equals(other.eventTypeName))
 			return false;
 		if (id == null) {
 			if (other.id != null)
@@ -84,7 +89,7 @@ public class EventType implements Serializable {
 
 	@Override
 	public String toString() {
-		return "EventType [id=" + id + ", EventtypeName=" + EventtypeName + "]";
+		return "EventType [id=" + id + ", EventTypeName=" + eventTypeName + "]";
 	}
 	
 }

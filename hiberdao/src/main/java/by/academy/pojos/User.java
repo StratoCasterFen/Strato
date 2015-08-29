@@ -2,6 +2,7 @@ package by.academy.pojos;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -14,12 +15,6 @@ public class User implements Serializable{
 	@Id
     @Column(name= "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-/*	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="user_seq")
-	@SequenceGenerator(
-		name="user_seq",
-		sequenceName="user_sequence",
-		allocationSize=20
-	)*/
 	private Integer id;
 	
 	@Column(name= "UserName")
@@ -33,7 +28,7 @@ public class User implements Serializable{
 	        joinColumns = @JoinColumn(name="Userid", referencedColumnName="id"),
 	        inverseJoinColumns = @JoinColumn(name="Roleid", referencedColumnName="id")
 	)
-    private List<Role> roles;
+    private Set<Role> roles;
 
 	public User() {
 	}
@@ -57,12 +52,20 @@ public class User implements Serializable{
 		this.password = password;
 	}
 	
-	public List<Role> getUser_role() {
+//	public Set<Role> getUser_role() {
+//		return roles;
+//	}
+//
+//	public void setUser_role(Set<Role> roles) {
+//		this.roles = roles;
+//	}
+
+	public Set<Role> getRoles() {
 		return roles;
 	}
 
-	public void setUser_role(List<Role> roles) {
-		this.roles = roles;
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles; 
 	}
 
 	@Override

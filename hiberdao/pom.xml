@@ -54,8 +54,12 @@ xsi:schemaLocation="httр://maven.apache.org/POM/4.0.0 httр://maven.apache.org/
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
-			<version>1.2.17</version>
 			<type>jar</type>
+		</dependency>
+		<dependency>
+        <groupId>org.slf4j</groupId>
+		       <artifactId>slf4j-api</artifactId>
+		       <version>1.7.5</version>
 		</dependency>
 		<!--
 		<dependency>
@@ -104,16 +108,10 @@ xsi:schemaLocation="httр://maven.apache.org/POM/4.0.0 httр://maven.apache.org/
 		</dependency>
 	
 		<dependency>
-			<groupId>dbunit</groupId>
+			<groupId>org.dbunit</groupId>
 			<artifactId>dbunit</artifactId>
 			<version>2.2</version>
 			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<artifactId>junit</artifactId>
-					<groupId>junit</groupId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		
 		

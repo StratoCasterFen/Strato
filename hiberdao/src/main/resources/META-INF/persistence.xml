@@ -9,7 +9,7 @@
 	    <class>by.academy.pojos.User</class>
 	    <class>by.academy.pojos.Role</class>
 	    <class>by.academy.pojos.Criminal</class>
-	    <class>by.academy.pojos.CriminalEvents</class>
+	    <class>by.academy.pojos.CriminalEvent</class>
 	    <class>by.academy.pojos.EventType</class>
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>

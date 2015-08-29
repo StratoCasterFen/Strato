@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="dbxsd/dataset.xsd">
+	
+   <users username="Jim" id="1" password="19990101"/>
+   <users username="Tom" id="2" password="78451891"/>
+   <users username="Marta" id="3" password="198425oo1"/>
+  
+   <roles Id="1" RoleName="Admin"/>
+   <roles Id="2" RoleName="Looser"/>
+   
+   <user_role Id="1" UserId="1" RoleId="1"/>
+   <user_role Id="2" UserId="2" RoleId="2"/>
+   <user_role Id="3" UserId="2" RoleId="2"/>
+   
+   <criminals Id="1" Name="Kevin" SurName="Mitnik" BirthDay="1970-01-04"/>
+   <criminals Id="2" Name="Bobo" SurName="Little" BirthDay="1974-11-14"/>
+   
+    
+</dataset>
