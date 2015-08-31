@@ -52,13 +52,19 @@ public class User implements Serializable{
 		this.password = password;
 	}
 	
-//	public Set<Role> getUser_role() {
-//		return roles;
-//	}
-//
-//	public void setUser_role(Set<Role> roles) {
-//		this.roles = roles;
-//	}
+	@OneToMany(targetEntity=CriminalEvent.class, cascade = CascadeType.ALL, mappedBy = "user" )
+//	@OneToMany(targetEntity=CriminalEvent.class)
+	//@JoinColumn( referencedColumnName = "Id")
+	@JoinColumn(name="Userid", referencedColumnName="id")
+	private Set<CriminalEvent> criminalEvents;
+
+	public Set<CriminalEvent> getCriminalEvents() {
+		return criminalEvents;
+	}
+
+	public void setCriminalEvents(Set<CriminalEvent> criminalEvents) {
+		this.criminalEvents = criminalEvents;
+	}
 
 	public Set<Role> getRoles() {
 		return roles;

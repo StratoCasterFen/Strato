@@ -2,8 +2,6 @@ package by.academy.pojos;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,7 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -44,12 +41,16 @@ public class CriminalEvent implements Serializable{
 	@Temporal(value=TemporalType.DATE)
 	private Date     eventDate;
 	
+	@ManyToOne(targetEntity = Criminal.class, fetch = FetchType.EAGER)
+	@JoinColumn(name = "CriminalId")
 	private Criminal criminal;
 	
-	private User  user;
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "UserId", nullable = false)
+	private User user;
 	
 	@ManyToOne(targetEntity = EventType.class, fetch = FetchType.EAGER)
-	@JoinColumn(name = "Id", referencedColumnName = "EventTypeId")
+	@JoinColumn(name = "EventTypeId")
 	private EventType eventType;
 	 
 	

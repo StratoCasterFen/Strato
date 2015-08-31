@@ -24,23 +24,27 @@ public class App {
 private static Logger logger = LogManager.getLogger(App.class.getName());
 	public static void main(String[] args) {
 		
-		EntityManagerFactory emf = Persistence
-				.createEntityManagerFactory("hiberpolice");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("hiberpolice");
 		EntityManager em = emf.createEntityManager();
 
-/*		em.getTransaction().begin();
+		em.getTransaction().begin();
 		User user = new User();
-		user.setUserName("B.00hbjjjjSc");
+		user.setUserName("B.00hbjjjjSc000000000");
 		user.setPassword("@3565+681");
-        Set<Role> roles = new HashSet<Role>();
-        Role role1=new Role("Admin11");
-        roles.add(role1);
-        Role role2=new Role("Guest11");
-        roles.add(role2);
-        logger.info("+pers role");       
-        user.setRoles(roles);
+//        Set<Role> roles = new HashSet<Role>();
+//        Role role1=new Role("Admin11");
+//        roles.add(role1);
+//        Role role2=new Role("Guest11");
+//        roles.add(role2);
+//        logger.info("+pers role");       
+//        user.setRoles(roles);
+        Set<CriminalEvent> ces = new HashSet<CriminalEvent>();
+        CriminalEvent ce1=new CriminalEvent();
+        ce1.setEventName("eventNam00000000e1");
+        ces.add(ce1);
+        user.setCriminalEvents(ces);
         em.persist(user);
-        em.getTransaction().commit();*/
+        em.getTransaction().commit();
 //////////////////////////
   /*      em.getTransaction().begin();
         Role role3=new Role("testttt");
@@ -55,22 +59,22 @@ private static Logger logger = LogManager.getLogger(App.class.getName());
 		em.persist(role3);		
 		em.getTransaction().commit();*/
 ///////////////////////
-		em.getTransaction().begin();
-		EventType eventType=new EventType("hggggggggg");
-		
-		CriminalEvent ce = new CriminalEvent();
-		ce.setEventName("eventName1");
-//		em.persist(ce);
-		Set<CriminalEvent> events =new HashSet<CriminalEvent>();
-		events.add(ce);
-		CriminalEvent ce1 = new CriminalEvent();
-		ce1.setEventName("eventName2");
-	//	em.persist(ce1);
-		events.add(ce1);
-		eventType.setCriminalEvents(events);
-		em.persist(eventType);
-		em.getTransaction().commit();
-		
+//		em.getTransaction().begin();
+//		EventType eventType=new EventType("hggggggggg");
+//		
+//		CriminalEvent ce = new CriminalEvent();
+//		ce.setEventName("eventName1");
+////		em.persist(ce);
+//		Set<CriminalEvent> events =new HashSet<CriminalEvent>();
+//		events.add(ce);
+//		CriminalEvent ce1 = new CriminalEvent();
+//		ce1.setEventName("eventName2");
+//	//	em.persist(ce1);
+//		events.add(ce1);
+//		eventType.setCriminalEvents(events);
+//		em.persist(eventType);
+//		em.getTransaction().commit();
+//		
 //		logger.info("good!");
 	       em.close();
 	        emf.close();
