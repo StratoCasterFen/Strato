@@ -1,12 +1,11 @@
-package by.academy.mydao;
+package by.academy.dao;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
-import by.academy.mydao.Identified;
 
-
-public interface GenericDao <T extends Identified<PK>, PK extends Serializable> {
+public interface GenericHDao <T> {
 
     /** Создает новую запись и соответствующий ей объект */
     public T create() throws DaoException;
@@ -15,7 +14,7 @@ public interface GenericDao <T extends Identified<PK>, PK extends Serializable> 
     public T persist(T object)  throws DaoException;
 
     /** Возвращает объект соответствующий записи с первичным ключом key или null */
-    public T getByPK(PK key) throws DaoException;
+  //  public T getByPK(PK key) throws DaoException;
 
     /** Сохраняет состояние объекта  в базе данных */
     public void update(T object) throws DaoException;
@@ -24,6 +23,6 @@ public interface GenericDao <T extends Identified<PK>, PK extends Serializable> 
     public void delete(T object) throws DaoException;
 
     /** Возвращает список объектов соответствующих всем записям в базе данных */
-    public List<T> getAll() throws DaoException;	
+    public List getAll() throws DaoException;	
 
 }

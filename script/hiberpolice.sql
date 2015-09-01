@@ -17,18 +17,11 @@ USE `hiberpolice`;
 
 -- Дамп структуры для таблица hiberpolice.criminalevents
 CREATE TABLE IF NOT EXISTS `criminalevents` (
-  `EventId` int(11) NOT NULL AUTO_INCREMENT,
-  `EventTypeId` int(11) DEFAULT NULL,
-  `EventName` varchar(70) DEFAULT '0',
-  `EventDescription` varchar(700) DEFAULT NULL,
-  `EventDate` date DEFAULT NULL,
-  `CriminalId` int(11) DEFAULT NULL,
-  `UserId` int(11) DEFAULT NULL,
-  PRIMARY KEY (`EventId`),
-  KEY `CriminalIdKey` (`CriminalId`),
-  KEY `EventTypeIdKey` (`EventTypeId`),
-  KEY `UserIdKey` (`UserId`),
-  CONSTRAINT `FK_criminalevents_eventtype` FOREIGN KEY (`EventTypeId`) REFERENCES `eventtype` (`id`) ON UPDATE CASCADE
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(50) DEFAULT '0',
+  `Description` varchar(250) DEFAULT '0',
+  `EventDate` varchar(250) DEFAULT '0',
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Экспортируемые данные не выделены.
@@ -41,6 +34,27 @@ CREATE TABLE IF NOT EXISTS `criminals` (
   `SurName` varchar(50) DEFAULT '0',
   `Birthday` date DEFAULT NULL,
   PRIMARY KEY (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Экспортируемые данные не выделены.
+
+
+-- Дамп структуры для таблица hiberpolice.eventlinks
+CREATE TABLE IF NOT EXISTS `eventlinks` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `EventTypeId` int(11) DEFAULT NULL,
+  `EventId` int(11) DEFAULT NULL,
+  `CriminalId` int(11) DEFAULT NULL,
+  `UserId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `CriminalIdKey` (`CriminalId`),
+  KEY `EventTypeIdKey` (`EventTypeId`),
+  KEY `UserIdKey` (`UserId`),
+  KEY `EventId` (`EventId`),
+  CONSTRAINT `FK_eventlinks_criminalevents` FOREIGN KEY (`EventId`) REFERENCES `criminalevents` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `FK_eventlinks_criminals` FOREIGN KEY (`CriminalId`) REFERENCES `criminals` (`Id`) ON UPDATE CASCADE,
+  CONSTRAINT `FK_eventlinks_eventtype` FOREIGN KEY (`EventTypeId`) REFERENCES `eventtype` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `FK_eventlinks_users` FOREIGN KEY (`UserId`) REFERENCES `users` (`Id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Экспортируемые данные не выделены.

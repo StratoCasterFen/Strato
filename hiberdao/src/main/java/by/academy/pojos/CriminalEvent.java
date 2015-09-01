@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -18,41 +19,44 @@ import javax.persistence.TemporalType;
 //import by.academy.mydao.Identified;
 
 @Entity
-@Table(name= "criminalevents")
+@Table(name= "CRIMINALEVENTS")
 public class CriminalEvent implements Serializable{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
-    @Column(name= "EventId")
+    @Column(name= "Id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer  eventId;
+	private Integer  id;
 	
-	@Column(name= "EventName")
-	private String   eventName;
-	
-	@Column(name= "EventDescription")
-	private String   eventDescription;
-	
-	@Column(name= "EventDate")
-	@Temporal(value=TemporalType.DATE)
+	@Column(name = "Name")
+	private String eventName;
+
+	@Column(name = "Description")
+	private String description;
+
+	@Column(name = "EventDate")
+	@Temporal(value = TemporalType.DATE)
 	private Date     eventDate;
 	
 	@ManyToOne(targetEntity = Criminal.class, fetch = FetchType.EAGER)
-	@JoinColumn(name = "CriminalId")
+	@JoinTable(name="eventlinks",
+    joinColumns = @JoinColumn(name="CriminalId", referencedColumnName="id"),
+    inverseJoinColumns = @JoinColumn(name="EventId", referencedColumnName="id"))
 	private Criminal criminal;
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "UserId", nullable = false)
+	@ManyToOne(targetEntity = User.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name="eventlinks",
+    joinColumns = @JoinColumn(name="UserId", referencedColumnName="id", nullable = false),
+    inverseJoinColumns = @JoinColumn(name="EventId", referencedColumnName="id", nullable = false))
 	private User user;
 	
 	@ManyToOne(targetEntity = EventType.class, fetch = FetchType.EAGER)
-	@JoinColumn(name = "EventTypeId")
+	@JoinTable(name="eventlinks",
+    joinColumns = @JoinColumn(name="EventTypeid", referencedColumnName="id"),
+    inverseJoinColumns = @JoinColumn(name="EventId", referencedColumnName="id"))	
 	private EventType eventType;
-	 
+	
 	
 	public EventType getEventType() {
 		return eventType;
@@ -64,10 +68,10 @@ public class CriminalEvent implements Serializable{
 	public CriminalEvent() {
 	}
 	public Integer getId() {
-		return eventId;
+		return id;
 	}
-	public void setId(int eventId) {
-		this.eventId = eventId;
+	public void setId(int id) {
+		this.id = id;
 	}
 	public String getEventName() {
 		return eventName;
@@ -76,10 +80,10 @@ public class CriminalEvent implements Serializable{
 		this.eventName = eventName;
 	}
 	public String getEventDescription() {
-		return eventDescription;
+		return description;
 	}
-	public void setEventDescription(String eventDescription) {
-		this.eventDescription = eventDescription;
+	public void setEventDescription(String description) {
+		this.description = description;
 	}
 	public Date getEventDate() {
 		return eventDate;
@@ -102,8 +106,8 @@ public class CriminalEvent implements Serializable{
 	
 	@Override
 	public String toString() {
-		return "CriminalEvent [id=" + eventId + ", eventName=" + eventName + ", eventDescription="
-				+ eventDescription + ", eventDate=" + eventDate + ", criminal=" + criminal + ", user=" + user+"]";
+		return "CriminalEvent [id=" + id + ", eventName=" + eventName + ", description="
+				+ description + ", eventDate=" + eventDate + ", criminal=" + criminal + ", user=" + user+"]";
 	}
 	@Override
 	public int hashCode() {
@@ -111,9 +115,9 @@ public class CriminalEvent implements Serializable{
 		int result = 1;
 		result = prime * result + ((criminal == null) ? 0 : criminal.hashCode());
 		result = prime * result + ((eventDate == null) ? 0 : eventDate.hashCode());
-		result = prime * result + ((eventDescription == null) ? 0 : eventDescription.hashCode());
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((eventName == null) ? 0 : eventName.hashCode());
-		result = prime * result + ((eventId == null) ? 0 : eventId.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
@@ -136,20 +140,20 @@ public class CriminalEvent implements Serializable{
 				return false;
 		} else if (!eventDate.equals(other.eventDate))
 			return false;
-		if (eventDescription == null) {
-			if (other.eventDescription != null)
+		if (description == null) {
+			if (other.description != null)
 				return false;
-		} else if (!eventDescription.equals(other.eventDescription))
+		} else if (!description.equals(other.description))
 			return false;
 		if (eventName == null) {
 			if (other.eventName != null)
 				return false;
 		} else if (!eventName.equals(other.eventName))
 			return false;
-		if (eventId == null) {
-			if (other.eventId != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!eventId.equals(other.eventId))
+		} else if (!id.equals(other.id))
 			return false;
 		if (user == null) {
 			if (other.user != null)

@@ -67,19 +67,19 @@ public class HiberDbTest {
 //    }
     
     
-    @Test
-    public void SaveCascade(){
-    	persistUserPOJO();
-		
-		List users = em.createQuery("SELECT COUNT(u) FROM User u").getResultList();
-		List roles = em.createQuery("SELECT COUNT(r) FROM Role r").getResultList();
-		logger.info(users);
-		long sizeU = users.isEmpty() ? 0 : (Long) users.get(0);
-		long sizeR = roles.isEmpty() ? 0 : (Long) roles.get(0);
-		/* 4-users and 4 roles*/
-		org.junit.Assert.assertEquals(4l, sizeU);
-		org.junit.Assert.assertEquals(4, sizeR);
-    }
+//    @Test
+//    public void SaveCascade(){
+//    	persistUserPOJO();
+//		
+//		List users = em.createQuery("SELECT COUNT(u) FROM User u").getResultList();
+//		List roles = em.createQuery("SELECT COUNT(r) FROM Role r").getResultList();
+//		logger.info(users);
+//		long sizeU = users.isEmpty() ? 0 : (Long) users.get(0);
+//		long sizeR = roles.isEmpty() ? 0 : (Long) roles.get(0);
+//		/* 4-users and 4 roles*/
+//		org.junit.Assert.assertEquals(4l, sizeU);
+//		org.junit.Assert.assertEquals(4, sizeR);
+//    }
     
     
     

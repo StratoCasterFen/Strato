@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" xmlns="hiberpolice_test" targetNamespace="hiberpolice_test">
 	<xsd:element name="criminalevents" type="criminalevents__type" />
+	<xsd:element name="eventlinks" type="eventlinks__type" />
 	<xsd:element name="user_role" type="user_role__type" />
 	<xsd:element name="criminals" type="criminals__type" />
 	<xsd:element name="roles" type="roles__type" />
@@ -9,11 +10,16 @@
 	<xsd:element name="users" type="users__type" />
 	<xsd:complexType name="criminalevents__type">
 		<xsd:attribute name="EventDate" use="optional" />
+		<xsd:attribute name="Description" use="optional" />
+		<xsd:attribute name="id" use="optional" />
+		<xsd:attribute name="Name" use="optional" />
+	</xsd:complexType>
+	<xsd:complexType name="eventlinks__type">
 		<xsd:attribute name="CriminalId" use="optional" />
 		<xsd:attribute name="UserId" use="optional" />
-		<xsd:attribute name="Id" use="optional" />
-		<xsd:attribute name="EventName" use="optional" />
-		<xsd:attribute name="EventDescription" use="optional" />
+		<xsd:attribute name="EventTypeId" use="optional" />
+		<xsd:attribute name="EventId" use="optional" />
+		<xsd:attribute name="id" use="optional" />
 	</xsd:complexType>
 	<xsd:complexType name="user_role__type">
 		<xsd:attribute name="UserId" use="optional" />

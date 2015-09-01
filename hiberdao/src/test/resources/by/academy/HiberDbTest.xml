@@ -16,5 +16,12 @@
    <criminals Id="1" Name="Kevin" SurName="Mitnik" BirthDay="1970-01-04"/>
    <criminals Id="2" Name="Bobo" SurName="Little" BirthDay="1974-11-14"/>
    
-    
+   <criminalevents id ="1" name="first event" description="blabla-bla" eventdate="2015-08-30"/>
+   <criminalevents id ="2" name="second event" description="uydublabla-bla" eventdate="2015-08-31"/>
+   
+   <eventlinks id="1" eventid="1" eventtypeid="1" userid="2" criminalid="1"/>
+   <eventlinks id="2" eventid="2" eventtypeid="2" userid="1" criminalid="2"/>
+   
+   <eventtype id="1" typename="grabeg"/>
+   <eventtype id="2" typename="draka"/> 
 </dataset>

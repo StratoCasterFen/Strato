@@ -26,9 +26,19 @@ public class User implements Serializable{
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name="user_role",
 	        joinColumns = @JoinColumn(name="Userid", referencedColumnName="id"),
-	        inverseJoinColumns = @JoinColumn(name="Roleid", referencedColumnName="id")
-	)
+	        inverseJoinColumns = @JoinColumn(name="Roleid", referencedColumnName="id"))
     private Set<Role> roles;
+	
+	@OneToMany(mappedBy = "user" )
+	private Set<CriminalEvent> criminalEvents;
+
+	public Set<CriminalEvent> getCriminalEvents() {
+		return criminalEvents;
+	}
+
+	public void setCriminalEvents(Set<CriminalEvent> criminalEvents) {
+		this.criminalEvents = criminalEvents;
+	}
 
 	public User() {
 	}
@@ -52,19 +62,7 @@ public class User implements Serializable{
 		this.password = password;
 	}
 	
-	@OneToMany(targetEntity=CriminalEvent.class, cascade = CascadeType.ALL, mappedBy = "user" )
-//	@OneToMany(targetEntity=CriminalEvent.class)
-	//@JoinColumn( referencedColumnName = "Id")
-	@JoinColumn(name="Userid", referencedColumnName="id")
-	private Set<CriminalEvent> criminalEvents;
 
-	public Set<CriminalEvent> getCriminalEvents() {
-		return criminalEvents;
-	}
-
-	public void setCriminalEvents(Set<CriminalEvent> criminalEvents) {
-		this.criminalEvents = criminalEvents;
-	}
 
 	public Set<Role> getRoles() {
 		return roles;

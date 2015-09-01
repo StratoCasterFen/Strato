@@ -13,6 +13,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 
+import by.academy.dao.UserDao;
 import by.academy.hbutil.HibernateUtil;
 import by.academy.pojos.Criminal;
 import by.academy.pojos.CriminalEvent;
@@ -43,8 +44,15 @@ private static Logger logger = LogManager.getLogger(App.class.getName());
         ce1.setEventName("eventNam00000000e1");
         ces.add(ce1);
         user.setCriminalEvents(ces);
+        em.persist(ce1);
         em.persist(user);
+     //   em.flush();
         em.getTransaction().commit();
+        
+        em.getTransaction().begin();
+        //UserDao dao=new UserDao();
+        List<User> users = em.findAll(User);
+        logger.info(users);
 //////////////////////////
   /*      em.getTransaction().begin();
         Role role3=new Role("testttt");
@@ -76,8 +84,8 @@ private static Logger logger = LogManager.getLogger(App.class.getName());
 //		em.getTransaction().commit();
 //		
 //		logger.info("good!");
-	       em.close();
-	        emf.close();
+	      em.close();
+	     emf.close();
 	}
 
 }
