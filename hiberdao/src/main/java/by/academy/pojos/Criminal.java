@@ -43,16 +43,16 @@ public class Criminal implements Serializable {
 	@Temporal(value=TemporalType.DATE)
 	private Date    birthday;
 	
-	@OneToMany(targetEntity=CriminalEvent.class, cascade = CascadeType.ALL, mappedBy = "criminal" )
-	private Set<CriminalEvent> criminalEvents;
-
-	public Set<CriminalEvent> getCriminalEvents() {
-		return criminalEvents;
-	}
-
-	public void setCriminalEvents(Set<CriminalEvent> criminalEvents) {
-		this.criminalEvents = criminalEvents;
-	}
+//	@OneToMany(targetEntity=CriminalEvent.class, cascade = CascadeType.ALL, mappedBy = "criminal" )
+//	private Set<CriminalEvent> criminalEvents;
+//
+//	public Set<CriminalEvent> getCriminalEvents() {
+//		return criminalEvents;
+//	}
+//
+//	public void setCriminalEvents(Set<CriminalEvent> criminalEvents) {
+//		this.criminalEvents = criminalEvents;
+//	}
 	
 	public Criminal() {
 	}

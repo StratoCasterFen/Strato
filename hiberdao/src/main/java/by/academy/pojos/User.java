@@ -29,16 +29,16 @@ public class User implements Serializable{
 	        inverseJoinColumns = @JoinColumn(name="Roleid", referencedColumnName="id"))
     private Set<Role> roles;
 	
-	@OneToMany(mappedBy = "user" )
-	private Set<CriminalEvent> criminalEvents;
-
-	public Set<CriminalEvent> getCriminalEvents() {
-		return criminalEvents;
-	}
-
-	public void setCriminalEvents(Set<CriminalEvent> criminalEvents) {
-		this.criminalEvents = criminalEvents;
-	}
+	//@OneToMany(mappedBy = "user" )
+	//private Set<CriminalEvent> criminalEvents;
+//
+//	public Set<CriminalEvent> getCriminalEvents() {
+//		return criminalEvents;
+//	}
+//
+//	public void setCriminalEvents(Set<CriminalEvent> criminalEvents) {
+//		this.criminalEvents = criminalEvents;
+//	}
 
 	public User() {
 	}

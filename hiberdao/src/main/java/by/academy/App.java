@@ -1,58 +1,45 @@
 package by.academy;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
-import org.hibernate.Session;
-
+//import org.apache.log4j.LogManager;
+//import org.apache.log4j.Logger;
+import by.academy.dao.DaoException;
 import by.academy.dao.UserDao;
-import by.academy.hbutil.HibernateUtil;
-import by.academy.pojos.Criminal;
-import by.academy.pojos.CriminalEvent;
-import by.academy.pojos.EventType;
-import by.academy.pojos.Role;
-import by.academy.pojos.User;
 
 public class App {
-private static Logger logger = LogManager.getLogger(App.class.getName());
-	public static void main(String[] args) {
+//private static Logger logger = LogManager.getLogger(App.class.getName());
+	public static void main(String[] args) throws DaoException {
 		
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("hiberpolice");
 		EntityManager em = emf.createEntityManager();
 
-		em.getTransaction().begin();
-		User user = new User();
-		user.setUserName("B.00hbjjjjSc000000000");
-		user.setPassword("@3565+681");
-//        Set<Role> roles = new HashSet<Role>();
-//        Role role1=new Role("Admin11");
-//        roles.add(role1);
-//        Role role2=new Role("Guest11");
-//        roles.add(role2);
-//        logger.info("+pers role");       
-//        user.setRoles(roles);
-        Set<CriminalEvent> ces = new HashSet<CriminalEvent>();
-        CriminalEvent ce1=new CriminalEvent();
-        ce1.setEventName("eventNam00000000e1");
-        ces.add(ce1);
-        user.setCriminalEvents(ces);
-        em.persist(ce1);
-        em.persist(user);
-     //   em.flush();
-        em.getTransaction().commit();
+//		em.getTransaction().begin();
+//		User user = new User();
+//		user.setUserName("B.00hbjjjjSc000000000");
+//		user.setPassword("@3565+681");
+////        Set<Role> roles = new HashSet<Role>();
+////        Role role1=new Role("Admin11");
+////        roles.add(role1);
+////        Role role2=new Role("Guest11");
+////        roles.add(role2);
+////        logger.info("+pers role");       
+////        user.setRoles(roles);
+//        Set<CriminalEvent> ces = new HashSet<CriminalEvent>();
+//        CriminalEvent ce1=new CriminalEvent();
+//        ce1.setEventName("eventNam00000000e1");
+//        ces.add(ce1);
+//      //  user.setCriminalEvents(ces);
+//      //  em.persist(ce1);
+//        em.persist(user);
+//     //   em.flush();
+//        em.getTransaction().commit();
         
-        em.getTransaction().begin();
+    //    em.getTransaction().begin();
         //UserDao dao=new UserDao();
-        List<User> users = em.findAll(User);
-        logger.info(users);
+    //    List<User> users = em.findAll(User);
+      //  logger.info(users);
 //////////////////////////
   /*      em.getTransaction().begin();
         Role role3=new Role("testttt");
@@ -84,6 +71,22 @@ private static Logger logger = LogManager.getLogger(App.class.getName());
 //		em.getTransaction().commit();
 //		
 //		logger.info("good!");
+///////////////////////
+		
+		em.getTransaction().begin();
+	
+		UserDao ud=new UserDao();
+	//	logger.info(ud.getAll());
+//		ud.setEntityManager(em);
+//		User user=ud.getByPK(3);
+//        CriminalEvent eve=new CriminalEvent();
+//        eve.setEventName("hgjjgjjjj");
+//        eve.setUserId(user);
+//     
+//		em.persist(eve);		
+		em.getTransaction().commit();
+		
+		
 	      em.close();
 	     emf.close();
 	}

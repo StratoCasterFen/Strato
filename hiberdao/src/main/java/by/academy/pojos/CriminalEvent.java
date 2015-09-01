@@ -41,20 +41,20 @@ public class CriminalEvent implements Serializable{
 	
 	@ManyToOne(targetEntity = Criminal.class, fetch = FetchType.EAGER)
 	@JoinTable(name="eventlinks",
-    joinColumns = @JoinColumn(name="CriminalId", referencedColumnName="id"),
-    inverseJoinColumns = @JoinColumn(name="EventId", referencedColumnName="id"))
+    joinColumns = @JoinColumn(name="EventId", referencedColumnName="id"),
+    inverseJoinColumns = @JoinColumn(name="CriminalId", referencedColumnName="id"))
 	private Criminal criminal;
 	
-	@ManyToOne(targetEntity = User.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name="eventlinks",
-    joinColumns = @JoinColumn(name="UserId", referencedColumnName="id", nullable = false),
-    inverseJoinColumns = @JoinColumn(name="EventId", referencedColumnName="id", nullable = false))
+    joinColumns = @JoinColumn(name="EventId", nullable = false),
+    inverseJoinColumns = @JoinColumn(name="UserId", referencedColumnName="id", nullable = false))
 	private User user;
 	
-	@ManyToOne(targetEntity = EventType.class, fetch = FetchType.EAGER)
+	@ManyToOne
 	@JoinTable(name="eventlinks",
-    joinColumns = @JoinColumn(name="EventTypeid", referencedColumnName="id"),
-    inverseJoinColumns = @JoinColumn(name="EventId", referencedColumnName="id"))	
+    joinColumns = @JoinColumn(name="Eventid", referencedColumnName="id"),
+    inverseJoinColumns = @JoinColumn(name="EventTypeid", referencedColumnName="id"))	
 	private EventType eventType;
 	
 	

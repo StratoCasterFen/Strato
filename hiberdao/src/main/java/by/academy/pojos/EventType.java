@@ -29,16 +29,16 @@ public class EventType implements Serializable {
 	@Column(name= "TypeName")
 	private String  eventTypeName;
 
-	@OneToMany(targetEntity=CriminalEvent.class, cascade = CascadeType.ALL, mappedBy = "eventType" )
-	private Set<CriminalEvent> criminalEvents;
-
-	public Set<CriminalEvent> getCriminalEvents() {
-		return criminalEvents;
-	}
-
-	public void setCriminalEvents(Set<CriminalEvent> criminalEvents) {
-		this.criminalEvents = criminalEvents;
-	}
+//	@OneToMany(targetEntity=CriminalEvent.class, cascade = CascadeType.ALL, mappedBy = "eventType" )
+//	private Set<CriminalEvent> criminalEvents;
+//
+//	public Set<CriminalEvent> getCriminalEvents() {
+//		return criminalEvents;
+//	}
+//
+//	public void setCriminalEvents(Set<CriminalEvent> criminalEvents) {
+//		this.criminalEvents = criminalEvents;
+//	}
 
 	public EventType() {
 	}

@@ -4,20 +4,22 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
+import by.academy.pojos.User;
+
 
 public interface GenericHDao <T> {
 
     /** Создает новую запись и соответствующий ей объект */
-    public T create() throws DaoException;
+  //  public T create(T object) throws DaoException;
 
     /** Создает новую запись, соответствующую объекту object */
     public T persist(T object)  throws DaoException;
 
     /** Возвращает объект соответствующий записи с первичным ключом key или null */
-  //  public T getByPK(PK key) throws DaoException;
+    public T getByPK(Integer key) throws DaoException;
 
-    /** Сохраняет состояние объекта  в базе данных */
-    public void update(T object) throws DaoException;
+    /** Сохраняет состояние объекта  в базе данных  */
+    public T update(T object) throws DaoException;
 
     /** Удаляет запись об объекте из базы данных */
     public void delete(T object) throws DaoException;

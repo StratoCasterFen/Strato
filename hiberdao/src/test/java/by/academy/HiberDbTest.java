@@ -10,8 +10,12 @@ import org.unitils.UnitilsJUnit4TestClassRunner;
 import org.unitils.database.annotations.TestDataSource;
 import org.unitils.dbunit.annotation.DataSet;
 
+import by.academy.dao.DaoException;
+import by.academy.dao.UserDao;
 import by.academy.pojos.Role;
 import by.academy.pojos.User;
+
+
 
 
 import java.util.ArrayList;
@@ -49,22 +53,38 @@ public class HiberDbTest {
     	logger.debug("+testGetUsers");
     	List users = em.createQuery("SELECT u FROM User u").getResultList();
     	/* 3 records in db */
-		Assert.assertEquals(3, users.size());
+		Assert.assertEquals(4, users.size());
     }
     
-//    @Test
-//    public void SaveRole(){
-//    	persistRolePOJO();
-//		
-//		List users = em.createQuery("SELECT COUNT(u) FROM User u").getResultList();
-//		//List roles = em.createQuery("SELECT COUNT(r) FROM Role r").getResultList();
-//		logger.info(users);
-//		long sizeU = users.isEmpty() ? 0 : (Long) users.get(0);
-//		//long sizeR = roles.isEmpty() ? 0 : (Long) roles.get(0);
-//		/* 4-users and 4 roles*/
-//		org.junit.Assert.assertEquals(4l, sizeU);
-//		//org.junit.Assert.assertEquals(4, sizeR);
-//    }
+    /* many to many*/
+    @Test
+    public void SaveUserRoles() throws DaoException{
+    	logger.info("TEst - SaveUserRoles");
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+    	UserDao ud=new UserDao();
+    	ud.setEntityManager(em);
+		ud.persist(getUser());
+        tx.commit();
+		List users = em.createQuery("SELECT COUNT(u) FROM User u").getResultList();
+		List roles = em.createQuery("SELECT COUNT(r) FROM Role r").getResultList();
+		logger.info("now " + users+" users and "+ roles +" roles");
+		long sizeU = users.isEmpty() ? 0 : (Long) users.get(0);
+		long sizeR = roles.isEmpty() ? 0 : (Long) roles.get(0);
+		/* 4-users and 4 roles*/
+		org.junit.Assert.assertEquals(4l, sizeU);
+		org.junit.Assert.assertEquals(4l, sizeR);
+    }
+    
+
+    @Test
+    public void GetUser() throws DaoException{
+    	UserDao ud=new UserDao();
+    	ud.setEntityManager(em);
+    	User user=ud.getByPK(3);
+    	Assert.assertEquals("Marta",user.getUserName());
+    	logger.info("GetUser: user name is "+user.getUserName());
+    }
     
     
 //    @Test
