@@ -22,7 +22,7 @@ xsi:schemaLocation="httр://maven.apache.org/POM/4.0.0 httр://maven.apache.org/
 			<groupId>org.hibernate</groupId>
 			<artifactId>ejb3-persistence</artifactId>
 			<version>1.0.2.GA</version>
-		</dependency>
+		</dependency> 
 		<dependency> 
 	        <groupId>org.hibernate.java-persistence</groupId>
 	        <artifactId>jpa-api</artifactId>

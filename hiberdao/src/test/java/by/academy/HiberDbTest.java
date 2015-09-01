@@ -15,10 +15,6 @@ import by.academy.dao.UserDao;
 import by.academy.pojos.Role;
 import by.academy.pojos.User;
 
-
-
-
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -52,7 +48,7 @@ public class HiberDbTest {
     public void testGetAll() throws Exception {
     	logger.debug("+testGetUsers");
     	List users = em.createQuery("SELECT u FROM User u").getResultList();
-    	/* 3 records in db */
+    	/* 3 records in db +1 add*/
 		Assert.assertEquals(4, users.size());
     }
     
@@ -86,23 +82,42 @@ public class HiberDbTest {
     	logger.info("GetUser: user name is "+user.getUserName());
     }
     
+    @Test
+    public void GetUsersByRoleName(){
+    	String s="SELECT DISTINCT u FROM User u INNER JOIN u.roles r WHERE r.roleName = 'Looser'";
+    	List users = em.createQuery(s).getResultList();
+    	org.junit.Assert.assertEquals(2l, users.size());
+    	logger.info(users);
+    }
     
-//    @Test
-//    public void SaveCascade(){
-//    	persistUserPOJO();
-//		
-//		List users = em.createQuery("SELECT COUNT(u) FROM User u").getResultList();
-//		List roles = em.createQuery("SELECT COUNT(r) FROM Role r").getResultList();
-//		logger.info(users);
-//		long sizeU = users.isEmpty() ? 0 : (Long) users.get(0);
-//		long sizeR = roles.isEmpty() ? 0 : (Long) roles.get(0);
-//		/* 4-users and 4 roles*/
-//		org.junit.Assert.assertEquals(4l, sizeU);
-//		org.junit.Assert.assertEquals(4, sizeR);
-//    }
+    @Test
+    public void GetRolesByUserName(){
+    	String s="SELECT DISTINCT r FROM Role r INNER JOIN r.users u WHERE u.username = 'Tom'";
+    	List roles = em.createQuery(s).getResultList();
+    	org.junit.Assert.assertEquals(2l, roles.size());
+    	logger.info(roles);
+    }
     
     
+	@Test
+	public void DeleteUser() throws DaoException {
+
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		UserDao ud = new UserDao();
+		ud.setEntityManager(em);
+		ud.delete(ud.getByPK(3));
+		tx.commit();
+		List users = em.createQuery("SELECT u FROM User u WHERE u.id=3").getResultList();
+		List roles = em.createQuery("SELECT COUNT(r) FROM Role r").getResultList();
+		logger.info(users);
+		long sizeR = roles.isEmpty() ? 0 : (Long) roles.get(0);
+		/* 0-users and 2 roles */
+		org.junit.Assert.assertEquals(0, users.size());
+		org.junit.Assert.assertEquals(2l, sizeR);
+	}
     
+
     @After
     public void destroy() {
         em.close();
