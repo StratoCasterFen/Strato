@@ -16,76 +16,37 @@ public class EventDao extends AbstractHDao<CriminalEvent> implements CustomEvent
 	@Override
 	public List<CriminalEvent> getEventsByDate(Date date) throws DaoException {
 		logger.info("+getEventsByDate");
-		final String QNAME ="EventsByDate";
-//		EntityTransaction tx = super.entityManager.getTransaction();
-//		tx.begin();
-//		String QUERY = ReadProperty.getQuery("EventsByDate");
-//		try {
-//			List<CriminalEvent> res = super.entityManager.createQuery(QUERY).setParameter("eventDate", date).getResultList();
-//			tx.commit();
-//			logger.info("commit successfuly");
-//			return res;
-//		} catch (IllegalArgumentException e) {
-//			tx.rollback();
-//			logger.error("rollback transaction. error in JPQL", e);
-//			throw new DaoException("error in JPQL", e);
-//		}
+		final String QNAME = "EventsByDate";
+		final String PNAME = "eventDate";
 		
-		return InitQuery("EventsByDate", "eventDate", date);
+		return RunQuery(QNAME, PNAME, date);
 	}
 
 	@Override
 	public List<CriminalEvent> getEventsByCriminal(Criminal criminal) throws DaoException {
 		logger.info("+getEventsByCriminal");
-		EntityTransaction tx = super.entityManager.getTransaction();
-		tx.begin();
-		String QUERY = ReadProperty.getQuery("EventsByCriminal");
-		try {
-			List<CriminalEvent> res = super.entityManager.createQuery(QUERY).setParameter("criminal", criminal).getResultList();
-			tx.commit();
-			logger.info("commit successfuly");
-			return res;
-		} catch (IllegalArgumentException e) {
-			tx.rollback();
-			logger.error("rollback transaction. error in JPQL", e);
-			throw new DaoException("error in JPQL", e);
-		}
+		final String QNAME = "EventsByCriminal";
+		final String PNAME = "criminal";
+		
+		return RunQuery(QNAME, PNAME, criminal);
 	}
 
 	@Override
 	public List<CriminalEvent> getEventsByType(EventType eventType) throws DaoException {
 		logger.info("+getEventsByType");
-		EntityTransaction tx = super.entityManager.getTransaction();
-		tx.begin();
-		String QUERY = ReadProperty.getQuery("EventsByType");
-		try {
-			List<CriminalEvent> res = super.entityManager.createQuery(QUERY).setParameter("eventType", eventType).getResultList();
-			tx.commit();
-			logger.info("commit successfuly");
-			return res;
-		} catch (IllegalArgumentException e) {
-			tx.rollback();
-			logger.error("rollback transaction. error in JPQL", e);
-			throw new DaoException("error in JPQL", e);
-		}
+		final String QNAME = "EventsByType";
+		final String PNAME = "eventType";
+		
+		return RunQuery(QNAME, PNAME, eventType);
 	}
 
 	@Override
 	public List<CriminalEvent> getEventsByUser(User user) throws DaoException {
 		logger.info("+getEventsByUser");
-		EntityTransaction tx = super.entityManager.getTransaction();
-		tx.begin();
-		String QUERY = ReadProperty.getQuery("EventsByUser");
-		try {
-			List<CriminalEvent> res = super.entityManager.createQuery(QUERY).setParameter("user", user).getResultList();
-			tx.commit();
-			logger.info("commit successfuly");
-			return res;
-		} catch (IllegalArgumentException e) {
-			tx.rollback();
-			logger.error("rollback transaction. error in JPQL", e);
-			throw new DaoException("error in JPQL", e);
-		}
+		final String QNAME = "EventsByUser";
+		final String PNAME = "user";
+		
+		return RunQuery(QNAME, PNAME, user);
 	}
 
 	public List RunQuery(String qNam, String fKey, Object object) throws DaoException{
