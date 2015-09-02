@@ -20,7 +20,7 @@ import javax.persistence.TemporalType;
 //import by.academy.mydao.Identified;
 
 @Entity
-@Table(name= "CRIMINAL")
+@Table(name= "CRIMINALS")
 public class Criminal implements Serializable {
 	
 	/**

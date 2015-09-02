@@ -1,32 +1,38 @@
 package by.academy.dao;
 
 import java.util.List;
+import java.util.ResourceBundle;
 
 import javax.persistence.EntityTransaction;
+
+import org.apache.log4j.Logger;
 import by.academy.dao.DaoException;
+import by.academy.hbutil.ReadProperty;
 import by.academy.pojos.User;
 
 public class UserDao  extends AbstractHDao<User> implements CustomUserDao {
-	//@PersistenceContext
-	//protected EntityManager entityManager;
+	static Logger logger= Logger.getLogger(UserDao.class.getName());
 	
 	public UserDao() {
 	}
 
 	public User getUserByNameAndPassword(User user) throws DaoException {
+		logger.info("+getUserByNameAndPassword");
 		EntityTransaction tx = super.entityManager.getTransaction();
 		tx.begin();
-		String QUERY =
-				"SELECT u " +
-				"FROM User u " +
-				"WHERE u.username = :name AND u.password = :pass";
-		List<User> res = super.entityManager.createQuery(QUERY)
-				.setParameter("name", user.getUserName())
-				.setParameter("pass", user.getPassword())
-				.getResultList();
-		
-		tx.commit();
+		String QUERY = ReadProperty.getQuery("UserByNameAndPassword");
+		try {
+			List<User> res = super.entityManager.createQuery(QUERY)
+					.setParameter("name", user.getUserName())
+					.setParameter("pass", user.getPassword()).getResultList();
+			tx.commit();
+			logger.info("commit successfuly");
 		return res.get(0);
+		} catch (IllegalArgumentException e) {
+			tx.rollback();
+			logger.error("rollback transaction. error in JPQL", e);
+			throw new DaoException("error in JPQL", e);			
+		}	
 
 	//		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
 	//		CriteriaQuery<User> query = builder.createQuery(User.class);
@@ -36,18 +42,21 @@ public class UserDao  extends AbstractHDao<User> implements CustomUserDao {
 			
 	}
 	
-	public User getUserByName(String userName) throws DaoException {
+	public User getUserByName(String userName) throws DaoException  {
+		logger.info("+getUserByName");
 		EntityTransaction tx = super.entityManager.getTransaction();
 		tx.begin();
-		String QUERY =
-				"SELECT u " +
-				"FROM User u " +
-				"WHERE u.username = :name";
-		List res = super.entityManager.createQuery(QUERY)
-				.setParameter("name", userName)
-				.getResultList();
-		tx.commit();
-		return (User)res.get(0);
+		String QUERY = ReadProperty.getQuery("UserByName");
+		try {
+			List res = super.entityManager.createQuery(QUERY).setParameter("name", userName).getResultList();
+			tx.commit();
+			logger.info("commit successfuly");
+			return (User)res.get(0);
+		} catch (IllegalArgumentException e) {
+			tx.rollback();
+			logger.error("rollback transaction. error in JPQL", e);
+			throw new DaoException("error in JPQL", e);			
+		}	
 	}
 
 	@Override

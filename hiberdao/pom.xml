@@ -1,5 +1,7 @@
-<project xmlns="httр://maven.apache.org/POM/4.0.0" xmlns:xsi="httр://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="httр://maven.apache.org/POM/4.0.0 httр://maven.apache.org/maven-v4_0_0.xsd"> 
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" 
+xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<artifactId>main</artifactId>
@@ -10,13 +12,13 @@ xsi:schemaLocation="httр://maven.apache.org/POM/4.0.0 httр://maven.apache.org/
 	<artifactId>hiberdao</artifactId>
 	<packaging>jar</packaging>
 	<name>hiberdao container</name>
-	<repositories>
+<!-- 	<repositories>
 	    <repository>
 	      <id>JBoss repository</id>
 	      <url>http://repository.jboss.com/maven2/</url>
 	    </repository>
-	  </repositories>
-	<dependencies>
+	  </repositories>-->
+	<dependencies> 
 		<!-- HIBERNATE-->
  	<!--	<dependency>
 			<groupId>org.hibernate</groupId>
@@ -99,18 +101,22 @@ xsi:schemaLocation="httр://maven.apache.org/POM/4.0.0 httр://maven.apache.org/
 				</exclusion>
 			</exclusions>
 		</dependency>
-	
+	<dependency>
+	<groupId>javax.transaction</groupId>
+	<artifactId>jta</artifactId>
+	<version>1.1</version>
+</dependency>
 		<dependency>
 			<groupId>org.unitils</groupId>
 			<artifactId>unitils-dbunit</artifactId>
 			<version>3.1</version>
 			<scope>test</scope>
-			<exclusions>
+ 			<exclusions>
 				<exclusion>
 					<artifactId>jta</artifactId>
 					<groupId>javax.transaction</groupId>
 				</exclusion>
-			</exclusions>
+			</exclusions> 
 		</dependency>
 	
 		<dependency>

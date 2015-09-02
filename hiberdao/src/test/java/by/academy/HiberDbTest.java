@@ -10,14 +10,11 @@ import org.unitils.UnitilsJUnit4TestClassRunner;
 import org.unitils.database.annotations.TestDataSource;
 import org.unitils.dbunit.annotation.DataSet;
 
-import by.academy.dao.AbstractHDao;
-import by.academy.dao.CustomUserDao;
-import by.academy.dao.DaoException;
-import by.academy.dao.GenericHDao;
-import by.academy.dao.UserDao;
-import by.academy.pojos.Role;
-import by.academy.pojos.User;
+import by.academy.dao.*;
+import by.academy.hbutil.ConvertDate;
+import by.academy.pojos.*;
 
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -49,7 +46,7 @@ public class HiberDbTest {
     @Test
     @DataSet("HiberDbTest.xml")
     public void testGetAll() throws Exception {
-    	logger.debug("+testGetUsers");
+    	logger.info("+testGetUsers");
     	List users = em.createQuery("SELECT u FROM User u").getResultList();
     	/* 3 records in db +1 add*/
 		Assert.assertEquals(1, users.size());
@@ -58,7 +55,7 @@ public class HiberDbTest {
     /* many to many*/
     @Test
     public void SaveUserRoles() throws DaoException{
-    	logger.info("TEst - SaveUserRoles");
+    	logger.info("TEST: SaveUserRoles");
         EntityTransaction tx = em.getTransaction();
         tx.begin();
     	UserDao ud=new UserDao();
@@ -67,7 +64,7 @@ public class HiberDbTest {
         tx.commit();
 		List users = em.createQuery("SELECT COUNT(u) FROM User u").getResultList();
 		List roles = em.createQuery("SELECT COUNT(r) FROM Role r").getResultList();
-		logger.info("now " + users+" users and "+ roles +" roles");
+		logger.debug("now " + users+" users and "+ roles +" roles");
 		long sizeU = users.isEmpty() ? 0 : (Long) users.get(0);
 		long sizeR = roles.isEmpty() ? 0 : (Long) roles.get(0);
 		/* 4-users and 4 roles*/
@@ -78,34 +75,37 @@ public class HiberDbTest {
 
     @Test
     public void GetUser() throws DaoException{
+    	logger.info("TEST: GetUser");
     	CustomUserDao ud=new UserDao();
     	ud.setEntityManager(em);
     	UserDao ud1=(UserDao)ud;
     	User user=ud1.getByPK(3);
     	Assert.assertEquals("Marta",user.getUserName());
-    	logger.info("GetUser: user name is "+user.getUserName());
+    	logger.debug("GetUser: user name is "+user.getUserName());
     }
     
     @Test
     public void GetUsersByRoleName(){
+    	logger.info("TEST: GetUsersByRoleName");
     	String s="SELECT DISTINCT u FROM User u INNER JOIN u.roles r WHERE r.roleName = 'Looser'";
     	List users = em.createQuery(s).getResultList();
     	org.junit.Assert.assertEquals(0l, users.size());
-    	logger.info(users);
+    	logger.debug(users);
     }
     
     @Test
     public void GetRolesByUserName(){
+    	logger.info("TEST: GetRolesByUserName");
     	String s="SELECT DISTINCT r FROM Role r INNER JOIN r.users u WHERE u.username = 'Tom'";
     	List roles = em.createQuery(s).getResultList();
     	org.junit.Assert.assertEquals(2l, roles.size());
-    	logger.info(roles);
+    	logger.debug(roles);
     }
     
     
 	@Test
 	public void DeleteUser() throws DaoException {
-
+		logger.info("TEST: DeleteUser");
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		UserDao ud=GetUserDao();
@@ -113,7 +113,7 @@ public class HiberDbTest {
 		tx.commit();
 		List users = em.createQuery("SELECT u FROM User u WHERE u.id=3").getResultList();
 		List roles = em.createQuery("SELECT COUNT(r) FROM Role r").getResultList();
-		logger.info(users);
+		logger.debug(users);
 		long sizeR = roles.isEmpty() ? 0 : (Long) roles.get(0);
 		/* 0-users and 2 roles */
 		org.junit.Assert.assertEquals(0, users.size());
@@ -122,10 +122,11 @@ public class HiberDbTest {
     
 	@Test
 	public void TestGetUserByName() throws DaoException{
+		logger.info("TEST: TestGetUserByName");
 		CustomUserDao ud = new UserDao();
 		ud.setEntityManager(em);
 		User user=ud.getUserByName("Tom");
-		logger.info(user);
+		logger.debug(user);
 		Assert.assertEquals("Tom", user.getUserName());
 	}
 	
@@ -138,6 +139,32 @@ public class HiberDbTest {
 //		Assert.assertEquals("Tom", user.getUserName());
 //	}
 
+    @Test
+    public void GetCriminal() throws DaoException{
+    	logger.info("TEST: GetCriminal");
+    	CustomCriminalDao cd=new CriminalDao();
+    	cd.setEntityManager(em);
+    	Criminal criminal=cd.getByPK(2);
+    	Assert.assertEquals("Bobo",criminal.getCriminalName());
+    	logger.debug("criminal name is "+criminal.getCriminalName());
+    }
+    
+    @Test
+    public void GetEventsByDate() throws DaoException{
+    	logger.info("TEST: GetEventsByDate");
+    	CustomEventDao ce=new EventDao();
+    	ce.setEntityManager(em);
+    	Calendar cal = Calendar.getInstance();
+        cal.set(2015, Calendar.AUGUST, 30);
+        java.util.Date date = cal.getTime();
+        java.sql.Date sqlDate = ConvertDate.convert(date);
+    	List<CriminalEvent> events=ce.getEventsByDate(sqlDate);
+    	Assert.assertEquals(1,events.size());
+    	logger.debug("criminal events by date: "+events);
+    }
+    
+    
+    
     @After
     public void destroy() {
         em.close();
