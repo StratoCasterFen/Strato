@@ -34,12 +34,12 @@ xsi:schemaLocation="httр://maven.apache.org/POM/4.0.0 httр://maven.apache.org/
 			<version>1.0.1.Final</version>
 		</dependency>
 	    
-	    
+	<!--    
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>4.2.19.Final</version>
-		</dependency>
+		</dependency>-->
         <dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
@@ -63,10 +63,10 @@ xsi:schemaLocation="httр://maven.apache.org/POM/4.0.0 httр://maven.apache.org/
 		       <version>1.7.5</version>
 		</dependency> -->
 		
-		<dependency>
+<!--		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
-		</dependency>		
+		</dependency>	-->	
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -79,10 +79,12 @@ xsi:schemaLocation="httр://maven.apache.org/POM/4.0.0 httр://maven.apache.org/
             <version>4.11</version>
             <scope>test</scope>
         </dependency>
+     
 		<dependency>
 			<groupId>org.unitils</groupId>
 			<artifactId>unitils-database</artifactId>
-			<version>3.4.2</version>
+			<version>3.1</version>
+			<scope>test</scope>
 		</dependency>
 				
 		<dependency>
@@ -119,18 +121,18 @@ xsi:schemaLocation="httр://maven.apache.org/POM/4.0.0 httр://maven.apache.org/
 		</dependency>
 		
 		
-		
+	<!-- 	
         <dependency>
         	<groupId>commons-dbcp</groupId>
         	<artifactId>commons-dbcp</artifactId>
         	<version>1.4</version>
-        </dependency>
+        </dependency>-->
         <dependency>
         	<groupId>org.eclipse.persistence</groupId>
         	<artifactId>org.eclipse.persistence.jpa</artifactId>
         	<version>2.5.0</version>
         </dependency>
-	</dependencies>
+	</dependencies> 
 	
 	<build>
 	

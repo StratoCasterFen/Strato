@@ -10,7 +10,10 @@ import org.unitils.UnitilsJUnit4TestClassRunner;
 import org.unitils.database.annotations.TestDataSource;
 import org.unitils.dbunit.annotation.DataSet;
 
+import by.academy.dao.AbstractHDao;
+import by.academy.dao.CustomUserDao;
 import by.academy.dao.DaoException;
+import by.academy.dao.GenericHDao;
 import by.academy.dao.UserDao;
 import by.academy.pojos.Role;
 import by.academy.pojos.User;
@@ -49,7 +52,7 @@ public class HiberDbTest {
     	logger.debug("+testGetUsers");
     	List users = em.createQuery("SELECT u FROM User u").getResultList();
     	/* 3 records in db +1 add*/
-		Assert.assertEquals(4, users.size());
+		Assert.assertEquals(1, users.size());
     }
     
     /* many to many*/
@@ -75,9 +78,10 @@ public class HiberDbTest {
 
     @Test
     public void GetUser() throws DaoException{
-    	UserDao ud=new UserDao();
+    	CustomUserDao ud=new UserDao();
     	ud.setEntityManager(em);
-    	User user=ud.getByPK(3);
+    	UserDao ud1=(UserDao)ud;
+    	User user=ud1.getByPK(3);
     	Assert.assertEquals("Marta",user.getUserName());
     	logger.info("GetUser: user name is "+user.getUserName());
     }
@@ -86,7 +90,7 @@ public class HiberDbTest {
     public void GetUsersByRoleName(){
     	String s="SELECT DISTINCT u FROM User u INNER JOIN u.roles r WHERE r.roleName = 'Looser'";
     	List users = em.createQuery(s).getResultList();
-    	org.junit.Assert.assertEquals(2l, users.size());
+    	org.junit.Assert.assertEquals(0l, users.size());
     	logger.info(users);
     }
     
@@ -104,8 +108,7 @@ public class HiberDbTest {
 
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
-		UserDao ud = new UserDao();
-		ud.setEntityManager(em);
+		UserDao ud=GetUserDao();
 		ud.delete(ud.getByPK(3));
 		tx.commit();
 		List users = em.createQuery("SELECT u FROM User u WHERE u.id=3").getResultList();
@@ -117,6 +120,23 @@ public class HiberDbTest {
 		org.junit.Assert.assertEquals(2l, sizeR);
 	}
     
+	@Test
+	public void TestGetUserByName() throws DaoException{
+		CustomUserDao ud = new UserDao();
+		ud.setEntityManager(em);
+		User user=ud.getUserByName("Tom");
+		logger.info(user);
+		Assert.assertEquals("Tom", user.getUserName());
+	}
+	
+//	@Test
+//	public void TestGetUserByNameAndPassword() throws DaoException{
+//		CustomUserDao ud = new UserDao();
+//		ud.setEntityManager(em);
+//		User user=ud.getUserByNameAndPassword(getUser());
+//		logger.info(user);
+//		Assert.assertEquals("Tom", user.getUserName());
+//	}
 
     @After
     public void destroy() {
@@ -124,26 +144,12 @@ public class HiberDbTest {
         emf.close();
     }
     
-    public void persistRolePOJO() {
-    	logger.info("persistRolePOJO");
-        EntityTransaction tx = em.getTransaction();
-        tx.begin();
-     	logger.info("persist");
-    	Role role=getRole();
-        em.persist(role);
-        tx.commit();
+    public UserDao GetUserDao(){
+    	UserDao ud = new UserDao();
+		ud.setEntityManager(em);
+		return ud;
     }
-
-	public void persistUserPOJO() {
-    	logger.info("persistSimplePOJO");
-        EntityTransaction tx = em.getTransaction();
-        tx.begin();
-     	logger.info("persist");
-    	User user=getUser();
-        em.persist(user);
-        tx.commit();
-    }
-    
+        
     public User getUser() {
     	logger.info("getUser");
         User user = new User();

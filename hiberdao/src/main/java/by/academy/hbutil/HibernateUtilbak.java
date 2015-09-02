@@ -6,14 +6,14 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
-import org.hibernate.ejb.Ejb3Configuration;
+//import org.hibernate.ejb.Ejb3Configuration;
 import org.hibernate.cfg.Configuration;
 
 import by.academy.pojos.Criminal;
 
 @SuppressWarnings("deprecation")
-public class HibernateUtil {
-	private static Logger logger = LogManager.getLogger(HibernateUtil.class.getName());
+public class HibernateUtilbak {
+	private static Logger logger = LogManager.getLogger(HibernateUtilbak.class.getName());
 
 //	private static final SessionFactory sessionFactory;
 //	private static final Ejb3Configuration ejb3Configuration;

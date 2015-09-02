@@ -1,55 +1,68 @@
 package by.academy.dao;
 
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
+import javax.persistence.EntityTransaction;
+import by.academy.dao.DaoException;
 import by.academy.pojos.User;
 
-public class UserDao  extends AbstractHDao<User> {
+public class UserDao  extends AbstractHDao<User> implements CustomUserDao {
+	//@PersistenceContext
+	//protected EntityManager entityManager;
+	
+	public UserDao() {
+	}
 
-//	@Override
-//	public List getAll() throws DaoException {
-//		
-//		return null;
-//	}
-//	@PersistenceContext
-//	protected EntityManager entityManager;
-//
-//	@Override
-//	public User persist(User user) throws DaoException {
-//		this.entityManager.persist(user);
-//		return user;
-//	}
-//
-//	@Override
-//	public User update(User user) throws DaoException {
-//		return this.entityManager.merge(user);
-//	}
-//
-//	@Override
-//	public void delete(User user) throws DaoException {
-//		user = this.entityManager.merge(user);
-//		this.entityManager.remove(user);
-//	}
-//
-//	@Override
-//	public List getAll() throws DaoException {
-//		List users = this.entityManager.createQuery("SELECT u FROM User u")
+	public User getUserByNameAndPassword(User user) throws DaoException {
+		EntityTransaction tx = super.entityManager.getTransaction();
+		tx.begin();
+		String QUERY =
+				"SELECT u " +
+				"FROM User u " +
+				"WHERE u.username = :name AND u.password = :pass";
+		List<User> res = super.entityManager.createQuery(QUERY)
+				.setParameter("name", user.getUserName())
+				.setParameter("pass", user.getPassword())
+				.getResultList();
+		
+		tx.commit();
+		return res.get(0);
+
+	//		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
+	//		CriteriaQuery<User> query = builder.createQuery(User.class);
+	//		Root<User> t = query.from(User.class);
+	//		TypedQuery<User> q = entityManager.createQuery(query);
+	//		List<User> result = q.getResultList();
+			
+	}
+	
+	public User getUserByName(String userName) throws DaoException {
+		EntityTransaction tx = super.entityManager.getTransaction();
+		tx.begin();
+		String QUERY =
+				"SELECT u " +
+				"FROM User u " +
+				"WHERE u.username = :name";
+		List res = super.entityManager.createQuery(QUERY)
+				.setParameter("name", userName)
+				.getResultList();
+		tx.commit();
+		return (User)res.get(0);
+	}
+
+	@Override
+	public List getRolesForUser(User user) {
+		EntityTransaction tx = super.entityManager.getTransaction();
+		tx.begin();
+//		String QUERY =
+//				"SELECT u " +
+//				"FROM User u " +
+//				"WHERE u.username = :name";
+//		List res = super.entityManager.createQuery(QUERY)
+//				.setParameter("name", userName)
 //				.getResultList();
-//		return users;
-//	}
-//
-//	@Override
-//	public User getByPK(Integer key) throws DaoException {
-//		return this.entityManager.find(User.class, key);
-//	}
-//
-//	public EntityManager getEntityManager() {
-//		return entityManager;
-//	}
-//
-//	public void setEntityManager(EntityManager entityManager) {
-//		this.entityManager = entityManager;
-//	}
+		tx.commit();
+		return null;
+	}
+
 }

@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.EntityManager;
+
 import by.academy.pojos.User;
 
 
@@ -13,7 +15,7 @@ public interface GenericHDao <T> {
   //  public T create(T object) throws DaoException;
 
     /** Создает новую запись, соответствующую объекту object */
-    public T persist(T object)  throws DaoException;
+     T persist(T object)  throws DaoException;
 
     /** Возвращает объект соответствующий записи с первичным ключом key или null */
     public T getByPK(Integer key) throws DaoException;
@@ -26,5 +28,11 @@ public interface GenericHDao <T> {
 
     /** Возвращает список объектов соответствующих всем записям в базе данных */
     public List getAll() throws DaoException;	
+    
+    /**	Возвращет EntityManager **/
+    public EntityManager getEntityManager();
+    
+    /**	Устанавливает EntityManager **/
+    public void setEntityManager(EntityManager entityManager);
 
 }
