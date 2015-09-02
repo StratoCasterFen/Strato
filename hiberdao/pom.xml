@@ -18,16 +18,16 @@ xsi:schemaLocation="httр://maven.apache.org/POM/4.0.0 httр://maven.apache.org/
 	  </repositories>
 	<dependencies>
 		<!-- HIBERNATE-->
- 		<dependency>
+ 	<!--	<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>ejb3-persistence</artifactId>
 			<version>1.0.2.GA</version>
-		</dependency> 
-		<dependency> 
+		</dependency>--> 
+	<!-- 	<dependency> 
 	        <groupId>org.hibernate.java-persistence</groupId>
 	        <artifactId>jpa-api</artifactId>
 	        <version>2.0-cr-1</version>
-	    </dependency>
+	    </dependency> -->
 	    <dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
 			<artifactId>hibernate-jpa-2.0-api</artifactId>
@@ -45,29 +45,28 @@ xsi:schemaLocation="httр://maven.apache.org/POM/4.0.0 httр://maven.apache.org/
 			<artifactId>hibernate-core</artifactId>
 			<version>4.3.11.Final</version>
 		</dependency>
+		<!--  
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-annotations</artifactId>
 			<version>3.5.6-Final</version>
-		</dependency>
+		</dependency> -->
 		
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<type>jar</type>
 		</dependency>
-		<dependency>
+<!-- 		<dependency>
         <groupId>org.slf4j</groupId>
 		       <artifactId>slf4j-api</artifactId>
 		       <version>1.7.5</version>
-		</dependency>
-		<!--
+		</dependency> -->
+		
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.7.12</version>
-		</dependency>
-		-->
+		</dependency>		
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -80,7 +79,12 @@ xsi:schemaLocation="httр://maven.apache.org/POM/4.0.0 httр://maven.apache.org/
             <version>4.11</version>
             <scope>test</scope>
         </dependency>
-		
+		<dependency>
+			<groupId>org.unitils</groupId>
+			<artifactId>unitils-database</artifactId>
+			<version>3.4.2</version>
+		</dependency>
+				
 		<dependency>
 			<groupId>org.unitils</groupId>
 			<artifactId>unitils-core</artifactId>
