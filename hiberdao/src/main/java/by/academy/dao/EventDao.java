@@ -53,7 +53,7 @@ public class EventDao extends AbstractHDao<CriminalEvent> implements CustomEvent
 		logger.info("+RunQuery: "+ qNam);
 		EntityTransaction tx = super.entityManager.getTransaction();
 		tx.begin();
-		String QUERY = ReadProperty.getQuery(qNam);
+		String QUERY = ReadProperty.getValue(qNam);
 		try {
 			List res = super.entityManager.createQuery(QUERY).setParameter(fKey, object).getResultList();
 			tx.commit();

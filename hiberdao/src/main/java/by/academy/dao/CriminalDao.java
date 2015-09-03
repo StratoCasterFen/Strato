@@ -21,7 +21,7 @@ public class CriminalDao extends AbstractHDao<Criminal> implements CustomCrimina
 		logger.info("+getCriminalByName");
 		EntityTransaction tx = super.entityManager.getTransaction();
 		tx.begin();
-		String QUERY = ReadProperty.getQuery("CriminalByName");
+		String QUERY = ReadProperty.getValue("CriminalByName");
 		try {
 			List<Criminal> res = super.entityManager.createQuery(QUERY).setParameter("name", cName).getResultList();
 			tx.commit();
@@ -39,7 +39,7 @@ public class CriminalDao extends AbstractHDao<Criminal> implements CustomCrimina
 		logger.info("+getCriminalBySurName");
 		EntityTransaction tx = super.entityManager.getTransaction();
 		tx.begin();
-		String QUERY = ReadProperty.getQuery("CriminalBySurName");
+		String QUERY = ReadProperty.getValue("CriminalBySurName");
 		try {
 			List<Criminal> res = super.entityManager.createQuery(QUERY).setParameter("name", cSurname).getResultList();
 			tx.commit();

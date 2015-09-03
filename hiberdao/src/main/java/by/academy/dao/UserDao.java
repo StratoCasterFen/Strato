@@ -20,7 +20,7 @@ public class UserDao  extends AbstractHDao<User> implements CustomUserDao {
 		logger.info("+getUserByNameAndPassword");
 		EntityTransaction tx = super.entityManager.getTransaction();
 		tx.begin();
-		String QUERY = ReadProperty.getQuery("UserByNameAndPassword");
+		String QUERY = ReadProperty.getValue("UserByNameAndPassword");
 		try {
 			List<User> res = super.entityManager.createQuery(QUERY)
 					.setParameter("name", user.getUserName())
@@ -46,7 +46,7 @@ public class UserDao  extends AbstractHDao<User> implements CustomUserDao {
 		logger.info("+getUserByName");
 		EntityTransaction tx = super.entityManager.getTransaction();
 		tx.begin();
-		String QUERY = ReadProperty.getQuery("UserByName");
+		String QUERY = ReadProperty.getValue("UserByName");
 		try {
 			List res = super.entityManager.createQuery(QUERY).setParameter("name", userName).getResultList();
 			tx.commit();
