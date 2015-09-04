@@ -9,6 +9,7 @@ xmlns="http://maven.apache.org/POM/4.0.0"
 		<version>1.0</version>
 		<relativePath>../</relativePath>
 	</parent>
+	
 	<artifactId>hiberdao</artifactId>
 	<packaging>jar</packaging>
 	<name>hiberdao container</name>

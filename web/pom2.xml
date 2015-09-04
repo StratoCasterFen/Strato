@@ -11,11 +11,7 @@ xsi:schemaLocation="httр://maven.apache.org/POM/4.0.0 httр://maven.apache.org/
 	<name>web container</name>
 
 	<dependencies>
-		<dependency>
-		    <groupId>jstl</groupId>
-		    <artifactId>jstl</artifactId>
-		    <version>1.2</version>
-		</dependency>
+		
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -46,35 +42,23 @@ xsi:schemaLocation="httр://maven.apache.org/POM/4.0.0 httр://maven.apache.org/
 			<artifactId>log4j</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-		</dependency>
-		
-		<!-- My project modules  -->
-		<dependency>
 			<groupId>by.academy</groupId>
 			<artifactId>dao</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>by.academy</groupId>
-			<artifactId>service</artifactId>
 			<version>1.0</version>
 		</dependency>
 	</dependencies>
 	
 	<build>
-	<finalName>polist</finalName>
         <plugins>
 		
-			<plugin>
+<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<version>2.2</version>
 				<configuration>
 					<url>http://localhost:8080/manager/text</url>
 					<server>tomcat</server>
-					<path>/polist</path>
+					<path>/war-1.0</path>
 				</configuration>
 			</plugin>
             <plugin>
@@ -130,5 +114,14 @@ xsi:schemaLocation="httр://maven.apache.org/POM/4.0.0 httр://maven.apache.org/
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-	<groupId>by.academy</groupId>
+	<!-- <groupId>by.academy</groupId> -->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>jstl</artifactId>
+				<version>1.2</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 </project>
