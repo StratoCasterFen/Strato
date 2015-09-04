@@ -7,13 +7,17 @@
 		<title>ARM Police station</title>
 	</head>
 	<body>
-		Enter login and password:
-		<FORM ACTION="events" method=”POST”>
-			<INPUT TYPE=text NAME="username" VALUE="Admin">
-			<INPUT TYPE=password NAME="pass">
-			<INPUT TYPE="submit" value="SignIn" />
-			<INPUT name="command" type="hidden" value="SIGNIN">
-		</FORM>	
-		<c:out value="Error: ${errorAuth}"/><br>
+		<p>Application Log in:</p>
+		<hr>		
+<!-- 		<form action="j_security_check" method="post"> -->
+		<form action="events" method="post">
+		    Input for username:<br>
+		    <input name="j_username" type="text"><br>
+		    Input for password:<br>
+		    <input name="j_password" type="password"><br>
+		    <input type="submit" value="Authorization!">
+		    <input name="command" type="hidden" value="SIGNIN">
+		</form>
+		<c:out value="${errorAuth}"/><br>
 	</body>
 </html>
