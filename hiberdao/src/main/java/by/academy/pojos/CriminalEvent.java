@@ -37,7 +37,7 @@ public class CriminalEvent implements Serializable{
 
 	@Column(name = "EventDate")
 	@Temporal(value = TemporalType.DATE)
-	private Date     eventDate;
+	private Date eventDate;
 	
 	@ManyToOne(targetEntity = Criminal.class, fetch = FetchType.EAGER)
 	@JoinTable(name="eventlinks",
@@ -94,13 +94,13 @@ public class CriminalEvent implements Serializable{
 	public Criminal getCriminal() {
 		return criminal;
 	}
-	public void setCriminalId(Criminal criminal) {
+	public void setCriminal(Criminal criminal) {
 		this.criminal = criminal;
 	}
 	public User getUser() {
 		return user;
 	}
-	public void setUserId(User user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 	
