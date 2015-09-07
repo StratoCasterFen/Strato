@@ -12,9 +12,9 @@ public class ReadProperty {
 	private static String pfilename="queries";
 	
 
-	public ReadProperty(String pfilename) {
-		this.pfilename = pfilename;
-	}
+//	public ReadProperty(String pfilename) {
+//		this.pfilename = pfilename;
+//	}
 
 	public static String getValue(String propName) throws DaoException{
 		try {
@@ -25,5 +25,11 @@ public class ReadProperty {
 			throw new DaoException("file "+ pfilename+".properties not exist",e);
 		}
 	}
+
+	public static void setPfilename(String pfilename) {
+		ReadProperty.pfilename = pfilename;
+	}
+	
+	
 	
 }

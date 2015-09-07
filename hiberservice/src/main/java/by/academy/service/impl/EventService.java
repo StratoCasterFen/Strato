@@ -17,6 +17,7 @@ public class EventService implements IEventService {
 	static Logger logger = Logger.getLogger(EventService.class.getName());
 
 	private CustomEventDao eventDao;
+
 	private EntityManager em;
 
 	
@@ -25,11 +26,13 @@ public class EventService implements IEventService {
 
 	}
 
+
 	
 	@Override
 	public void add(CriminalEvent event) throws DaoException, ServiceException {
 		logger.info("add");
 		try {
+			
 			eventDao.persist(event);
 		} catch (DaoException e) {
 			logger.error("could not add event");
@@ -95,7 +98,7 @@ public class EventService implements IEventService {
 		return null;
 	}
 	
-	public AbstractHDao<CriminalEvent> getEventDao() throws ServiceException {
+	public  CustomEventDao getEventDao() throws ServiceException {
 		logger.info("run method getEventDao");
 		if (eventDao == null) {
 			logger.error("error. need eventDao in EventService");
