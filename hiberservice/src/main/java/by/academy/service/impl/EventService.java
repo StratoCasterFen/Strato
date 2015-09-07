@@ -59,7 +59,7 @@ public class EventService implements IEventService {
 		logger.info("getEventsByDate");
 		try {
 			logger.info("run method getEventsByDate");
-			return eventDao.(date);
+			return eventDao.g(date);
 		} catch (DaoException e) {
 			logger.error("need eventDao in EventService.");
 			throw new ServiceException("need eventDao in EventService.");
