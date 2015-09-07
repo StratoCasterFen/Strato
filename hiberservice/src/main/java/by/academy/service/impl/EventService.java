@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import by.academy.dao.AbstractHDao;
+import by.academy.dao.CustomEventDao;
 import by.academy.dao.DaoException;
 import by.academy.dao.GenericHDao;
 import by.academy.pojos.CriminalEvent;
@@ -15,12 +16,13 @@ import by.academy.service.interf.IEventService;
 public class EventService implements IEventService {
 	static Logger logger = Logger.getLogger(EventService.class.getName());
 
-	private AbstractHDao<CriminalEvent> eventDao;
+	private CustomEventDao eventDao;
 	
 	@Override
 	public void add(CriminalEvent event) throws DaoException, ServiceException {
 		logger.info("add");
 		try {
+			
 			eventDao.persist(event);
 		} catch (DaoException e) {
 			logger.error("could not add event");
@@ -59,7 +61,7 @@ public class EventService implements IEventService {
 		logger.info("getEventsByDate");
 		try {
 			logger.info("run method getEventsByDate");
-			return eventDao.g(date);
+			return eventDao.getEventsByDate(date);
 		} catch (DaoException e) {
 			logger.error("need eventDao in EventService.");
 			throw new ServiceException("need eventDao in EventService.");
@@ -80,7 +82,7 @@ public class EventService implements IEventService {
 		return null;
 	}
 	
-	public AbstractHDao<CriminalEvent> getEventDao() throws ServiceException {
+	public  CustomEventDao getEventDao() throws ServiceException {
 		logger.info("run method getEventDao");
 		if (eventDao == null) {
 			logger.error("error. need eventDao in EventService");
@@ -89,7 +91,7 @@ public class EventService implements IEventService {
 		return eventDao;
 	}
 
-	public void setEventDao(AbstractHDao<CriminalEvent> eventDao) {
+	public void setEventDao(CustomEventDao eventDao) {
 		logger.info("setEventDao");
 		this.eventDao = eventDao;
 	}
