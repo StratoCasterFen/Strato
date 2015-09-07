@@ -6,6 +6,8 @@ import by.academy.dao.DaoException;
 import by.academy.pojos.CriminalEvent;
 import by.academy.service.ServiceException;
 import by.academy.service.interf.IEventService;
+import by.academy.service.utils.ConnectionManager;
+
 import org.apache.log4j.Logger;
 
 import java.util.Date;
@@ -21,13 +23,10 @@ public class EventService implements IEventService {
 	private EntityManager em;
 
 	
-	public EventService(EntityManager em) {
-		this.em = em;
-
+	public EventService() throws DaoException {
+		this.em=ConnectionManager.getEntityManager();
 	}
 
-
-	
 	@Override
 	public void add(CriminalEvent event) throws DaoException, ServiceException {
 		logger.info("add");

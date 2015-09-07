@@ -32,6 +32,8 @@ public class CriminalService implements ICriminalService {
 		} catch (DaoException e) {
 			logger.error("need criminalDao in CriminalService.");
 			throw new ServiceException("need criminalDao in CriminalService.");
+		}finally{
+			ConnectionManager.Close();
 		}
 	}
 
@@ -66,6 +68,7 @@ public class CriminalService implements ICriminalService {
 	@Override
 	public void setCriminalDao(CustomCriminalDao criminalDao) {
 		this.criminalDao = criminalDao;
+		this.criminalDao.setEntityManager(em);
 	}
 
 }

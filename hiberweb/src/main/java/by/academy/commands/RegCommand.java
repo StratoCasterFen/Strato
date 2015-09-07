@@ -1,9 +1,9 @@
-package by.academy.command;
+package by.academy.commands;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class AddCriminalCommand implements ICommand {
+public class RegCommand implements ICommands {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {

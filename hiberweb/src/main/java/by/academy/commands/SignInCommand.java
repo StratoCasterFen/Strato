@@ -1,4 +1,4 @@
-package by.academy.command;
+package by.academy.commands;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-public class SignInCommand  implements ICommand{
+public class SignInCommand  implements ICommands{
 
 	public static Logger logger = LogManager.getLogger(SignInCommand.class.getName());
 

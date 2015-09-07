@@ -1,4 +1,4 @@
-package by.academy.command;
+package by.academy.commands;
 
 
 public class CommandFactory {
@@ -6,7 +6,7 @@ public class CommandFactory {
     private CommandFactory() {
     }
 
-    public static ICommand getCommand(String command) {
+    public static ICommands getCommand(String command) {
         return ActionType.valueOf(command).getCommand();
     }
 }

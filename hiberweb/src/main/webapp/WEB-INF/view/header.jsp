@@ -10,6 +10,6 @@
 			<td><a href="events?command=ADD_EVENT"><fmt:message key="href.addEvent"/></a></td>
 			<td><a href="events?command=VIEW_EVENTS"><fmt:message key="href.viewEvents"/></a></td>
 			<td><a href="events?command=ADD_CRIMINAL"><fmt:message key="href.addCriminal"/></a></td>
-			<td><a href="events?command=VIEW_CRIMINAL"><fmt:message key="href.viewCriminals"/></a></td>
+			<td><a href="events?command=VIEW_CRIMINALS"><fmt:message key="href.viewCriminals"/></a></td>
 		</tr>
 	</table>

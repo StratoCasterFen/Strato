@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-import by.academy.command.CommandFactory;
-import by.academy.command.ICommand;
+import by.academy.commands.CommandFactory;
+import by.academy.commands.ICommands;
 
 
 public class Controller extends HttpServlet {
@@ -42,7 +42,7 @@ public class Controller extends HttpServlet {
 			throw new IllegalArgumentException("command is null");
 		}
 		logger.info("command: "+paramCommand);
-		ICommand command = CommandFactory.getCommand(paramCommand);
+		ICommands command = CommandFactory.getCommand(paramCommand);
 		String nextPage = command.execute(request, response);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(nextPage);
 		try {
