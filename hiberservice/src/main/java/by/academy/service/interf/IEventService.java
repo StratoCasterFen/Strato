@@ -4,6 +4,7 @@ package by.academy.service.interf;
 import java.util.Date;
 import java.util.List;
 
+import by.academy.dao.CustomEventDao;
 import by.academy.dao.DaoException;
 import by.academy.pojos.CriminalEvent;
 import by.academy.service.ServiceException;
@@ -24,5 +25,5 @@ public interface IEventService {
 	
 	List<CriminalEvent> getEventsByCriminalId(int criminalId) throws DaoException, ServiceException;
 	
-	
+	void setEventDao(CustomEventDao eventDao);
 }

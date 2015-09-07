@@ -1,6 +1,5 @@
 /target/
-
+/.iml/
 /.settings/
 /.project/
 /.classpath/
-/dao.iml

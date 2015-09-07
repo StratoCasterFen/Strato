@@ -36,11 +36,12 @@ public class Controller extends HttpServlet {
     }
     
     private void performAction(HttpServletRequest request, HttpServletResponse response) {
+    	logger.info("performAction");
 		String paramCommand = request.getParameter("command");
 		if (paramCommand == null) {
 			throw new IllegalArgumentException("command is null");
 		}
-		
+		logger.info("command: "+paramCommand);
 		ICommand command = CommandFactory.getCommand(paramCommand);
 		String nextPage = command.execute(request, response);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(nextPage);

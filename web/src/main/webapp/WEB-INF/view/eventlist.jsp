@@ -24,7 +24,7 @@
 			   <td><c:out value="${event.description}"/></td>
 				<td><c:out value="${event.date}"/></td>
 				<td><html:form action="orderItem">
-				<input type="hidden" name="id" value="<c:out value=’${event.id}’/>"/>
+				<input type="hidden" name="id" value="<c:out value='${event.id}'/>"/>
 				
 				
 				<html:text property="quantity"/>

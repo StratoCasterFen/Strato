@@ -1,21 +1,30 @@
 package by.academy.service.impl;
 
-import java.util.Date;
-import java.util.List;
-
-import org.apache.log4j.Logger;
-
 import by.academy.dao.AbstractHDao;
+import by.academy.dao.CustomEventDao;
 import by.academy.dao.DaoException;
-import by.academy.dao.GenericHDao;
 import by.academy.pojos.CriminalEvent;
 import by.academy.service.ServiceException;
 import by.academy.service.interf.IEventService;
+import org.apache.log4j.Logger;
+
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.EntityManager;
 
 public class EventService implements IEventService {
 	static Logger logger = Logger.getLogger(EventService.class.getName());
 
-	private AbstractHDao<CriminalEvent> eventDao;
+	private CustomEventDao eventDao;
+	private EntityManager em;
+
+	
+	public EventService(EntityManager em) {
+		this.em = em;
+
+	}
+
 	
 	@Override
 	public void add(CriminalEvent event) throws DaoException, ServiceException {
@@ -59,7 +68,7 @@ public class EventService implements IEventService {
 		logger.info("getEventsByDate");
 		try {
 			logger.info("run method getEventsByDate");
-			return eventDao.(date);
+			return eventDao.getEventsByDate(date);
 		} catch (DaoException e) {
 			logger.error("need eventDao in EventService.");
 			throw new ServiceException("need eventDao in EventService.");
@@ -69,8 +78,14 @@ public class EventService implements IEventService {
 	@Override
 	public List<CriminalEvent> getEvents() throws ServiceException,
 			DaoException {
-		// TODO Auto-generated method stub
-		return null;
+		logger.info("getEvents");
+		try {
+			logger.info("run method getEvents");
+			return eventDao.getAll();
+		} catch (DaoException e) {
+			logger.error("need eventDao in EventService.");
+			throw new ServiceException("need eventDao in EventService.");
+		}
 	}
 
 	@Override
@@ -86,12 +101,13 @@ public class EventService implements IEventService {
 			logger.error("error. need eventDao in EventService");
 			throw new ServiceException("need eventDao in EventService.");
 		}
-		return eventDao;
+		return null;//eventDao;
 	}
 
-	public void setEventDao(AbstractHDao<CriminalEvent> eventDao) {
+	public void setEventDao(CustomEventDao eventDao) {
 		logger.info("setEventDao");
 		this.eventDao = eventDao;
+		this.eventDao.setEntityManager(em);
 	}
 
 }

@@ -7,7 +7,7 @@
 		<version>1.0</version>
 		<relativePath>../</relativePath>
 	</parent>
-
+	
   <artifactId>hiberservice</artifactId>
   <packaging>jar</packaging>
 
