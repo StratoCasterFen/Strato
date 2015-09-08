@@ -35,6 +35,12 @@
 			<artifactId>jmock</artifactId>
 			<version>2004-03-19</version>
 		</dependency>
+		<dependency>
+		    <groupId>org.easymock</groupId>
+		    <artifactId>easymock</artifactId>
+		    <version>3.0</version>
+		    <scope>test</scope>
+		</dependency>
 	
 		<dependency>
 			<groupId>junit</groupId>

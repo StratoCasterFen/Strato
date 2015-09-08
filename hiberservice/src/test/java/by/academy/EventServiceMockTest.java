@@ -6,10 +6,13 @@ import org.jmock.integration.junit4.JUnit4Mockery;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
+import by.academy.dao.AbstractHDao;
 import by.academy.dao.CustomEventDao;
 import by.academy.dao.DaoException;
 import by.academy.dao.EventDao;
+import by.academy.dao.GenericHDao;
 import by.academy.hbutil.ConvertDate;
 import by.academy.pojos.CriminalEvent;
 import by.academy.service.ServiceException;
@@ -36,6 +39,7 @@ public class EventServiceMockTest {
 	private EventService mockedUserService;
 
 	private List<CriminalEvent> events = new ArrayList<CriminalEvent>();
+	private GenericHDao mockEventDao;
 	private CustomEventDao eventDao;
 	private CriminalEvent event=new CriminalEvent();
 	private EventService eventService;
@@ -46,14 +50,15 @@ public class EventServiceMockTest {
 	@Before
 	public void setUp() throws DaoException{
 		logger.info("setup before test");
-//        emf = Persistence.createEntityManagerFactory("hiberpolice_test");
-//        em = emf.createEntityManager();
-        
+		
+		mockEventDao = mockingContext.mock(GenericHDao.class);
+		
         eventDao = new EventDao();
         eventService =new EventService();
         eventService.setEventDao(eventDao);
-        eventDao = mockingContext.mock(CustomEventDao.class);
         
+     
+        logger.info(eventService);
     	Calendar cal = Calendar.getInstance();
         cal.set(2015, Calendar.AUGUST, 30);
         java.util.Date date = cal.getTime();
@@ -78,20 +83,21 @@ public class EventServiceMockTest {
 	
     @Test
     public void  getEvents() throws ServiceException, DaoException {
-    //	logger.info("TEST: GetRolesByUserName");
-
+    	logger.info("TEST: getEvents");
     	
-//    	mockingContext.checking(new Expectations() {
-//			{
-//				oneOf(eventDao).setEntityManager(em);
-//				oneOf(eventDao).getAll();
-//				will(returnValue(exEvents));
-//			}
-//		});
-    	
-//    	List<CriminalEvent> events= eventService.getEvents();
-//		//assertEquals(exEvents, events);
-//    	logger.info(events);
+    	mockingContext.checking(new Expectations() {
+		{
+				oneOf(mockEventDao).getByPK(1);
+				will(returnValue(exEvents));
+				logger.info(exEvents);
+			}
+		});
+  //  	Mockito.when(mockEventDao.getAll()).thenReturn(exEvents);
+    //	Mockito.verify(mockEventDao).getAll();
+    	List<CriminalEvent> events= eventService.getEvents();
+    	logger.info(events);
+		assertEquals(exEvents, events);
+    	logger.info(events);
     }
 	
 	
