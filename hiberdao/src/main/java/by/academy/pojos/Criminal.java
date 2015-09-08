@@ -29,19 +29,19 @@ public class Criminal implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-    @Column(name= "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id=null;
-	
-	@Column(name= "Name")
-	private String  criminalName;
-	
-	@Column(name= "SurName")
-	private String  criminalSurname;
-	
-	@Column(name= "birthday")
-	@Temporal(value=TemporalType.DATE)
-	private Date    birthday;
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id = null;
+
+	@Column(name = "Name")
+	private String criminalName;
+
+	@Column(name = "SurName")
+	private String criminalSurname;
+
+	@Column(name = "birthday")
+	@Temporal(value = TemporalType.DATE)
+	private Date birthday;
 	
 //	@OneToMany(targetEntity=CriminalEvent.class, cascade = CascadeType.ALL, mappedBy = "criminal" )
 //	private Set<CriminalEvent> criminalEvents;

@@ -10,8 +10,14 @@ public enum ActionType {
 	ADD_USER(){
 		public ICommands getCommand() {return new AddUserCommand();} 
 	},
+	ADD_EVENT_PAGE(){
+		public ICommands getCommand() {return new AddEventPageCommand();} 
+	},
 	ADD_EVENT(){
 		public ICommands getCommand() {return new AddEventCommand();} 
+	},
+	ADD_CRIMINAL_PAGE(){
+		public ICommands getCommand() {return new AddCriminalPageCommand();} 
 	},
 	ADD_CRIMINAL(){
 		public ICommands getCommand() {return new AddCriminalCommand();} 

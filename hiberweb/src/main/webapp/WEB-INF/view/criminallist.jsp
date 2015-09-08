@@ -12,8 +12,8 @@
     <c:forEach items="${criminals}" var="criminals">
         <tr>
         	<td>${criminals.id}</td>
-            <td>${criminals.name}</td>
-            <td>${crimEvents.surName}</td> 
+            <td>${criminals.criminalName}</td>
+            <td>${crimEvents.criminalSurname}</td> 
             <td>${crimEvents.birthday}</td> 
         </tr>
     </c:forEach>

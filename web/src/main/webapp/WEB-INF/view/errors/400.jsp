@@ -4,6 +4,7 @@
 <title>Error</title>
 </head>
 <body>
- error 400
+This feature is not implemented yet!
+<a href="events">main</a>
 </body>
 </html>

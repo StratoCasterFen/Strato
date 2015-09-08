@@ -5,19 +5,48 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>ARM Police station</title>
-	</head>
+
+<script type='text/javascript'>
+	function validate() {
+
+		var x = document.forms["loginform"]["j_username"].value;
+		var y = document.forms["loginform"]["j_password"].value;
+		alert(x);
+
+		if (x.length == 0) {
+			document.getElementById('usernamef').innerHTML = '*данное поле обязательно для заполнения';
+			return false;
+		}
+
+		if (y.length == 0) {
+			document.getElementById('passwordf').innerHTML = '*данное поле обязательно для заполнения';
+			return false;
+		}
+
+		//   at=y.indexOf("@");
+		//   dot=y.indexOf(".");
+
+		/*  if (at<1 || dot <1){
+		    document.getElementById('emailf').innerHTML='*email введен не верно';
+		    return false;
+		 } */
+	}
+</script>
+
+</head>
 	<body>
 		<h>Application Log in:</h>
 		<hr>		
-<!-- 		<form action="j_security_check" method="post"> -->
-		<form action="events" method="post">
+<!-- 		<form name="loginform" id="loginform" action="j_security_check" method="post"> --> 
+ 		<form action="events" method="post" onsubmit="return validate()"> 
 		    Input for username:<br>
-		    <input name="username" type="text"><br>
+		    <input name="j_username" type="text" id="j_username"><br>
 		    Input for password:<br>
-		    <input name="password" type="password"><br>
+		    <input name="j_password" type="password" id="j_password"><br>
 		    <input type="submit" value="Authorization">
 		    <input name="command" type="hidden" value="SIGNIN">
 		</form>
+
 		<c:out value="${errorAuth}"/><br>
 	</body>
 </html>

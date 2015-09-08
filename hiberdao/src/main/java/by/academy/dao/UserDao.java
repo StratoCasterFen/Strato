@@ -20,6 +20,7 @@ public class UserDao  extends AbstractHDao<User> implements CustomUserDao {
 		logger.info("+getUserByNameAndPassword");
 		EntityTransaction tx = super.entityManager.getTransaction();
 		tx.begin();
+		ReadProperty.setPfilename("queries");
 		String QUERY = ReadProperty.getValue("UserByNameAndPassword");
 		try {
 			List<User> res = super.entityManager.createQuery(QUERY)
@@ -27,7 +28,12 @@ public class UserDao  extends AbstractHDao<User> implements CustomUserDao {
 					.setParameter("pass", user.getPassword()).getResultList();
 			tx.commit();
 			logger.info("commit successfuly");
-		return res.get(0);
+			if (res.size() > 0) {
+				return res.get(0);
+			} else {
+				logger.info("not found");
+				return null;
+			}
 		} catch (IllegalArgumentException e) {
 			tx.rollback();
 			logger.error("rollback transaction. error in JPQL", e);

@@ -22,6 +22,7 @@ public class RoleDao extends AbstractHDao<Role> implements CustomRoleDao{
 		logger.info("+getRoleByName");
 		EntityTransaction tx = super.entityManager.getTransaction();
 		tx.begin();
+		ReadProperty.setPfilename("queries");
 		String QUERY = ReadProperty.getValue("RoleByName");
 		try {
 			List<Role> res = super.entityManager.createQuery(QUERY).setParameter("name", name).getResultList();

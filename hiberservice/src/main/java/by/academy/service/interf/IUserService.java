@@ -16,7 +16,7 @@ public interface IUserService {
 	
 	List<Role> getRolesByUserId(int userId) throws ServiceException;
 
-	void setUserDAO(CustomUserDao userDao);
+//	void setUserDAO(CustomUserDao userDao);
 	
 	List<User> getAllUsers() throws  DaoException, ServiceException;
 

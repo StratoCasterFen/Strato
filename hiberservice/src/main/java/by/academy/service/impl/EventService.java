@@ -19,7 +19,6 @@ public class EventService implements IEventService {
 	static Logger logger = Logger.getLogger(EventService.class.getName());
 
 	private CustomEventDao eventDao;
-
 	private EntityManager em;
 
 	
@@ -87,6 +86,8 @@ public class EventService implements IEventService {
 		} catch (DaoException e) {
 			logger.error("need eventDao in EventService.");
 			throw new ServiceException("need eventDao in EventService.");
+		}finally{
+			ConnectionManager.Close();
 		}
 	}
 

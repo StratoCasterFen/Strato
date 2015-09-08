@@ -3,108 +3,64 @@ package by.academy.commands;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
+import by.academy.dao.CustomUserDao;
+import by.academy.dao.DaoException;
+import by.academy.dao.UserDao;
+import by.academy.pojos.User;
+import by.academy.service.ServiceException;
+import by.academy.service.impl.UserService;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-
-public class SignInCommand  implements ICommands{
+public class SignInCommand implements ICommands {
 
 	public static Logger logger = LogManager.getLogger(SignInCommand.class.getName());
+	private CustomUserDao userDao;
+	private UserService userservice = null;
+	private User authUser;
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		
-		logger.debug("execute start");
+
+		logger.info("execute start");
 		String page = null;
-		String userName = request.getParameter("username");
-		String password = request.getParameter("pass");
-	        
-	        //request.setAttribute("textA", eventname);
-//			String varTextB = "It JSP.";
+		String userName = request.getParameter("j_username");
+		String password = request.getParameter("j_password");
+
+		logger.info(userName);
 		request.setAttribute("username", userName);
-			
-		//UserServiceImpl userService= new UserServiceImpl();
-	       // UserService userService = new UserService();
-	    //    try {
-			//	if (userService.authorization(userName, password)!=null) {
-//	            request.setAttribute("user", login);
-				    page = "/WEB-INF/view/first.jsp";
-				//} else {
-//	            request.setAttribute("errorLoginPassMessage",
-//	                    MessageManager.getProperty("message.loginError"));
-					
-				//	request.setAttribute("errorAuth", "Ivalid login or password!");
-				//    page = ("/WEB-INF/view/login.jsp");
-			//	}
-//			} catch (ServiceException e) {
-//				logger.error("error");
-//				e.printStackTrace();
-//			} catch (DaoException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//	        return page;
-//	    }
-//	        
-		//		    User user = validate(request);
-//	        if (user == null) {
-//	            errorHandling(request);
-//	            return nextPage;
-//	        }
-//	        User authorizedUser = null;
-//	        try {
-//	            authorizedUser = authorizeUser(user);
-//	        } catch (ServiceException e) {
-//	            errorHandling(request, "Cannot authorize user", e);
-//	        }
-//	        if (authorizedUser == null) {
-//	            errorHandling(request);
-//	            return nextPage;
-//	        }
-//	        addUserToSession(request, authorizedUser);
-	       // nextPage = "/WEB-INF/view/test.jsp";
-//	        return nextPage;
-			return page;
-	    }
+		page = "/WEB-INF/view/first.jsp";
 
-//	    private User authorizeUser(User user) throws ServiceException {
-//	        User authorizedUser;
-//	        Log.debug("Get DAO");
-//	        UserDAO userDAO = UserDAOImpl.getInstance();
-//	        Log.debug("Get Service");
-//	        UserService userService = UserServiceImpl.getInstance();
-//	        Log.debug("Dependency injection");
-//	        userService.setUserDAO(userDAO);
-//	        Log.debug("Authorizing user");
-//	        authorizedUser = userService.authorizeUser(user);
-//	        Log.debug("Authentication successful");
-//	        return authorizedUser;
-//	    }
+		try {
+			userservice = new UserService();
+			userDao = new UserDao();
+		} catch (DaoException e) {
+			logger.error("WEB:" + e);
+			request.setAttribute("errorAuth", "Error: " + e);
+		}
 
-//	    private User validate(HttpServletRequest request) {
-//	        User user = null;
-//	        Log.debug("Checking valid input");
-//	        String email = request.getParameter("email");
-//	        String password = request.getParameter("password");
-//	        if (Objects.equals(email, "") || Objects.equals(password, "")) {
-//	            Log.debug("Input not valid. Empty form.");
-//	        } else {
-//	            user = new User(email, password);
-//	        }
-//	        return user;
-//	    }
-//
-//	    private void errorHandling(HttpServletRequest request) {
-//	        Log.warn("Wrong or empty input password and/or login");
-//	        request.setAttribute(
-//	                ResourceBundle.getBundle("resources").getString("param.error.login.input"),
-//	                ResourceBundle.getBundle("content").getString("error.login.input.message"));
-//	    }
-//
-//	    private void addUserToSession(HttpServletRequest request, User user) {
-//	        HttpSession session = request.getSession();
-//	        session.setAttribute("userID", user.getUserID());
-//	    }
+		try {
+			userservice.setUserDao(userDao);
+			authUser = userservice.authorization(userName, password);
+			logger.info(authUser);
+		} catch (ServiceException e) {
+			logger.error("WEB:" + e);
+			request.setAttribute("errorAuth", "Error: " + e);
+		}
+
+		if (authUser != null) {
+			request.setAttribute("user", userName);
+			logger.debug("WEB:login correct");
+			HttpSession session = request.getSession();
+			session.setAttribute("userId", authUser.getId());
+		} else {
+			request.setAttribute("errorAuth", "invalid login or password!");
+			page = ("/WEB-INF/view/login.jsp");
+			logger.error("WEB:login incorrect");
+		}
+		return page;
+	}
+
 }
-
-

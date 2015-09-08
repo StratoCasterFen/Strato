@@ -15,8 +15,8 @@ import by.academy.service.utils.ConnectionManager;
 
 public class CriminalService implements ICriminalService {
 	static Logger logger = Logger.getLogger(CriminalService.class.getName());
-	private EntityManager em;
 	
+	private EntityManager em;
 	private CustomCriminalDao criminalDao;
 	
 	public CriminalService() throws DaoException{
@@ -32,8 +32,6 @@ public class CriminalService implements ICriminalService {
 		} catch (DaoException e) {
 			logger.error("need criminalDao in CriminalService.");
 			throw new ServiceException("need criminalDao in CriminalService.");
-		}finally{
-			ConnectionManager.Close();
 		}
 	}
 
@@ -67,6 +65,7 @@ public class CriminalService implements ICriminalService {
 
 	@Override
 	public void setCriminalDao(CustomCriminalDao criminalDao) {
+		logger.info("setCriminalDao");
 		this.criminalDao = criminalDao;
 		this.criminalDao.setEntityManager(em);
 	}

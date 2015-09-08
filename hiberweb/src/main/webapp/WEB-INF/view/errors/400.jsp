@@ -4,6 +4,7 @@
 <title>Error</title>
 </head>
 <body>
- error 400
+This feature is not implemented yet!<br>
+<a href="/WEB-INF/view/first.jsp">main</a>
 </body>
 </html>

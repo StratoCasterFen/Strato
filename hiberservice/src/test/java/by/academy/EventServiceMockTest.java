@@ -46,11 +46,11 @@ public class EventServiceMockTest {
 	@Before
 	public void setUp() throws DaoException{
 		logger.info("setup before test");
-        emf = Persistence.createEntityManagerFactory("hiberpolice_test");
-        em = emf.createEntityManager();
+//        emf = Persistence.createEntityManagerFactory("hiberpolice_test");
+//        em = emf.createEntityManager();
         
         eventDao = new EventDao();
-        eventService =new EventService(em);
+        eventService =new EventService();
         eventService.setEventDao(eventDao);
         eventDao = mockingContext.mock(CustomEventDao.class);
         
@@ -78,7 +78,7 @@ public class EventServiceMockTest {
 	
     @Test
     public void  getEvents() throws ServiceException, DaoException {
-    	logger.info("TEST: GetRolesByUserName");
+    //	logger.info("TEST: GetRolesByUserName");
 
     	
 //    	mockingContext.checking(new Expectations() {
@@ -89,9 +89,9 @@ public class EventServiceMockTest {
 //			}
 //		});
     	
-    	List events= eventService.getEvents();
-		//assertEquals(exEvents, events);
-    	logger.info(events);
+//    	List<CriminalEvent> events= eventService.getEvents();
+//		//assertEquals(exEvents, events);
+//    	logger.info(events);
     }
 	
 	
@@ -139,8 +139,8 @@ public class EventServiceMockTest {
 	
     @After
     public void destroy() {
-        em.close();
-        emf.close();
+//        em.close();
+//        emf.close();
     }
 	
 }

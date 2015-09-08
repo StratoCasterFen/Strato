@@ -18,6 +18,42 @@
 		    <input type="submit" value="Authorization">
 		    <input name="command" type="hidden" value="SIGNIN">
 		</form>
+	
+	<script>
+
+		function showError(container, errorMessage) {
+			container.className = 'error';
+			var msgElem = document.createElement('span');
+			msgElem.className = "error-message";
+			msgElem.innerHTML = errorMessage;
+			container.appendChild(msgElem);
+		}
+
+		function resetError(container) {
+			container.className = '';
+			if (container.lastChild.className == "error-message") {
+				container.removeChild(container.lastChild);
+			}
+		}
+
+		function validate(form) {
+			var elems = form.elements;
+
+			resetError(elems.username.parentNode);
+			if (!elems.username.value) {
+				showError(elems.username.parentNode, 'Input Name');
+			}
+
+			resetError(elems.password.parentNode);
+			if (!elems.password.value) {
+				showError(elems.password.parentNode, ' Input password');
+			} 
+
+		}
+	</script>
+		
+		
+		
 		<c:out value="${errorAuth}"/><br>
 	</body>
 </html>

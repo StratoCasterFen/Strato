@@ -16,7 +16,7 @@
 		<url-pattern>/events</url-pattern>
 	</servlet-mapping>
 	
-<!-- 	<security-constraint>
+ 	<security-constraint>
 	    <web-resource-collection>
 	        <web-resource-name>Protected Pages</web-resource-name>
 	        <url-pattern>/protected/*</url-pattern>
@@ -28,9 +28,9 @@
 	<security-role> 
     <description>admin</description>
 	    <role-name>admin</role-name>
-	</security-role>  -->
+	</security-role>  
 	
-<!-- 	<login-config>
+<!--  	<login-config>
 	    <auth-method>FORM</auth-method>
 	    <realm-name>JDBCRealm</realm-name>
 	    <form-login-config>
@@ -41,6 +41,6 @@
 	
 	<error-page>
 	 	<error-code>400</error-code>
-	 	<location>/view/errors/400.jsp</location>
+	 	<location>/WEB-INF/view/errors/400.jsp</location>
 	</error-page>
 </web-app>

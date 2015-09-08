@@ -7,9 +7,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 import by.academy.dao.CriminalDao;
-import by.academy.dao.CustomCriminalDao;
 import by.academy.service.impl.CriminalService;
-import by.academy.service.interf.ICriminalService;
 
 public class ViewCriminalsCommand implements ICommands {
 	public static Logger logger = LogManager.getLogger(ViewCriminalsCommand.class.getName());
@@ -19,8 +17,8 @@ public class ViewCriminalsCommand implements ICommands {
 		logger.info("execute start");
 		String page = "/WEB-INF/view/criminallist.jsp";
 		try {
-	        ICriminalService criminalService= new CriminalService();
-	        CustomCriminalDao criminalDao=new CriminalDao();
+			CriminalDao criminalDao=new CriminalDao();
+	        CriminalService criminalService= new CriminalService();
 			criminalService.setCriminalDao(criminalDao);  
 
 			request.setAttribute("criminals", criminalService.getCriminals());

@@ -12,9 +12,9 @@ public class ReadProperty {
 	private static String pfilename="queries";
 	
 
-//	public ReadProperty(String pfilename) {
-//		this.pfilename = pfilename;
-//	}
+	public ReadProperty() {
+		this.pfilename = "queries";
+	}
 
 	public static String getValue(String propName) throws DaoException{
 		try {

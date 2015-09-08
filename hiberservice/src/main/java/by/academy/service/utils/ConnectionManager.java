@@ -24,6 +24,6 @@ public class ConnectionManager {
 
 	public static void Close(){
         em.close();
-        emf.close();
+    //    emf.close();
 	}	
 }
