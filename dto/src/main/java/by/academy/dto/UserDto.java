@@ -1,13 +1,24 @@
-package by.academy.service.dto;
+package by.academy.dto;
 
-public class ModelUser {
+public class UserDto {
+	private Integer id;
 	private String userName;
 	private String password;
 
-	public ModelUser(String userName, String password) {
+	public UserDto(Integer id, String userName, String password) {
+		this.id=id;
 		this.userName = userName;
 		this.password = password;
 	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String getUserName() {
 		return userName;
 	}
@@ -40,7 +51,7 @@ public class ModelUser {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ModelUser other = (ModelUser) obj;
+		UserDto other = (UserDto) obj;
 		if (password == null) {
 			if (other.password != null)
 				return false;

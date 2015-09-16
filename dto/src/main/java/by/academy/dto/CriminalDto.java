@@ -1,4 +1,4 @@
-package by.academy.service.dto;
+package by.academy.dto;
 
 import java.io.Serializable;
 import java.util.Date;

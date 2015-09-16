@@ -9,6 +9,7 @@
 	<version>1.0</version>
 	<name>main</name>
 	<modules>
+		<module>dto</module>
 		<module>hiberdao</module>
 		<module>hiberservice</module>
 		<module>hiberweb</module>

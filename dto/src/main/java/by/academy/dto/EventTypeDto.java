@@ -1,4 +1,4 @@
-package by.academy.service.dto;
+package by.academy.dto;
 
 import java.io.Serializable;
 
@@ -14,6 +14,20 @@ public class EventTypeDto implements Serializable {
 	
 	public EventTypeDto(String eventTypeName) {
 		this.eventTypeName = eventTypeName;
+	}
+
+	public EventTypeDto(Integer id, String eventTypeName) {
+		super();
+		this.id = id;
+		this.eventTypeName = eventTypeName;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getEventTypeName() {

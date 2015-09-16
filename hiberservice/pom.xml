@@ -61,5 +61,10 @@
 			<artifactId>hiberdao</artifactId>
 			<version>1.0</version>
 		</dependency>
-	  </dependencies>
+		<dependency>
+			<groupId>by.academy</groupId>
+			<artifactId>dto</artifactId>
+			<version>1.0</version>
+		</dependency>
+  </dependencies>
 </project>

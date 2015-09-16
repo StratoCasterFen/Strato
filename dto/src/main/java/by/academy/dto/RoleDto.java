@@ -1,10 +1,6 @@
-package by.academy.service.dto;
+package by.academy.dto;
 
 import java.io.Serializable;
-import java.util.Set;
-
-import javax.persistence.*;
-
 
 public class RoleDto implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -15,7 +11,8 @@ public class RoleDto implements Serializable{
 	public RoleDto() {
 	}
 	
-	public RoleDto(String roleName) {
+	public RoleDto(Integer id, String roleName) {
+		this.id=id;
 		this.roleName = roleName;
 	}
 
@@ -32,13 +29,6 @@ public class RoleDto implements Serializable{
 		this.roleName = roleName;
 	}
 	
-
-	public RoleDto(Integer id, String roleName) {
-		super();
-		this.id = id;
-		this.roleName = roleName;
-	}
-
 	@Override
 	public String toString() {
 		return "Role [Id=" + id + ", roleName=" + roleName + "]";

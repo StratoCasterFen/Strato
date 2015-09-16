@@ -1,4 +1,4 @@
-package by.academy.service.dto;
+package by.academy.dto;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -13,9 +13,20 @@ public class EventDto implements Serializable{
 	private Date eventDate;
 	private CriminalDto criminal;
 	private UserDto user;
-	private EventType eventType;
+	private EventTypeDto eventType;
 	
-
+	public EventDto(Integer id, String eventName, String description, Date eventDate, CriminalDto criminal,
+			UserDto user, EventTypeDto eventType) {
+		super();
+		this.id = id;
+		this.eventName = eventName;
+		this.description = description;
+		this.eventDate = eventDate;
+		this.criminal = criminal;
+		this.user = user;
+		this.setEventType(eventType);
+	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -40,16 +51,16 @@ public class EventDto implements Serializable{
 	public void setEventDate(Date eventDate) {
 		this.eventDate = eventDate;
 	}
-	public Criminal getCriminal() {
+	public CriminalDto getCriminal() {
 		return criminal;
 	}
-	public void setCriminal(Criminal criminal) {
+	public void setCriminal(CriminalDto criminal) {
 		this.criminal = criminal;
 	}
-	public User getUser() {
+	public UserDto getUser() {
 		return user;
 	}
-	public void setUser(User user) {
+	public void setUser(UserDto user) {
 		this.user = user;
 	}
 	
@@ -110,6 +121,14 @@ public class EventDto implements Serializable{
 		} else if (!user.equals(other.user))
 			return false;
 		return true;
+	}
+
+	public EventTypeDto getEventType() {
+		return eventType;
+	}
+
+	public void setEventType(EventTypeDto eventType) {
+		this.eventType = eventType;
 	}
 	
 }
