@@ -1,11 +1,10 @@
 package by.academy.service.impl;
 
-import by.academy.dao.AbstractHDao;
 import by.academy.dao.CustomEventDao;
 import by.academy.dao.DaoException;
 import by.academy.pojos.CriminalEvent;
-import by.academy.service.ServiceException;
-import by.academy.service.interf.IEventService;
+import by.academy.service.exeption.ServiceException;
+import by.academy.service.interf.EventService;
 import by.academy.service.utils.ConnectionManager;
 
 import org.apache.log4j.Logger;
@@ -15,19 +14,24 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-public class EventService implements IEventService {
-	static Logger logger = Logger.getLogger(EventService.class.getName());
+public class EventServiceImpl implements EventService {
+	static Logger logger = Logger.getLogger(EventServiceImpl.class.getName());
 
 	private CustomEventDao eventDao;
 	private EntityManager em;
 
 	
-	public EventService() throws DaoException {
-		this.em=ConnectionManager.getEntityManager();
+	public EventServiceImpl() throws ServiceException {
+		try {
+			this.em=ConnectionManager.getEntityManager();
+		} catch (DaoException e) {
+			logger.error("dont get EntityManager");
+			throw new ServiceException("dont get EntityManager",e);
+		}
 	}
 
 	@Override
-	public void add(CriminalEvent event) throws DaoException, ServiceException {
+	public void add(CriminalEvent event) throws  ServiceException {
 		logger.info("add");
 		try {
 			
@@ -59,13 +63,13 @@ public class EventService implements IEventService {
 
 	@Override
 	public List<CriminalEvent> getEventsByUserId(int userId)
-			throws DaoException, ServiceException {
+			throws  ServiceException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<CriminalEvent> getEventsByDate(Date date) throws DaoException, ServiceException {
+	public List<CriminalEvent> getEventsByDate(Date date) throws  ServiceException {
 		logger.info("getEventsByDate");
 		try {
 			logger.info("run method getEventsByDate");
@@ -77,8 +81,8 @@ public class EventService implements IEventService {
 	}
 
 	@Override
-	public List<CriminalEvent> getEvents() throws ServiceException,
-			DaoException {
+	public List<CriminalEvent> getEvents() throws ServiceException
+			{
 		logger.info("getEvents");
 		try {
 			logger.info("run method getEvents");
@@ -93,7 +97,7 @@ public class EventService implements IEventService {
 
 	@Override
 	public List<CriminalEvent> getEventsByCriminalId(int criminalId)
-			throws DaoException, ServiceException {
+			throws  ServiceException {
 		// TODO Auto-generated method stub
 		return null;
 	}

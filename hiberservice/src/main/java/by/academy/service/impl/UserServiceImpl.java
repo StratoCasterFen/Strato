@@ -6,26 +6,30 @@ import javax.persistence.EntityManager;
 
 import org.apache.log4j.Logger;
 
-import by.academy.dao.CustomEventDao;
 import by.academy.dao.CustomUserDao;
 import by.academy.dao.DaoException;
 import by.academy.pojos.Role;
 import by.academy.pojos.User;
-import by.academy.service.ModelUser;
-import by.academy.service.ServiceException;
-import by.academy.service.interf.IUserService;
+import by.academy.service.dto.ModelUser;
+import by.academy.service.exeption.ServiceException;
+import by.academy.service.interf.UserService;
 import by.academy.service.utils.ConnectionManager;
 import by.academy.service.utils.MD5;
 
-public class UserService implements IUserService {
-	static Logger logger = Logger.getLogger(UserService.class.getName());
+public class UserServiceImpl implements UserService {
+	static Logger logger = Logger.getLogger(UserServiceImpl.class.getName());
 	final static String SALT="Fender";
 	
 	private CustomUserDao userDao;
 	private EntityManager em;
 	
-	public UserService() throws DaoException{
-		this.em=ConnectionManager.getEntityManager();
+	public UserServiceImpl() throws ServiceException{
+		try {
+			this.em=ConnectionManager.getEntityManager();
+		} catch (DaoException e) {
+			logger.error("dont get EntityManager");
+			throw new ServiceException("dont get EntityManager",e);
+		}
 	}
 	
 	@Override
@@ -59,7 +63,7 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public void addUser(ModelUser user) throws ServiceException, DaoException {
+	public void addUser(ModelUser user) throws ServiceException {
 		// TODO Auto-generated method stub
 
 	}
@@ -71,7 +75,7 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public List<User> getAllUsers() throws DaoException, ServiceException {
+	public List<User> getAllUsers() throws  ServiceException {
 		// TODO Auto-generated method stub
 		return null;
 	}

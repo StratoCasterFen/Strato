@@ -6,10 +6,10 @@ import by.academy.pojos.Role;
 import by.academy.pojos.User;
 import by.academy.dao.CustomUserDao;
 import by.academy.dao.DaoException;
-import by.academy.service.ServiceException;
-import by.academy.service.ModelUser;
+import by.academy.service.exeption.ServiceException;
+import by.academy.service.dto.ModelUser;
 
-public interface IUserService {
+public interface UserService {
 	User authorization(String userName, String password) throws ServiceException, DaoException;
 	
 	void addUser(ModelUser user) throws ServiceException, DaoException;

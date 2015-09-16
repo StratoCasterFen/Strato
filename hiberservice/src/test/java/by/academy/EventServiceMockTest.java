@@ -15,8 +15,8 @@ import by.academy.dao.EventDao;
 import by.academy.dao.GenericHDao;
 import by.academy.hbutil.ConvertDate;
 import by.academy.pojos.CriminalEvent;
-import by.academy.service.ServiceException;
-import by.academy.service.impl.EventService;
+import by.academy.service.exeption.ServiceException;
+import by.academy.service.impl.EventServiceImpl;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
@@ -36,13 +36,13 @@ public class EventServiceMockTest {
     private EntityManager em;
     
 	private Mockery mockingContext = new JUnit4Mockery();
-	private EventService mockedUserService;
+	private EventServiceImpl mockedUserService;
 
 	private List<CriminalEvent> events = new ArrayList<CriminalEvent>();
 	private GenericHDao mockEventDao;
 	private CustomEventDao eventDao;
 	private CriminalEvent event=new CriminalEvent();
-	private EventService eventService;
+	private EventServiceImpl eventService;
 	private List exEvents= new ArrayList<CriminalEvent>();
 	
 	{logger.info("end init "+ events);}
@@ -54,7 +54,7 @@ public class EventServiceMockTest {
 		mockEventDao = mockingContext.mock(GenericHDao.class);
 		
         eventDao = new EventDao();
-        eventService =new EventService();
+        eventService =new EventServiceImpl();
         eventService.setEventDao(eventDao);
         
      
@@ -87,7 +87,7 @@ public class EventServiceMockTest {
     	
     	mockingContext.checking(new Expectations() {
 		{
-				oneOf(mockEventDao).getByPK(1);
+				oneOf(mockEventDao).getAll();
 				will(returnValue(exEvents));
 				logger.info(exEvents);
 			}

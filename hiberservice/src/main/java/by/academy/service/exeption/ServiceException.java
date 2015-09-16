@@ -1,4 +1,4 @@
-package by.academy.service;
+package by.academy.service.exeption;
 
 public class ServiceException extends Exception {
 	public ServiceException() {
