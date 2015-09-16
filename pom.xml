@@ -10,11 +10,8 @@
 	<name>main</name>
 	<modules>
 		<module>dao</module>
-		<module>hiberdao</module>
 		<module>service</module>
-		<module>hiberservice</module>
 		<module>web</module>
-		<module>hiberweb</module>
   </modules>
 	
 	<build>

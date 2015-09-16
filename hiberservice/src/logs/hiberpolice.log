@@ -1,8 +1,0 @@
-2015-09-08 18:43:42 INFO  CriminalService:68 - setCriminalDao
-2015-09-08 18:43:42 INFO  CriminalService:28 - getCriminals
-2015-09-08 18:43:42 INFO  CriminalService:30 - run method getCriminals
-2015-09-08 18:43:43 INFO  UserService:90 - setUserDao
-2015-09-08 18:43:43 INFO  UserDao:20 - +getUserByNameAndPassword
-2015-09-08 18:43:44 INFO  UserDao:30 - commit successfuly
-2015-09-08 18:43:44 INFO  UserDao:34 - not found
-2015-09-08 18:43:44 ERROR UserService:54 - Didn't find user
