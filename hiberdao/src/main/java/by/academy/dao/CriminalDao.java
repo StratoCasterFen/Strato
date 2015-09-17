@@ -24,10 +24,10 @@ public class CriminalDao extends AbstractHDao<Criminal> implements CustomCrimina
 		ReadProperty.setPfilename("queries");
 		String QUERY = ReadProperty.getValue("CriminalByName");
 		try {
-			List<Criminal> res = super.entityManager.createQuery(QUERY).setParameter("name", cName).getResultList();
+			Criminal res = (Criminal)super.entityManager.createQuery(QUERY).setParameter("name", cName).getSingleResult();
 			tx.commit();
 			logger.info("commit successfuly");
-			return res.get(0);
+			return res;
 		} catch (IllegalArgumentException e) {
 			tx.rollback();
 			logger.error("rollback transaction. error in JPQL", e);
