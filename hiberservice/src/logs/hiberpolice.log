@@ -1,0 +1,5 @@
+2015-09-18 15:14:59 INFO  EventServiceImpl:37 - add
+2015-09-18 15:15:10 INFO  ConvertDto:115 - Convert CriminalEventDto to CriminalEvent
+2015-09-18 15:15:13 INFO  ConvertDto:89 - Convert CriminalDto to Criminal
+2015-09-18 15:15:14 INFO  ConvertDto:65 - Convert UserDto to User
+2015-09-18 15:15:15 INFO  ConvertDto:103 - Convert EventTypeDto to EventType

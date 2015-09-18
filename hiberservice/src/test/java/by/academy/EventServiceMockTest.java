@@ -48,7 +48,7 @@ public class EventServiceMockTest {
 	{logger.info("end init "+ events);}
 	
 	@Before
-	public void setUp() throws DaoException{
+	public void setUp() throws ServiceException{
 		logger.info("setup before test");
 		
 		mockEventDao = mockingContext.mock(GenericHDao.class);

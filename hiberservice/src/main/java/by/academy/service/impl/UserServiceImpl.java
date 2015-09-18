@@ -10,7 +10,7 @@ import by.academy.dao.CustomUserDao;
 import by.academy.dao.DaoException;
 import by.academy.pojos.Role;
 import by.academy.pojos.User;
-import by.academy.service.dto.ModelUser;
+import by.academy.dto.UserDto;
 import by.academy.service.exeption.ServiceException;
 import by.academy.service.interf.UserService;
 import by.academy.service.utils.ConnectionManager;
@@ -63,7 +63,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void addUser(ModelUser user) throws ServiceException {
+	public void addUser(UserDto userDto) throws ServiceException {
 		// TODO Auto-generated method stub
 
 	}

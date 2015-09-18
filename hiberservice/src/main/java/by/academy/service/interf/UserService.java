@@ -4,15 +4,14 @@ import java.util.List;
 
 import by.academy.pojos.Role;
 import by.academy.pojos.User;
-import by.academy.dao.CustomUserDao;
 import by.academy.dao.DaoException;
 import by.academy.service.exeption.ServiceException;
-import by.academy.service.dto.ModelUser;
+import by.academy.dto.UserDto;
 
 public interface UserService {
 	User authorization(String userName, String password) throws ServiceException, DaoException;
 	
-	void addUser(ModelUser user) throws ServiceException, DaoException;
+	void addUser(UserDto user) throws ServiceException, DaoException;
 	
 	List<Role> getRolesByUserId(int userId) throws ServiceException;
 

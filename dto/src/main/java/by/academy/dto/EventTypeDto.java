@@ -9,8 +9,6 @@ public class EventTypeDto implements Serializable {
 	private Integer id;
 	private String  eventTypeName;
 
-	public EventTypeDto() {
-	}
 	
 	public EventTypeDto(String eventTypeName) {
 		this.eventTypeName = eventTypeName;

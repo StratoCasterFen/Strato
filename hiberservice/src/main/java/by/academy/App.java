@@ -41,10 +41,10 @@ public class App
         
         EventService es=new EventServiceImpl();
          Date d = null;
-        CriminalDto  cdto = new CriminalDto(null, "Ganstrelitto", "De la Vorro", d);
+        CriminalDto  cdto = new CriminalDto(1, "Ganstrelitto", "De la Vorro", d);
         
-        UserDto  udto = new UserDto(null, "Admin", "");
-        EventTypeDto tdto = null;
+        UserDto  udto = new UserDto(1, "Admin", "");
+        EventTypeDto tdto = new EventTypeDto(1,"Draka");
         
         
         EventDto edto=new EventDto(7, "Event #6", "bla- bla", d, cdto, udto, tdto);
