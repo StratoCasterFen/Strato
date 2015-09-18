@@ -6,12 +6,13 @@ import java.util.List;
 
 import by.academy.dao.CustomEventDao;
 import by.academy.dao.DaoException;
+import by.academy.dto.EventDto;
 import by.academy.pojos.CriminalEvent;
 import by.academy.service.exeption.ServiceException;
 
 public interface EventService {
 	
-	void add(CriminalEvent event ) throws  ServiceException;
+	void add(EventDto eventDto ) throws  ServiceException;
 	
 	void delete(Integer eventId) throws ServiceException;
 	

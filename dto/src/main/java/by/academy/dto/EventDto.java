@@ -15,6 +15,10 @@ public class EventDto implements Serializable{
 	private UserDto user;
 	private EventTypeDto eventType;
 	
+	/**
+	  Integer id, String eventName, String description, Date eventDate, CriminalDto criminal,
+			UserDto user, EventTypeDto eventType
+	 **/
 	public EventDto(Integer id, String eventName, String description, Date eventDate, CriminalDto criminal,
 			UserDto user, EventTypeDto eventType) {
 		super();

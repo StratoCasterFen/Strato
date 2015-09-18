@@ -2,6 +2,8 @@ package by.academy.service.impl;
 
 import by.academy.dao.CustomEventDao;
 import by.academy.dao.DaoException;
+import by.academy.dto.EventDto;
+import by.academy.hbutil.ConvertDto;
 import by.academy.pojos.CriminalEvent;
 import by.academy.service.exeption.ServiceException;
 import by.academy.service.interf.EventService;
@@ -31,10 +33,10 @@ public class EventServiceImpl implements EventService {
 	}
 
 	@Override
-	public void add(CriminalEvent event) throws  ServiceException {
+	public void add(EventDto eventDto) throws  ServiceException {
 		logger.info("add");
 		try {
-			
+			CriminalEvent event=ConvertDto.toCriminalEvent(eventDto);
 			eventDao.persist(event);
 		} catch (DaoException e) {
 			logger.error("could not add event");

@@ -43,7 +43,8 @@ public class CriminalServiceImpl implements CriminalService {
 	@Override
 	public void addCriminal(Criminal criminal) throws ServiceException,
 			ServiceException {
-		// TODO Auto-generated method stub
+		logger.info("addCriminal");
+		
 
 	}
 
