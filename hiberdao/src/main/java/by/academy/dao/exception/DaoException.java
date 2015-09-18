@@ -1,4 +1,4 @@
-package by.academy.dao;
+package by.academy.dao.exception;
 
 public class DaoException extends Exception {
 

@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.EntityManager;
 
+import by.academy.dao.exception.DaoException;
 import by.academy.pojos.User;
 
 

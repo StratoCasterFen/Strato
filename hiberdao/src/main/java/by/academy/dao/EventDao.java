@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.EntityTransaction;
 
+import by.academy.dao.exception.DaoException;
 import by.academy.hbutil.ReadProperty;
 import by.academy.pojos.Criminal;
 import by.academy.pojos.CriminalEvent;

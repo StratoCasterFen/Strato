@@ -12,6 +12,8 @@ import javax.persistence.criteria.Root;
 
 import org.apache.log4j.Logger;
 
+import by.academy.dao.exception.DaoException;
+
 
 
 public abstract class AbstractHDao<T> implements GenericHDao<T>  {
@@ -31,6 +33,7 @@ public abstract class AbstractHDao<T> implements GenericHDao<T>  {
 	@Override
 	public T persist(T object) throws DaoException {
 		this.entityManager.persist(object);
+		
 		return null;
 	}
 

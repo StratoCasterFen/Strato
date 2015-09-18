@@ -1,5 +1,6 @@
 package by.academy.dao;
 
+import by.academy.dao.exception.DaoException;
 import by.academy.pojos.Criminal;
 
 public interface CustomCriminalDao extends GenericHDao<Criminal>{

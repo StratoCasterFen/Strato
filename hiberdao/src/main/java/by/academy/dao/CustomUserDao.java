@@ -2,7 +2,7 @@ package by.academy.dao;
 
 import java.util.List;
 
-import by.academy.pojos.Role;
+import by.academy.dao.exception.DaoException;
 import by.academy.pojos.User;
 
 public interface CustomUserDao extends GenericHDao<User> {

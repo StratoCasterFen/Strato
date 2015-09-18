@@ -1,7 +1,7 @@
 package by.academy.dto;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 
 public class EventDto implements Serializable{
 	
@@ -11,80 +11,95 @@ public class EventDto implements Serializable{
 	private String eventName;
 	private String description;
 	private Date eventDate;
-	private CriminalDto criminal;
-	private UserDto user;
-	private EventTypeDto eventType;
+	private Integer criminalId;
+	private Integer userId;
+	private Integer eventTypeId;
 	
-	/**
-	  Integer id, String eventName, String description, Date eventDate, CriminalDto criminal,
-			UserDto user, EventTypeDto eventType
-	 **/
-	public EventDto(Integer id, String eventName, String description, Date eventDate, CriminalDto criminal,
-			UserDto user, EventTypeDto eventType) {
+	public EventDto(String eventName, String description, Date eventDate, Integer criminalId, Integer userId,
+			Integer eventTypeId) {
 		super();
-		this.id = id;
 		this.eventName = eventName;
 		this.description = description;
 		this.eventDate = eventDate;
-		this.criminal = criminal;
-		this.user = user;
-		this.setEventType(eventType);
+		this.criminalId = criminalId;
+		this.userId = userId;
+		this.eventTypeId = eventTypeId;
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+
+	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getEventName() {
 		return eventName;
 	}
+
 	public void setEventName(String eventName) {
 		this.eventName = eventName;
 	}
-	public String getEventDescription() {
+
+	public String getDescription() {
 		return description;
 	}
-	public void setEventDescription(String description) {
+
+	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	public Date getEventDate() {
 		return eventDate;
 	}
+
 	public void setEventDate(Date eventDate) {
 		this.eventDate = eventDate;
 	}
-	public CriminalDto getCriminal() {
-		return criminal;
+
+	public Integer getCriminalId() {
+		return criminalId;
 	}
-	public void setCriminal(CriminalDto criminal) {
-		this.criminal = criminal;
+
+	public void setCriminalId(Integer criminalId) {
+		this.criminalId = criminalId;
 	}
-	public UserDto getUser() {
-		return user;
+
+	public Integer getUserId() {
+		return userId;
 	}
-	public void setUser(UserDto user) {
-		this.user = user;
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
-	
-	@Override
-	public String toString() {
-		return "CriminalEvent [id=" + id + ", eventName=" + eventName + ", description="
-				+ description + ", eventDate=" + eventDate + ", criminal=" + criminal + ", user=" + user+"]";
+
+	public Integer getEventTypeId() {
+		return eventTypeId;
 	}
+
+	public void setEventTypeId(Integer eventTypeId) {
+		this.eventTypeId = eventTypeId;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((criminal == null) ? 0 : criminal.hashCode());
-		result = prime * result + ((eventDate == null) ? 0 : eventDate.hashCode());
+		result = prime * result + ((criminalId == null) ? 0 : criminalId.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + ((eventDate == null) ? 0 : eventDate.hashCode());
 		result = prime * result + ((eventName == null) ? 0 : eventName.hashCode());
+		result = prime * result + ((eventTypeId == null) ? 0 : eventTypeId.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -94,45 +109,50 @@ public class EventDto implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		EventDto other = (EventDto) obj;
-		if (criminal == null) {
-			if (other.criminal != null)
+		if (criminalId == null) {
+			if (other.criminalId != null)
 				return false;
-		} else if (!criminal.equals(other.criminal))
-			return false;
-		if (eventDate == null) {
-			if (other.eventDate != null)
-				return false;
-		} else if (!eventDate.equals(other.eventDate))
+		} else if (!criminalId.equals(other.criminalId))
 			return false;
 		if (description == null) {
 			if (other.description != null)
 				return false;
 		} else if (!description.equals(other.description))
 			return false;
+		if (eventDate == null) {
+			if (other.eventDate != null)
+				return false;
+		} else if (!eventDate.equals(other.eventDate))
+			return false;
 		if (eventName == null) {
 			if (other.eventName != null)
 				return false;
 		} else if (!eventName.equals(other.eventName))
+			return false;
+		if (eventTypeId == null) {
+			if (other.eventTypeId != null)
+				return false;
+		} else if (!eventTypeId.equals(other.eventTypeId))
 			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (user == null) {
-			if (other.user != null)
+		if (userId == null) {
+			if (other.userId != null)
 				return false;
-		} else if (!user.equals(other.user))
+		} else if (!userId.equals(other.userId))
 			return false;
 		return true;
 	}
 
-	public EventTypeDto getEventType() {
-		return eventType;
-	}
-
-	public void setEventType(EventTypeDto eventType) {
-		this.eventType = eventType;
+	@Override
+	public String toString() {
+		return "EventDto [id=" + id + ", eventName=" + eventName + ", description=" + description + ", eventDate="
+				+ eventDate + ", criminalId=" + criminalId + ", userId=" + userId + ", eventTypeId=" + eventTypeId
+				+ "]";
 	}
 	
+
 }

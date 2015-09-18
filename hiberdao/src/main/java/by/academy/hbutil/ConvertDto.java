@@ -1,5 +1,8 @@
 package by.academy.hbutil;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.apache.log4j.Logger;
 
 
@@ -9,13 +12,19 @@ import by.academy.pojos.*;
 public class ConvertDto {
 	static Logger logger= Logger.getLogger(ConvertDto.class.getName());
 	
-	public static UserDto fromUser(User user) {
+	public static UserRoleDto fromUser(User user) {
 		logger.info("Convert User to UserDto");
 		if (user == null) {
 			logger.debug("User is null");
 			return null;
 		}
-		return new UserDto(user.getId(), user.getUserName(), user.getPassword());
+		Set<RoleDto> rolesDto = new HashSet();
+
+		for (Role role : user.getRoles()) {
+			rolesDto.add(fromRole(role));
+		}
+				
+		return new UserRoleDto(user.getId(), user.getUserName(), rolesDto);
 	}
 	
 	public static RoleDto fromRole(Role role) {
@@ -46,30 +55,37 @@ public class ConvertDto {
 		return new EventTypeDto(eventType.getId(), eventType.getEventTypeName());
 	}
 	
-	public static EventDto fromCriminalEvent(CriminalEvent criminalEvent) {
-		logger.info("Convert EventType to EventTypeDto");
-		if (criminalEvent == null) {
-			logger.debug("EventType is null");
-			return null;
-		}
-		return new EventDto(criminalEvent.getId(), criminalEvent.getEventName(), 
-				criminalEvent.getEventDescription(),criminalEvent.getEventDate(), 
-				fromCriminal(criminalEvent.getCriminal()), 
-				fromUser(criminalEvent.getUser()), 
-				fromEventType(criminalEvent.getEventType()));
-	}
+//	public static EventDto fromCriminalEvent(CriminalEvent criminalEvent) {
+//		logger.info("Convert EventType to EventTypeDto");
+//		if (criminalEvent == null) {
+//			logger.debug("EventType is null");
+//			return null;
+//		}
+//		return new EventDto(criminalEvent.getId(), criminalEvent.getEventName(), 
+//				criminalEvent.getEventDescription(),criminalEvent.getEventDate(), 
+//				fromCriminal(criminalEvent.getCriminal()), 
+//				criminalEvent.getUserId()), 
+//				fromEventType(criminalEvent.getEventType()));
+//	}
 	
 	/* Another side */
 	
-	public static User toUser(UserDto userDto) {
+	public static User toUser(UserRoleDto userRoleDto) {
 		logger.info("Convert UserDto to User");
-		if (userDto == null) {
+		if (userRoleDto == null) {
 			return null;
 		}
 		User user = new User();
-		user.setId(userDto.getId());
-		user.setUserName(userDto.getUserName());
-		user.setPassword(userDto.getPassword());		
+		user.setId(userRoleDto.getIdUser());
+		user.setUserName(userRoleDto.getUserName());
+
+		Set<Role> roles = new HashSet();
+
+		for (RoleDto roleDto : userRoleDto.getRolesDto()) {
+			roles.add(toRole(roleDto));
+		}
+
+		user.setRoles(roles);
 		return user;
 	}
 	
@@ -117,13 +133,13 @@ public class ConvertDto {
 			return null;
 		}
 		CriminalEvent event = new CriminalEvent();
-		event.setId(eventDto.getId());
+	//	event.setId(eventDto.getId());
 		event.setEventName(eventDto.getEventName());
-		event.setEventDescription(eventDto.getEventDescription());
+		event.setEventDescription(eventDto.getDescription());
 		event.setEventDate(eventDto.getEventDate());
-		event.setCriminal(toCriminal(eventDto.getCriminal()));
-		event.setUser(toUser(eventDto.getUser()));
-		event.setEventType(toEventType(eventDto.getEventType()));
+	//	event.setCriminal(toCriminal(eventDto.getCriminal()));
+	//	event.setUser(toUser(eventDto.getUser()));
+	//	event.setEventType(toEventType(eventDto.getEventType()));
 		
 		return event;
 	}

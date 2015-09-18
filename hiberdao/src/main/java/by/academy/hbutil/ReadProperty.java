@@ -5,7 +5,7 @@ import java.util.ResourceBundle;
 
 import org.apache.log4j.Logger;
 
-import by.academy.dao.DaoException;
+import by.academy.dao.exception.DaoException;
 
 public class ReadProperty {
 	static Logger logger= Logger.getLogger(ReadProperty.class.getName());

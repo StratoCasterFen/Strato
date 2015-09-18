@@ -4,7 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import by.academy.dao.DaoException;
+import by.academy.dao.exception.DaoException;
 import by.academy.hbutil.ReadProperty;
 
 public class ConnectionManager {
@@ -13,8 +13,7 @@ public class ConnectionManager {
 	static String UNIT_NAME;
 	
 	public static EntityManager getEntityManager() throws DaoException {
-		
-		
+
 		ReadProperty.setPfilename("connectcfg");
 		UNIT_NAME=ReadProperty.getValue("persistence-unit");
 		emf = Persistence.createEntityManagerFactory(UNIT_NAME);
@@ -24,6 +23,6 @@ public class ConnectionManager {
 
 	public static void Close(){
         em.close();
-    //    emf.close();
+        emf.close();
 	}	
 }

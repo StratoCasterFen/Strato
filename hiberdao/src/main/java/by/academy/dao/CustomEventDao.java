@@ -3,6 +3,7 @@ package by.academy.dao;
 import java.util.Date;
 import java.util.List;
 
+import by.academy.dao.exception.DaoException;
 import by.academy.pojos.Criminal;
 import by.academy.pojos.CriminalEvent;
 import by.academy.pojos.EventType;

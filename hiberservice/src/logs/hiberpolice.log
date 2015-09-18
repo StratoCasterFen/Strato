@@ -1,5 +1,9 @@
-2015-09-18 15:14:59 INFO  EventServiceImpl:37 - add
-2015-09-18 15:15:10 INFO  ConvertDto:115 - Convert CriminalEventDto to CriminalEvent
-2015-09-18 15:15:13 INFO  ConvertDto:89 - Convert CriminalDto to Criminal
-2015-09-18 15:15:14 INFO  ConvertDto:65 - Convert UserDto to User
-2015-09-18 15:15:15 INFO  ConvertDto:103 - Convert EventTypeDto to EventType
+2015-09-19 00:58:23 INFO  EventServiceImpl:191 - setEventDao
+2015-09-19 00:58:23 INFO  EventServiceImpl:51 - add
+2015-09-19 00:58:23 INFO  ConvertDto:131 - Convert CriminalEventDto to CriminalEvent
+2015-09-19 00:58:27 INFO  EventServiceImpl:173 - setUserDao
+2015-09-19 00:58:29 INFO  EventServiceImpl:59 - user : User [UserId=1, UserName=Botor2]
+2015-09-19 00:58:29 INFO  EventServiceImpl:179 - setCriminalDao
+2015-09-19 00:58:30 INFO  EventServiceImpl:64 - criminal : Criminal [id=1, criminalName=Kevin, criminalSurname=Mitnik, birthday=Sun Jan 04 00:00:00 MSK 1970]
+2015-09-19 00:59:17 INFO  EventServiceImpl:185 - setEventTypeDao
+2015-09-19 00:59:17 INFO  EventServiceImpl:69 - eventType : EventType [id=1, EventTypeName=Ograblenie]

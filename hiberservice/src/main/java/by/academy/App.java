@@ -1,16 +1,24 @@
 package by.academy;
 
 import java.sql.Date;
+import java.util.Calendar;
+import java.util.HashSet;
+import java.util.Set;
 
 import by.academy.dao.CriminalDao;
 import by.academy.dao.CustomCriminalDao;
+import by.academy.dao.CustomEventDao;
 import by.academy.dao.CustomUserDao;
-import by.academy.dao.DaoException;
+import by.academy.dao.EventDao;
 import by.academy.dao.UserDao;
+import by.academy.dao.exception.DaoException;
 import by.academy.dto.CriminalDto;
 import by.academy.dto.EventDto;
 import by.academy.dto.EventTypeDto;
+import by.academy.dto.RoleDto;
 import by.academy.dto.UserDto;
+import by.academy.dto.UserRoleDto;
+import by.academy.hbutil.ConvertDate;
 import by.academy.service.exeption.ServiceException;
 import by.academy.service.impl.CriminalServiceImpl;
 import by.academy.service.impl.EventServiceImpl;
@@ -38,17 +46,24 @@ public class App
         userservice.setUserDao(userDao);  
         userservice.authorization("Admin", "1223");*/
         
-        
+   //     CustomEventDao eDao= new EventDao();
         EventService es=new EventServiceImpl();
          Date d = null;
         CriminalDto  cdto = new CriminalDto(1, "Ganstrelitto", "De la Vorro", d);
         
-        UserDto  udto = new UserDto(1, "Admin", "");
+        RoleDto rdto =new RoleDto (999,"Admin");
+        Set rolesDto = new HashSet();
+        rolesDto.add(rdto);
+        UserRoleDto  udto = new UserRoleDto(999, "Admin", rolesDto);
         EventTypeDto tdto = new EventTypeDto(1,"Draka");
+    	Calendar cal = Calendar.getInstance();
+        cal.set(2015, Calendar.AUGUST, 30);
+        java.util.Date date = cal.getTime();
+        java.sql.Date sqlDate = ConvertDate.convert(date); 
         
+        EventDto edto=new EventDto("Event #6", "bla- bla", sqlDate, (Integer)1, (Integer)1, (Integer)1);
         
-        EventDto edto=new EventDto(7, "Event #6", "bla- bla", d, cdto, udto, tdto);
-        
+     //   es.setEventDao(eDao);
         es.add(edto);
         System.out.println( "---" );
     }

@@ -2,6 +2,7 @@ package by.academy.dao;
 
 import java.util.List;
 
+import by.academy.dao.exception.DaoException;
 import by.academy.pojos.Role;
 import by.academy.pojos.User;
 

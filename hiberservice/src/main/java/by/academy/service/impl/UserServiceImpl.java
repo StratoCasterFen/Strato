@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import org.apache.log4j.Logger;
 
 import by.academy.dao.CustomUserDao;
-import by.academy.dao.DaoException;
+import by.academy.dao.exception.DaoException;
 import by.academy.pojos.Role;
 import by.academy.pojos.User;
 import by.academy.dto.UserDto;

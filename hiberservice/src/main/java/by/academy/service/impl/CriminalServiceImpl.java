@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import org.apache.log4j.Logger;
 
 import by.academy.dao.CustomCriminalDao;
-import by.academy.dao.DaoException;
+import by.academy.dao.exception.DaoException;
 import by.academy.pojos.Criminal;
 import by.academy.service.exeption.ServiceException;
 import by.academy.service.interf.CriminalService;

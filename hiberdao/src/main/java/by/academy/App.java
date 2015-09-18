@@ -1,12 +1,18 @@
 package by.academy;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 //import org.apache.log4j.LogManager;
 //import org.apache.log4j.Logger;
-import by.academy.dao.DaoException;
+
 import by.academy.dao.UserDao;
+import by.academy.dao.exception.DaoException;
+import by.academy.pojos.CriminalEvent;
+import by.academy.pojos.EventType;
 
 public class App {
 //private static Logger logger = LogManager.getLogger(App.class.getName());
@@ -53,7 +59,7 @@ public class App {
     	role3.setUsers(users);
 		em.persist(role3);		
 		em.getTransaction().commit();*/
-///////////////////////
+/////////////////////
 //		em.getTransaction().begin();
 //		EventType eventType=new EventType("hggggggggg");
 //		
@@ -66,16 +72,16 @@ public class App {
 //		ce1.setEventName("eventName2");
 //	//	em.persist(ce1);
 //		events.add(ce1);
-//		eventType.setCriminalEvents(events);
+//	//	eventType.setCriminalEvents(events);
 //		em.persist(eventType);
 //		em.getTransaction().commit();
 //		
 //		logger.info("good!");
-///////////////////////
+/////////////////////
 		
-		em.getTransaction().begin();
-	
-		UserDao ud=new UserDao();
+//		em.getTransaction().begin();
+//	
+//		UserDao ud=new UserDao();
 	//	logger.info(ud.getAll());
 //		ud.setEntityManager(em);
 //		User user=ud.getByPK(3);
@@ -84,7 +90,7 @@ public class App {
 //        eve.setUserId(user);
 //     
 //		em.persist(eve);		
-		em.getTransaction().commit();
+//		em.getTransaction().commit();
 		
 		
 	      em.close();
