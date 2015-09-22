@@ -5,47 +5,15 @@ import java.util.Set;
 public class UserRoleDto {
 	private Integer idUser;
 	private String userName;
-//	private Integer idRole;
-	private Set<RoleDto> rolesDto;
-
-
-	public UserRoleDto(Integer idUser, String userName, Set<RoleDto> rolesDto) {
+	private String password;
+	private Integer idRole;
+	
+	public UserRoleDto(String userName, String password, Integer idRole) {
 		super();
-		this.idUser = idUser;
 		this.userName = userName;
-		this.rolesDto = rolesDto;
+		this.password = password;
+		this.idRole = idRole;
 	}
-
-	public Set<RoleDto> getRolesDto() {
-		return rolesDto;
-	}
-
-	public void setRolesDto(Set<RoleDto> rolesDto) {
-		this.rolesDto = rolesDto;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-//	public Integer getIdRole() {
-//		return idRole;
-//	}
-//
-//	public void setIdRole(Integer idRole) {
-//		this.idRole = idRole;
-//	}
-//
-//	public String getRoleName() {
-//		return roleName;
-//	}
-//
-//	public void setRoleName(String roleName) {
-//		this.roleName = roleName;
-//	}
 
 	public Integer getIdUser() {
 		return idUser;
@@ -55,12 +23,37 @@ public class UserRoleDto {
 		this.idUser = idUser;
 	}
 
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Integer getIdRole() {
+		return idRole;
+	}
+
+	public void setIdRole(Integer idRole) {
+		this.idRole = idRole;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((idRole == null) ? 0 : idRole.hashCode());
 		result = prime * result + ((idUser == null) ? 0 : idUser.hashCode());
-		result = prime * result + ((rolesDto == null) ? 0 : rolesDto.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
 		return result;
 	}
@@ -74,15 +67,20 @@ public class UserRoleDto {
 		if (getClass() != obj.getClass())
 			return false;
 		UserRoleDto other = (UserRoleDto) obj;
+		if (idRole == null) {
+			if (other.idRole != null)
+				return false;
+		} else if (!idRole.equals(other.idRole))
+			return false;
 		if (idUser == null) {
 			if (other.idUser != null)
 				return false;
 		} else if (!idUser.equals(other.idUser))
 			return false;
-		if (rolesDto == null) {
-			if (other.rolesDto != null)
+		if (password == null) {
+			if (other.password != null)
 				return false;
-		} else if (!rolesDto.equals(other.rolesDto))
+		} else if (!password.equals(other.password))
 			return false;
 		if (userName == null) {
 			if (other.userName != null)
@@ -94,9 +92,11 @@ public class UserRoleDto {
 
 	@Override
 	public String toString() {
-		return "UserRoleDto [idUser=" + idUser + ", userName=" + userName + ", rolesDto=" + rolesDto + "]";
+		return "UserRoleDto [idUser=" + idUser + ", userName=" + userName + ", password=" + password + ", idRole="
+				+ idRole + "]";
 	}
-	
+
+
 	
 
 }

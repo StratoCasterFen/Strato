@@ -4,11 +4,12 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 import by.academy.dao.CustomUserDao;
-import by.academy.dao.DaoException;
+
 import by.academy.dao.UserDao;
 import by.academy.pojos.User;
-import by.academy.service.ServiceException;
-import by.academy.service.impl.UserService;
+import by.academy.service.exeption.ServiceException;
+import by.academy.service.impl.UserServiceImpl;
+import by.academy.service.interf.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,15 +35,7 @@ public class SignInCommand implements ICommands {
 		page = "/WEB-INF/view/first.jsp";
 
 		try {
-			userservice = new UserService();
-			userDao = new UserDao();
-		} catch (DaoException e) {
-			logger.error("WEB:" + e);
-			request.setAttribute("errorAuth", "Error: " + e);
-		}
-
-		try {
-			userservice.setUserDao(userDao);
+			userservice = new UserServiceImpl();
 			authUser = userservice.authorization(userName, password);
 			logger.info(authUser);
 		} catch (ServiceException e) {

@@ -12,20 +12,20 @@ import by.academy.pojos.*;
 public class ConvertDto {
 	static Logger logger= Logger.getLogger(ConvertDto.class.getName());
 	
-	public static UserRoleDto fromUser(User user) {
-		logger.info("Convert User to UserDto");
-		if (user == null) {
-			logger.debug("User is null");
-			return null;
-		}
-		Set<RoleDto> rolesDto = new HashSet();
-
-		for (Role role : user.getRoles()) {
-			rolesDto.add(fromRole(role));
-		}
-				
-		return new UserRoleDto(user.getId(), user.getUserName(), rolesDto);
-	}
+//	public static UserRoleDto fromUser(User user) {
+//		logger.info("Convert User to UserDto");
+//		if (user == null) {
+//			logger.debug("User is null");
+//			return null;
+//		}
+//		Set<RoleDto> rolesDto = new HashSet();
+//
+//		for (Role role : user.getRoles()) {
+//			rolesDto.add(fromRole(role));
+//		}
+//				
+//		return new UserRoleDto(user.getId(), user.getUserName(), rolesDto);
+//	}
 	
 	public static RoleDto fromRole(Role role) {
 		logger.info("Convert Role to RoleDto");
@@ -36,15 +36,15 @@ public class ConvertDto {
 		return new RoleDto(role.getId(), role.getRoleName());
 	}
 	
-	public static CriminalDto fromCriminal(Criminal criminal) {
-		logger.info("Convert Criminal to CriminalDto");
-		if (criminal == null) {
-			logger.debug("Criminal is null");
-			return null;
-		}
-		return new CriminalDto(criminal.getId(), criminal.getCriminalName(), criminal.getCriminalSurname(),
-				criminal.getBirthday());
-	}
+//	public static CriminalDto fromCriminal(Criminal criminal) {
+//		logger.info("Convert Criminal to CriminalDto");
+//		if (criminal == null) {
+//			logger.debug("Criminal is null");
+//			return null;
+//		}
+//		return new CriminalDto(criminal.getId(), criminal.getCriminalName(), criminal.getCriminalSurname(),
+//				criminal.getBirthday());
+//	}
 	
 	public static EventTypeDto fromEventType(EventType eventType) {
 		logger.info("Convert EventType to EventTypeDto");
@@ -76,16 +76,17 @@ public class ConvertDto {
 			return null;
 		}
 		User user = new User();
-		user.setId(userRoleDto.getIdUser());
+	//	user.setId(userRoleDto.getIdUser());
 		user.setUserName(userRoleDto.getUserName());
+		user.setPassword(userRoleDto.getPassword());
 
-		Set<Role> roles = new HashSet();
+//		Set<Role> roles = new HashSet();
+//
+//		for (RoleDto roleDto : userRoleDto.getRolesDto()) {
+//			roles.add(toRole(roleDto));
+//		}
 
-		for (RoleDto roleDto : userRoleDto.getRolesDto()) {
-			roles.add(toRole(roleDto));
-		}
-
-		user.setRoles(roles);
+		//user.setRoles(roles);
 		return user;
 	}
 	
@@ -107,7 +108,7 @@ public class ConvertDto {
 			return null;
 		}
 		Criminal criminal = new Criminal();
-		criminal.setId(criminalDto.getId());
+	//	criminal.setId(criminalDto.getId());
 		criminal.setCriminalName(criminalDto.getCriminalName());
 		criminal.setCriminalSurname(criminalDto.getCriminalSurname());
 		criminal.setBirthday(criminalDto.getBirthday());

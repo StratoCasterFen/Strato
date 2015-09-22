@@ -88,7 +88,7 @@ public class EventServiceMockTest {
     public void  getEvents() throws ServiceException, DaoException {
     	logger.info("TEST: getEvents");
     	List<CriminalEvent> events= eventService.getEvents();
-		assertEquals(2l, events.size()); 
+		assertEquals(3l, events.size()); 
 		
 //    	mockingContext.checking(new Expectations() {
 //		{
@@ -107,13 +107,13 @@ public class EventServiceMockTest {
     	List<CriminalEvent> events= eventService.getEventsByUserId(1);
     	assertEquals(2l, events.size());
     }
-    
-    
-    
-    
-    
-    
-    
+    @Test
+    public void getEventsByCriminalId() throws ServiceException{
+    	logger.info("TEST: getEventsByCriminalId");
+    	List<CriminalEvent> events= eventService.getEventsByCriminalId(2);
+    	assertEquals(2l, events.size());
+    }
+       
     
 	
 //	@Test

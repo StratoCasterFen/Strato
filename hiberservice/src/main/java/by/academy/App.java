@@ -47,24 +47,24 @@ public class App
         userservice.authorization("Admin", "1223");*/
         
    //     CustomEventDao eDao= new EventDao();
-        EventService es=new EventServiceImpl();
-         Date d = null;
-        CriminalDto  cdto = new CriminalDto(1, "Ganstrelitto", "De la Vorro", d);
-        
-        RoleDto rdto =new RoleDto (999,"Admin");
-        Set rolesDto = new HashSet();
-        rolesDto.add(rdto);
-        UserRoleDto  udto = new UserRoleDto(999, "Admin", rolesDto);
-        EventTypeDto tdto = new EventTypeDto(1,"Draka");
-    	Calendar cal = Calendar.getInstance();
-        cal.set(2015, Calendar.AUGUST, 30);
-        java.util.Date date = cal.getTime();
-        java.sql.Date sqlDate = ConvertDate.convert(date); 
-        
-        EventDto edto=new EventDto("Event #6", "bla- bla", sqlDate, (Integer)1, (Integer)1, (Integer)1);
+//        EventService es=new EventServiceImpl();
+//         Date d = null;
+//        CriminalDto  cdto = new CriminalDto(1, "Ganstrelitto", "De la Vorro", d);
+//        
+//        RoleDto rdto =new RoleDto (999,"Admin");
+//        Set rolesDto = new HashSet();
+//        rolesDto.add(rdto);
+//        UserRoleDto  udto = new UserRoleDto(999, "Admin", rolesDto);
+//        EventTypeDto tdto = new EventTypeDto(1,"Draka");
+//    	Calendar cal = Calendar.getInstance();
+//        cal.set(2015, Calendar.AUGUST, 30);
+//        java.util.Date date = cal.getTime();
+//        java.sql.Date sqlDate = ConvertDate.convert(date); 
+//        
+//        EventDto edto=new EventDto("Event #6", "bla- bla", sqlDate, (Integer)1, (Integer)1, (Integer)1);
         
      //   es.setEventDao(eDao);
-        es.add(edto);
-        System.out.println( "---" );
+//        es.add(edto);
+//        System.out.println( "---" );
     }
 }

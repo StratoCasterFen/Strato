@@ -70,7 +70,7 @@ public class EventServiceImpl implements EventService {
 		    
 		    tx.begin(); 
 			eventDao.persist(event);
-			em.flush();
+			//em.flush();
 			tx.commit();
 		} catch (DaoException e) {
 			logger.error("could not add event");

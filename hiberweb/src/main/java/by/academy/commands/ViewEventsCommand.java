@@ -1,14 +1,12 @@
 package by.academy.commands;
 
 import by.academy.dao.CustomUserDao;
-import by.academy.dao.DaoException;
-import by.academy.dao.EventDao;
 import by.academy.dao.UserDao;
 import by.academy.pojos.User;
-import by.academy.service.impl.EventService;
-import by.academy.service.impl.UserService;
-import by.academy.service.utils.ConnectionManager;
-
+import by.academy.service.impl.EventServiceImpl;
+import by.academy.service.impl.UserServiceImpl;
+import by.academy.service.interf.EventService;
+import by.academy.service.interf.UserService;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
@@ -27,29 +25,21 @@ public class ViewEventsCommand implements ICommands{
 		logger.info("session"+session);
 	    Integer userId=(Integer)session.getAttribute("userId");
 	    CustomUserDao userDao=new UserDao();
-	    try {
-			UserService us= new UserService();
-			us.setUserDao(userDao);
-	    	user=userDao.getByPK(userId);
-		} catch (DaoException e1) {
-			e1.printStackTrace();
-		}
-	    logger.info("username"+userId);
-	    request.setAttribute("username", user.getUserName());
+
+	    UserService userservice;
 		try {
-			EventDao eventDao = new EventDao();
-			EventService eventService = new EventService();
-			eventService.setEventDao(eventDao);
+			userservice = new UserServiceImpl();
+			user=userservice.getUserById(userId);
+			request.setAttribute("username", user.getUserName());
+
+			EventService eventService = new EventServiceImpl();
 
 			request.setAttribute("crimEvents", eventService.getEvents());
 			logger.info("get event list:" + eventService.getEvents());
 		} catch (Exception e) {
 			logger.error("error:" + e);
 			e.printStackTrace();
-		}finally{
-			//ConnectionManager.Close();
 		}
-
 		return page;
 	}
 

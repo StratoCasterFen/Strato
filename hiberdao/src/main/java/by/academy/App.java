@@ -6,16 +6,17 @@ import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-//import org.apache.log4j.LogManager;
-//import org.apache.log4j.Logger;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import by.academy.dao.UserDao;
 import by.academy.dao.exception.DaoException;
 import by.academy.pojos.CriminalEvent;
 import by.academy.pojos.EventType;
+import by.academy.pojos.User;
 
 public class App {
-//private static Logger logger = LogManager.getLogger(App.class.getName());
+private static Logger logger = LogManager.getLogger(App.class.getName());
 	public static void main(String[] args) throws DaoException {
 		
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("hiberpolice");
@@ -81,10 +82,11 @@ public class App {
 		
 //		em.getTransaction().begin();
 //	
-//		UserDao ud=new UserDao();
+		UserDao ud=new UserDao();
 	//	logger.info(ud.getAll());
-//		ud.setEntityManager(em);
-//		User user=ud.getByPK(3);
+		ud.setEntityManager(em);
+		User user=ud.getByPK(3);
+		logger.info(ud.getRolesForUser(user));
 //        CriminalEvent eve=new CriminalEvent();
 //        eve.setEventName("hgjjgjjjj");
 //        eve.setUserId(user);

@@ -52,17 +52,17 @@ public class EventDao extends AbstractHDao<CriminalEvent> implements CustomEvent
 
 	public List RunQuery(String qNam, String fKey, Object object) throws DaoException{
 		logger.info("+RunQuery: "+ qNam);
-		EntityTransaction tx = super.entityManager.getTransaction();
-		tx.begin();
+	//	EntityTransaction tx = super.entityManager.getTransaction();
+	//	tx.begin();
 		ReadProperty.setPfilename("queries");
 		String QUERY = ReadProperty.getValue(qNam);
 		try {
 			List res = super.entityManager.createQuery(QUERY).setParameter(fKey, object).getResultList();
-			tx.commit();
+		//	tx.commit();
 			logger.info("commit successfuly "+ res);
 			return res;
 		} catch (IllegalArgumentException e) {
-			tx.rollback();
+	//		tx.rollback();
 			logger.error("rollback transaction. error in JPQL", e);
 			throw new DaoException("error in JPQL", e);
 		}

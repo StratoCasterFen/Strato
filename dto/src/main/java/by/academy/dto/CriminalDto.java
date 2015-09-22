@@ -12,8 +12,8 @@ public class CriminalDto implements Serializable {
 	private String criminalSurname;
 	private Date birthday;
 
-	public CriminalDto(Integer id, String criminalName, String criminalSurname, Date birthday) {
-		this.id = id;
+	public CriminalDto(Integer id,  String criminalName, String criminalSurname, Date birthday) {
+		this.id=id;
 		this.criminalName = criminalName;
 		this.criminalSurname = criminalSurname;
 		this.birthday = birthday;

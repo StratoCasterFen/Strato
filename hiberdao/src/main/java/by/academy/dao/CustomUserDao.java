@@ -11,6 +11,6 @@ public interface CustomUserDao extends GenericHDao<User> {
 	
 	User getUserByName(String userName) throws DaoException;
 	
-	List getRolesForUser(User user);
+	List getRolesForUser(User user) throws DaoException;
 	
 }
