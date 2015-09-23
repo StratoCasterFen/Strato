@@ -2,22 +2,15 @@ package by.academy.pojos;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-//import org.hibernate.annotations.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-//import org.hibernate.annotations.Table;
 
-//import by.academy.mydao.Identified;
 
 @Entity
 @Table(name= "CRIMINALS")
@@ -43,16 +36,6 @@ public class Criminal implements Serializable {
 	@Temporal(value = TemporalType.DATE)
 	private Date birthday;
 	
-//	@OneToMany(targetEntity=CriminalEvent.class, cascade = CascadeType.ALL, mappedBy = "criminal" )
-//	private Set<CriminalEvent> criminalEvents;
-//
-//	public Set<CriminalEvent> getCriminalEvents() {
-//		return criminalEvents;
-//	}
-//
-//	public void setCriminalEvents(Set<CriminalEvent> criminalEvents) {
-//		this.criminalEvents = criminalEvents;
-//	}
 	
 	public Criminal() {
 	}

@@ -34,11 +34,12 @@ public class CriminalServiceImpl implements CriminalService {
 	}
 
 	@Override
-	public List<Criminal> getCriminals() throws ServiceException {
+	public List<CriminalDto> getCriminals() throws ServiceException {
 		logger.info("getCriminals");
 		try {
 			logger.info("run method getCriminals");
-			return criminalDao.getAll();
+			List<Criminal> criminals = criminalDao.getAll();
+			return ConvertDto.fromCriminals(criminals);
 		} catch (DaoException e) {
 			logger.error("need criminalDao in CriminalService.");
 			throw new ServiceException("need criminalDao in CriminalService.");

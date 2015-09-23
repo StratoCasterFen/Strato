@@ -1,9 +1,13 @@
 package by.academy.hbutil;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
+
+
 
 
 import by.academy.dto.*;
@@ -12,20 +16,15 @@ import by.academy.pojos.*;
 public class ConvertDto {
 	static Logger logger= Logger.getLogger(ConvertDto.class.getName());
 	
-//	public static UserRoleDto fromUser(User user) {
-//		logger.info("Convert User to UserDto");
-//		if (user == null) {
-//			logger.debug("User is null");
-//			return null;
-//		}
-//		Set<RoleDto> rolesDto = new HashSet();
-//
-//		for (Role role : user.getRoles()) {
-//			rolesDto.add(fromRole(role));
-//		}
-//				
-//		return new UserRoleDto(user.getId(), user.getUserName(), rolesDto);
-//	}
+	public static UserDto fromUser(User user) {
+		logger.info("Convert User to UserDto");
+		if (user == null) {
+			logger.debug("User is null");
+			return null;
+		}
+				
+		return new UserDto(user.getId(), user.getUserName());
+	}
 	
 	public static RoleDto fromRole(Role role) {
 		logger.info("Convert Role to RoleDto");
@@ -36,15 +35,30 @@ public class ConvertDto {
 		return new RoleDto(role.getId(), role.getRoleName());
 	}
 	
-//	public static CriminalDto fromCriminal(Criminal criminal) {
-//		logger.info("Convert Criminal to CriminalDto");
-//		if (criminal == null) {
-//			logger.debug("Criminal is null");
-//			return null;
-//		}
-//		return new CriminalDto(criminal.getId(), criminal.getCriminalName(), criminal.getCriminalSurname(),
-//				criminal.getBirthday());
-//	}
+	public static CriminalDto fromCriminal(Criminal criminal) {
+	logger.info("Convert Criminal to CriminalDto");
+	if (criminal == null) {
+		logger.debug("Criminal is null");
+		return null;
+	}
+	CriminalDto crimDto= new  CriminalDto(criminal.getId(), criminal.getCriminalName(), criminal.getCriminalSurname(),
+			criminal.getBirthday());
+	return crimDto;
+	}
+	
+	public static List<CriminalDto> fromCriminals(List<Criminal> criminals) {
+		logger.info("Convert Criminal list to CriminalDto list");
+		if (criminals.isEmpty()) {
+			logger.debug("Criminal list is empty");
+			return null;
+		}
+		List<CriminalDto> CrimsDto=new ArrayList<CriminalDto>();
+		for (Criminal criminal : criminals) {
+			CrimsDto.add(fromCriminal(criminal));
+		}
+		logger.info("CriminalDTO list is: ");
+		return CrimsDto;
+	}
 	
 	public static EventTypeDto fromEventType(EventType eventType) {
 		logger.info("Convert EventType to EventTypeDto");

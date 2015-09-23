@@ -10,6 +10,10 @@ public class UserDto {
 		this.userName = userName;
 		this.password = password;
 	}
+	public UserDto(Integer id, String userName) {
+		this.id=id;
+		this.userName = userName;
+	}
 	
 	public int getId() {
 		return id;

@@ -4,9 +4,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 import by.academy.dao.CustomUserDao;
-
-import by.academy.dao.UserDao;
-import by.academy.pojos.User;
+import by.academy.dto.UserDto;
 import by.academy.service.exeption.ServiceException;
 import by.academy.service.impl.UserServiceImpl;
 import by.academy.service.interf.UserService;
@@ -19,8 +17,9 @@ public class SignInCommand implements ICommands {
 
 	public static Logger logger = LogManager.getLogger(SignInCommand.class.getName());
 	private CustomUserDao userDao;
-	private UserService userservice = null;
-	private User authUser;
+	private UserService userService = null;
+	private UserDto authUser;
+	
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
@@ -35,8 +34,8 @@ public class SignInCommand implements ICommands {
 		page = "/WEB-INF/view/first.jsp";
 
 		try {
-			userservice = new UserServiceImpl();
-			authUser = userservice.authorization(userName, password);
+			userService = new UserServiceImpl();
+			authUser = userService.authorization(userName, password);
 			logger.info(authUser);
 		} catch (ServiceException e) {
 			logger.error("WEB:" + e);

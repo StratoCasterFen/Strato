@@ -105,7 +105,7 @@ public class EventServiceMockTest {
     public void getEventsByUserId() throws ServiceException{
     	logger.info("TEST: getEventsByUserId");
     	List<CriminalEvent> events= eventService.getEventsByUserId(1);
-    	assertEquals(2l, events.size());
+    	assertEquals(1l, events.size());
     }
     @Test
     public void getEventsByCriminalId() throws ServiceException{
@@ -114,49 +114,6 @@ public class EventServiceMockTest {
     	assertEquals(2l, events.size());
     }
        
-    
-	
-//	@Test
-//	public void addUser() throws DaoException, ServiceException{ 
-//		logger.info("test addUser");
-//		mockingContext.checking(new Expectations() {
-//			{
-//				oneOf(mockedUserService).addUser(mUser);
-//				will(returnValue(null));	
-//			}
-//		});
-//		mockedUserService.addUser(mUser);
-//		logger.info("--test addUser");
-//    }
-//	
-//	@Test  
-//	public void getAllUsers() throws ServiceException, DaoException {
-//		logger.info("test getAllUsers");
-//		mockingContext.checking(new Expectations() {
-//			{
-//				oneOf(daoUser).getAll();
-//				will(returnValue(users));
-//				logger.info(users);
-//			}
-//		});
-//		mockedUserService=new UserServiceImpl();
-//		mockedUserService.setUserDAO(userDao);
-//		mockedUserService.getAllUsers();
-//		logger.info("mo "+mockedUserService.getAllUsers());
-//	}
-//	
-//	@Test
-//	public void getUserByName() throws DaoException, ServiceException {
-//		logger.info("test getUserByName");
-//		mockingContext.checking(new Expectations() {
-//			{
-//				oneOf((MySqlUserDao)myUser).getUserByName(userName);
-//				will(returnValue(user));
-//				logger.info(user);
-//			}
-//		});
-//		mockedUserService.getUserByName(userName);
-//	}
 	
     @After
     public void destroy() {

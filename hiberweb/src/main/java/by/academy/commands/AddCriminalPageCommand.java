@@ -8,5 +8,6 @@ public class AddCriminalPageCommand implements ICommands {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		return "/WEB-INF/view/addcriminal.jsp";
+		
 	}
 }

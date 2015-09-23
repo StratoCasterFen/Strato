@@ -9,7 +9,7 @@ import by.academy.service.exeption.ServiceException;
 
 public interface CriminalService {
 	
-	List<Criminal> getCriminals() throws  ServiceException;
+	List<CriminalDto> getCriminals() throws  ServiceException;
 	
 	Criminal getCriminalById(Integer criminalId) throws ServiceException;
 

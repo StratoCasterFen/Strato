@@ -15,6 +15,7 @@ import by.academy.dao.UserDao;
 import by.academy.dao.exception.DaoException;
 import by.academy.pojos.Role;
 import by.academy.pojos.User;
+import by.academy.dto.UserDto;
 import by.academy.dto.UserRoleDto;
 import by.academy.hbutil.ConvertDto;
 import by.academy.service.exeption.ServiceException;
@@ -41,7 +42,7 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public User authorization(String userName, String password) throws ServiceException{
+	public UserDto authorization(String userName, String password) throws ServiceException{
 		User user = new User();
 		user.setUserName(userName);
 		
@@ -67,7 +68,7 @@ public class UserServiceImpl implements UserService {
 			throw new ServiceException("Didn't find user");
 		}
 		logger.info("Authoruthation successfully!");
-		return existingUser;
+		return ConvertDto.fromUser(existingUser);
 	}
 
 	@Override
@@ -106,7 +107,6 @@ public class UserServiceImpl implements UserService {
 		}finally{
 			ConnectionManager.Close();
 		}	
-
 	}
 
 	@Override
@@ -139,11 +139,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User getUserByName(String userName) throws ServiceException {
+	public UserDto getUserByName(String userName) throws ServiceException {
 		logger.info("getUserByName");
 		try {
 			User user = userDao.getUserByName(userName);
-			return user;
+			return ConvertDto.fromUser(user);
 		} catch (DaoException e) {
 			logger.error("can not get user! " + e);
 			throw new ServiceException("can not get user! " + e);
@@ -153,11 +153,13 @@ public class UserServiceImpl implements UserService {
 	public CustomUserDao getUserDao() {
 		return userDao;
 	}
+
 	public void setRoleDao() {
 		logger.info("setRoleDao");
 		this.roleDao = new RoleDao();
 		this.roleDao.setEntityManager(em);
 	}
+
 	public void setUserDao(CustomUserDao userDao) {
 		logger.info("setUserDao");
 		this.userDao = userDao;
@@ -165,11 +167,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User getUserById(Integer userId) throws ServiceException {
+	public UserDto getUserById(Integer userId) throws ServiceException {
 		logger.info("getUserById");
 		try {
 			User user = userDao.getByPK(userId);
-			return user;
+			UserDto userDto=ConvertDto.fromUser(user);
+			return userDto;
 		} catch (DaoException e) {
 			logger.error("can not get user! " + e);
 			throw new ServiceException("can not get user! " + e);
