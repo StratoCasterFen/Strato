@@ -12,6 +12,7 @@ import org.unitils.dbunit.annotation.DataSet;
 
 import by.academy.dao.*;
 import by.academy.dao.exception.DaoException;
+import by.academy.dao.inter.CustomUserDao;
 import by.academy.hbutil.ConvertDate;
 import by.academy.pojos.*;
 

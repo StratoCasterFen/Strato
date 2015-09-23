@@ -11,6 +11,7 @@
 	    <class>by.academy.pojos.Criminal</class>
 	    <class>by.academy.pojos.CriminalEvent</class>
 	    <class>by.academy.pojos.EventType</class>
+	
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
 			<property name="hibernate.hbm2ddl.auto" value = "create"/>

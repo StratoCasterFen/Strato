@@ -10,9 +10,9 @@ xmlns="http://maven.apache.org/POM/4.0.0"
 		<relativePath>../</relativePath>
 	</parent>
 	
-	<artifactId>hiberdao</artifactId>
+	<artifactId>sprdao</artifactId>
 	<packaging>jar</packaging>
-	<name>hiberdao container</name>
+	<name>spring dao container</name>
 
 	<dependencies> 
 		<!-- HIBERNATE-->
