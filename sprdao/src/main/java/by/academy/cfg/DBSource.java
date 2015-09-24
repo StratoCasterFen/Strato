@@ -11,6 +11,13 @@ public class DBSource {
 			<property name="jpaVendorAdapter" ref="jpaVendorAdapter" />
 			</bean>*/
 	//<jee:jndi-lookup id="emf" jndi-name="persistence/spitterPU" />		
+	
+	
+	
+	
+	
+	
+	
 	@Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		        LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
