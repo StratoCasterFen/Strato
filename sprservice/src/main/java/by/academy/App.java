@@ -33,9 +33,18 @@ import by.academy.service.interf.UserService;
  */
 public class App 
 {
-    public static void main( String[] args ) throws DaoException, ServiceException
-    {
-        System.out.println( "Hello World!" );
+	private static Logger logger = LogManager.getLogger(App.class.getName());
+	public static void main(String[] args)  {
+		
+	    ApplicationContext context = new AnnotationConfigApplicationContext(DBConnection.class, Beans.class);
+	    		
+		CriminalService cs=context.getBean(CriminalService.class);
+		Criminal crim=new Criminal();
+		crim.setCriminalName("Vini-PUH-pug");
+		crim.setCriminalSurname("pig is he");
+		cs.addCriminal(crim);
+		
+	}
 /*        CriminalService criminalService= new CriminalServiceImpl();
         CustomCriminalDao criminalDao=new CriminalDao();
 		criminalService.setCriminalDao(criminalDao);  

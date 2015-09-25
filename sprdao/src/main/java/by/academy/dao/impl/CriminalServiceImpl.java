@@ -1,4 +1,4 @@
-package by.academy.service.impl;
+package by.academy.dao.impl;
 
 import java.util.List;
 
@@ -6,9 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import by.academy.dao.iRepo.CriminalRepo;
+import by.academy.dao.interf.CriminalService;
 import by.academy.dto.CriminalDto;
 import by.academy.pojos.Criminal;
-import by.academy.service.inter.CriminalService;
+
 
 public class CriminalServiceImpl implements CriminalService {
 	
@@ -17,14 +18,14 @@ public class CriminalServiceImpl implements CriminalService {
 
 	@Override
 	public List<Criminal> getCriminals() {
-		criminalRepo.findAll();
-		return null;
+		return criminalRepo.findAll();
 	}
 
 	@Override
 	@Transactional
-	public void addCriminal(Criminal criminal) {
+	public Criminal addCriminal(Criminal criminal) {
 		Criminal savedCriminal = criminalRepo.saveAndFlush(criminal);
+		return savedCriminal;	
 	}
 
 	@Override

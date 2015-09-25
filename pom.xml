@@ -11,7 +11,7 @@
 	<modules>
 		<module>dto</module>
 		<module>sprdao</module>
-		<module>hiberservice</module>
+		<module>sprservice</module>
 		<module>hiberweb</module>
   </modules>
 	

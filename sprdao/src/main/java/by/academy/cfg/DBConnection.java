@@ -43,7 +43,7 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories("by.academy")
-@PropertySource( {"classpath:hibcfg.properties"} )
+@PropertySource( {"classpath:db.config.properties"} )
 @Import(Beans.class)
 public class DBConnection {
 	static Logger logger= Logger.getLogger(DBConnection.class.getName());
@@ -57,6 +57,8 @@ public class DBConnection {
 	private static final String PROP_HIBERNATE_SHOW_SQL = "db.hibernate.show_sql";
 	private static final String PROP_ENTITYMANAGER_PACKAGES_TO_SCAN = "db.entitymanager.packages.to.scan";
 	private static final String PROP_HIBERNATE_HBM2DDL_AUTO = "db.hibernate.hbm2ddl.auto";
+	private static final String PROP_ECLIPSELINK_WEAVING = "eclipselink.weaving";
+	
 	
 	@Resource
     private Environment env;
@@ -86,9 +88,6 @@ public class DBConnection {
 	
 	 @Bean
 	    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-//		 	Map<String, boolean> jpaProperties;
-//		 	jpaProperties=new HashMap();
-//		 	jpaProperties.put("eclipselink.weaving", "false");
 	        LocalContainerEntityManagerFactoryBean emfb = new LocalContainerEntityManagerFactoryBean();
 	        emfb.setDataSource(dataSource());
 	        emfb.setPersistenceProviderClass(PersistenceProvider.class);
@@ -96,12 +95,7 @@ public class DBConnection {
 	        JpaVendorAdapter vendorAdapter = new EclipseLinkJpaVendorAdapter();
 	        emfb.setJpaVendorAdapter(vendorAdapter);
 	        emfb.setJpaProperties(getHibernateProperties());
-	        //emfb.setJpaPropertyMap(jpaProperties);
-	       // emfb.setLoadTimeWeaver(org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver);
-//	        <property name="loadTimeWeaver">
-//	        <bean class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver"/>
-//	      </property>
-	       // <property name="eclipselink.weaving" value="false"/>
+	        
 	        return emfb;
 	    }
 	
@@ -134,8 +128,9 @@ public class DBConnection {
         properties.put(PROP_HIBERNATE_DIALECT, env.getRequiredProperty(PROP_HIBERNATE_DIALECT));
         properties.put(PROP_HIBERNATE_SHOW_SQL, env.getRequiredProperty(PROP_HIBERNATE_SHOW_SQL));
         properties.put(PROP_HIBERNATE_HBM2DDL_AUTO, env.getRequiredProperty(PROP_HIBERNATE_HBM2DDL_AUTO));
+        properties.put(PROP_ECLIPSELINK_WEAVING, env.getRequiredProperty(PROP_ECLIPSELINK_WEAVING));
         
-        properties.put("eclipselink.weaving", "false");
+        //properties.put("eclipselink.weaving", "false");
         return properties;
     }
 	

@@ -1,11 +1,5 @@
 package by.academy;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -15,10 +9,9 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import by.academy.cfg.Beans;
 import by.academy.cfg.DBConnection;
+import by.academy.dao.interf.CriminalService;
 import by.academy.pojos.Criminal;
 //import org.hibernate.jpa.HibernatePersistenceProvider;
-import by.academy.service.impl.CriminalServiceImpl;
-import by.academy.service.inter.CriminalService;
 
 //import by.academy.dao.UserDao;
 //import by.academy.dao.exception.DaoException;
