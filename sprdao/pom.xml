@@ -42,12 +42,12 @@ xmlns="http://maven.apache.org/POM/4.0.0"
 			<version>1.0.1.Final</version>
 		</dependency>
 	    
-	<!--    
+	    
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-			<version>4.2.19.Final</version>
-		</dependency>-->
+			</dependency>
+		
         <dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>

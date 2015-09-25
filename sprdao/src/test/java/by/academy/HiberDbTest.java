@@ -1,4 +1,4 @@
-package by.academy;
+/*package by.academy;
 
 import org.apache.log4j.Logger;
 import org.junit.After;
@@ -50,11 +50,11 @@ public class HiberDbTest {
     public void testGetAll() throws Exception {
     	logger.info("+testGetUsers");
     	List users = em.createQuery("SELECT u FROM User u").getResultList();
-    	/* 3 records in db +1 add*/
+    	 3 records in db +1 add
 		Assert.assertEquals(1, users.size());
     }
     
-    /* many to many*/
+     many to many
     
     @Test
     public void SaveUserRoles() throws DaoException{
@@ -70,7 +70,7 @@ public class HiberDbTest {
 		logger.debug("now " + users+" users and "+ roles +" roles");
 		long sizeU = users.isEmpty() ? 0 : (Long) users.get(0);
 		long sizeR = roles.isEmpty() ? 0 : (Long) roles.get(0);
-		/* 4-users and 4 roles*/
+		 4-users and 4 roles
 		org.junit.Assert.assertEquals(4l, sizeU);
 		org.junit.Assert.assertEquals(4l, sizeR);
     }
@@ -118,7 +118,7 @@ public class HiberDbTest {
 		List roles = em.createQuery("SELECT COUNT(r) FROM Role r").getResultList();
 		logger.debug(users);
 		long sizeR = roles.isEmpty() ? 0 : (Long) roles.get(0);
-		/* 0-users and 2 roles */
+		 0-users and 2 roles 
 		org.junit.Assert.assertEquals(0, users.size());
 		org.junit.Assert.assertEquals(2l, sizeR);
 	}
@@ -200,4 +200,4 @@ public class HiberDbTest {
     	
 		return role;
 	}
-}
+}*/

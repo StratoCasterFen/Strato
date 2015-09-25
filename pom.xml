@@ -73,6 +73,12 @@
 			<version>1.7.12</version>
 		</dependency>
 		
+		<dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-entitymanager</artifactId>
+                <version>4.2.20.Final</version>
+            </dependency>
+		
 		 <!-- SPRING -->
             <dependency>
                 <groupId>org.springframework</groupId>
