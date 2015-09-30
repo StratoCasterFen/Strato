@@ -45,8 +45,8 @@ import java.util.Properties;
 @EnableJpaRepositories("by.academy")
 @PropertySource( {"classpath:db.config.properties"} )
 @Import(Beans.class)
-public class DBConnection {
-	static Logger logger= Logger.getLogger(DBConnection.class.getName());
+public class DaoCfg {
+	static Logger logger= Logger.getLogger(DaoCfg.class.getName());
 	
 	private static final String PROP_DATABASE_DRIVER = "db.driver";
 	private static final String PROP_DATABASE_PASSWORD = "db.password";
@@ -58,12 +58,10 @@ public class DBConnection {
 	private static final String PROP_ENTITYMANAGER_PACKAGES_TO_SCAN = "db.entitymanager.packages.to.scan";
 	private static final String PROP_HIBERNATE_HBM2DDL_AUTO = "db.hibernate.hbm2ddl.auto";
 	private static final String PROP_ECLIPSELINK_WEAVING = "eclipselink.weaving";
-	
+	private static final String PROP_ECLIPSELINK_SHOW_SQL = "showSql";
 	
 	@Resource
     private Environment env;
-//	private DataSource dataSource;
-
 
 	@Bean
     public DriverManagerDataSource dataSource() {
@@ -129,8 +127,8 @@ public class DBConnection {
         properties.put(PROP_HIBERNATE_SHOW_SQL, env.getRequiredProperty(PROP_HIBERNATE_SHOW_SQL));
         properties.put(PROP_HIBERNATE_HBM2DDL_AUTO, env.getRequiredProperty(PROP_HIBERNATE_HBM2DDL_AUTO));
         properties.put(PROP_ECLIPSELINK_WEAVING, env.getRequiredProperty(PROP_ECLIPSELINK_WEAVING));
+   //     properties.put(PROP_ECLIPSELINK_SHOW_SQL, env.getRequiredProperty(PROP_ECLIPSELINK_SHOW_SQL));
         
-        //properties.put("eclipselink.weaving", "false");
         return properties;
     }
 	

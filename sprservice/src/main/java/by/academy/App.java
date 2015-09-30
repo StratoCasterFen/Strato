@@ -5,13 +5,19 @@ import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import by.academy.cfg.Beans;
+import by.academy.cfg.DaoCfg;
 import by.academy.dao.CriminalDao;
 import by.academy.dao.CustomCriminalDao;
 import by.academy.dao.CustomEventDao;
-import by.academy.dao.CustomUserDao;
+
 import by.academy.dao.EventDao;
-import by.academy.dao.UserDao;
-import by.academy.dao.exception.DaoException;
+import by.academy.dao.interf.CriminalService;
 import by.academy.dto.CriminalDto;
 import by.academy.dto.EventDto;
 import by.academy.dto.EventTypeDto;
@@ -19,13 +25,7 @@ import by.academy.dto.RoleDto;
 import by.academy.dto.UserDto;
 import by.academy.dto.UserRoleDto;
 import by.academy.hbutil.ConvertDate;
-import by.academy.service.exeption.ServiceException;
-import by.academy.service.impl.CriminalServiceImpl;
-import by.academy.service.impl.EventServiceImpl;
-import by.academy.service.impl.UserServiceImpl;
-import by.academy.service.interf.CriminalService;
-import by.academy.service.interf.EventService;
-import by.academy.service.interf.UserService;
+
 
 /**
  * Hello world!
@@ -36,13 +36,16 @@ public class App
 	private static Logger logger = LogManager.getLogger(App.class.getName());
 	public static void main(String[] args)  {
 		
-	    ApplicationContext context = new AnnotationConfigApplicationContext(DBConnection.class, Beans.class);
+	    ApplicationContext context = new AnnotationConfigApplicationContext(DaoCfg.class, Beans.class);
 	    		
 		CriminalService cs=context.getBean(CriminalService.class);
-		Criminal crim=new Criminal();
-		crim.setCriminalName("Vini-PUH-pug");
-		crim.setCriminalSurname("pig is he");
-		cs.addCriminal(crim);
+//		Criminal crim=new Criminal();
+//		crim.setCriminalName("Vini-PUH-pug");
+//		crim.setCriminalSurname("pig is he");
+//		cs.addCriminal(crim);
+		
+//		UserService us=context.getBean(UserService.class);
+		//us.getUserByName("Admin");
 		
 	}
 /*        CriminalService criminalService= new CriminalServiceImpl();
@@ -75,5 +78,5 @@ public class App
      //   es.setEventDao(eDao);
 //        es.add(edto);
 //        System.out.println( "---" );
-    }
+   // }
 }

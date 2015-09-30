@@ -3,14 +3,14 @@ package by.academy.dao.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import by.academy.dao.iRepo.CriminalRepo;
 import by.academy.dao.interf.CriminalService;
-import by.academy.dto.CriminalDto;
 import by.academy.pojos.Criminal;
 
-
+@Service
 public class CriminalServiceImpl implements CriminalService {
 	
 	@Autowired
@@ -22,20 +22,20 @@ public class CriminalServiceImpl implements CriminalService {
 	}
 
 	@Override
-	@Transactional
+	@Transactional(rollbackFor=Exception.class)
 	public Criminal addCriminal(Criminal criminal) {
 		Criminal savedCriminal = criminalRepo.saveAndFlush(criminal);
 		return savedCriminal;	
 	}
 
 	@Override
-	@Transactional
+	@Transactional(rollbackFor=Exception.class)
 	public void deleteByID(Integer criminalId) {
 		criminalRepo.delete(criminalId);
 	}
 
 	@Override
-	@Transactional
+	@Transactional(rollbackFor=Exception.class)
 	public void updateCriminal(Criminal criminal) {
 		criminalRepo.saveAndFlush(criminal);
 	}
@@ -43,6 +43,16 @@ public class CriminalServiceImpl implements CriminalService {
 	@Override
 	public Criminal getCriminalById(Integer criminalId) {
 		return criminalRepo.findOne(criminalId);
+	}
+
+	@Override
+	public Criminal getCriminalByName(String cName) {
+		return criminalRepo.getCriminalByName(cName);
+	}
+
+	@Override
+	public Criminal getCriminalBySurName(String cSurname) {
+		return criminalRepo.getCriminalBySurName(cSurname);
 	}
 
 }

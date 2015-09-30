@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import by.academy.dao.iRepo.UserRepo;
@@ -11,6 +12,7 @@ import by.academy.dao.interf.UserService;
 import by.academy.pojos.Role;
 import by.academy.pojos.User;
 
+@Service
 public class UserServiceImpl implements UserService{
 	static Logger logger= Logger.getLogger(UserServiceImpl.class.getName());
 	
@@ -25,10 +27,9 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public List<Role> getRolesByUserId(int userId) {
+	public List<Role> getRolesByUserId(Integer userId) {
 		logger.info("+getRolesByUserId");
-		// TODO Auto-generated method stub
-		return null;
+		return userRepo.getRolesForUser(userId);
 	}
 
 	@Override

@@ -18,7 +18,7 @@ public class User implements Serializable{
 	private Integer id;
 	
 	@Column(name= "UserName")
-	private String  username;
+	private String  userName;
 	
 	@Column(name= "Password")
 	private String  password;
@@ -29,17 +29,6 @@ public class User implements Serializable{
 	        inverseJoinColumns = @JoinColumn(name="Roleid", referencedColumnName="id"))
     private Set<Role> roles;
 	
-	//@OneToMany(mappedBy = "user" )
-	//private Set<CriminalEvent> criminalEvents;
-//
-//	public Set<CriminalEvent> getCriminalEvents() {
-//		return criminalEvents;
-//	}
-//
-//	public void setCriminalEvents(Set<CriminalEvent> criminalEvents) {
-//		this.criminalEvents = criminalEvents;
-//	}
-
 	public User() {
 	}
 	
@@ -50,10 +39,10 @@ public class User implements Serializable{
 		this.id = id;
 	}
 	public String getUserName() {
-		return username;
+		return userName;
 	}
-	public void setUserName(String username) {
-		this.username = username;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	public String getPassword() {
 		return password;
@@ -62,8 +51,6 @@ public class User implements Serializable{
 		this.password = password;
 	}
 	
-
-
 	public Set<Role> getRoles() {
 		return roles;
 	}
@@ -74,7 +61,7 @@ public class User implements Serializable{
 
 	@Override
 	public String toString() {
-		return "User [UserId=" + id + ", UserName=" + username + "]";
+		return "User [UserId=" + id + ", UserName=" + userName + "]";
 	}
 
 	@Override
@@ -83,7 +70,7 @@ public class User implements Serializable{
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
 		return result;
 	}
 
@@ -106,10 +93,10 @@ public class User implements Serializable{
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
-		if (username == null) {
-			if (other.username != null)
+		if (userName == null) {
+			if (other.userName != null)
 				return false;
-		} else if (!username.equals(other.username))
+		} else if (!userName.equals(other.userName))
 			return false;
 		return true;
 	}
