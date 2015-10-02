@@ -4,6 +4,7 @@
     <title>Forward</title>
 </head>
 <body>
-	<jsp:forward page="/WEB-INF/view/login.jsp"></jsp:forward>
+ kalaka malaka
+	 <jsp:forward page="/WEB-INF/pages/signin.jsp"></jsp:forward> 
 </body>
 </html>

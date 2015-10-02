@@ -12,7 +12,7 @@
 		<module>dto</module>
 		<module>sprdao</module>
 		<module>sprservice</module>
-		<module>hiberweb</module>
+		<module>sprweb</module>
   </modules>
 	
 		<profiles>

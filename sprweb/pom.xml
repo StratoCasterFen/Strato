@@ -6,11 +6,22 @@ xsi:schemaLocation="httр://maven.apache.org/POM/4.0.0 httр://maven.apache.org/
 		<groupId>by.academy</groupId>
 		<version>1.0</version>
 	</parent>
-	<artifactId>hiberweb</artifactId>
+	<artifactId>sprweb</artifactId>
 	<packaging>war</packaging>
-	<name>hiberweb container</name>
+	<name>Spring web container</name>
 
 	<dependencies>
+			<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-core</artifactId>
+			<version>2.2.2</version>
+		</dependency>
+	
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>1.0.0.GA</version>
+		</dependency>
 		<dependency>
 		    <groupId>jstl</groupId>
 		    <artifactId>jstl</artifactId>
@@ -24,11 +35,16 @@ xsi:schemaLocation="httр://maven.apache.org/POM/4.0.0 httр://maven.apache.org/
 		</dependency>
         <dependency>
 		    <groupId>javax.servlet</groupId>
-		    <artifactId>servlet-api</artifactId>
-		    <version>3.0-alpha-1</version>
+		    <artifactId>javax.servlet-api</artifactId>
+		    <version>3.0.1</version>
 		    <scope>provided</scope>
 		</dependency>
-		 
+		 <dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		
 		<dependency>
 		    <groupId>javaee</groupId>
 		    <artifactId>javaee-api</artifactId>
@@ -54,18 +70,13 @@ xsi:schemaLocation="httр://maven.apache.org/POM/4.0.0 httр://maven.apache.org/
 		<!-- My project modules  -->
 		<dependency>
 			<groupId>by.academy</groupId>
-			<artifactId>hiberdao</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>by.academy</groupId>
-			<artifactId>hiberservice</artifactId>
+			<artifactId>sprservice</artifactId>
 			<version>1.0</version>
 		</dependency>
 	</dependencies>
 	
 	<build>
-	<finalName>mentroom</finalName>
+	<finalName>mentsroom</finalName>
         <plugins>
 		
 			<plugin>
@@ -75,7 +86,7 @@ xsi:schemaLocation="httр://maven.apache.org/POM/4.0.0 httр://maven.apache.org/
 				<configuration>
 					<url>http://localhost:8080/manager/text</url>
 					<server>tomcat</server>
-					<path>/mentroom</path>
+					<path>/mentsroom</path>
 				</configuration>
 			</plugin>
             <plugin>
@@ -131,5 +142,4 @@ xsi:schemaLocation="httр://maven.apache.org/POM/4.0.0 httр://maven.apache.org/
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-	<groupId>by.academy</groupId>
 </project>
