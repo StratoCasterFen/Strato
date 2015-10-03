@@ -1,9 +1,0 @@
-<Context path="" docBase="hiberpolice" debug="99"
-reloadable="true" antiJARLocking="true" antiResourceLocking="true">
-<Realm className="org.apache.catalina.realm.JDBCRealm" debug ="99"
-driverName="com.mysql.jdbc.Driver"
-connectionURL="jdbc:mysql://localhost/hiberpolice?autoReconnect=true"
-userTable="users" userNameCol="userName" userCredCol="passsword"
-userRoleTable="user_role" roleNameCol="rolename"/>
-
-</Context>

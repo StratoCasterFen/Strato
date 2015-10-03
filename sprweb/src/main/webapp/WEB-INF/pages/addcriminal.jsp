@@ -4,7 +4,7 @@
 <title>Add criminal here</title>
 </head>
 <body>
-<%@ include file="header.jsp"%>
+<%@ include file="/layout/header.jsp"%>
 <h1>Add criminal:</h1>
 	
 		<form action="events" method="post">

@@ -2,6 +2,7 @@ package by.academy.mvc.init;
 
 import javax.annotation.Resource;
 
+import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -16,16 +17,20 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
-import org.springframework.web.servlet.view.tiles2.TilesConfigurer;
-import org.springframework.web.servlet.view.tiles2.TilesView;
-import org.springframework.web.servlet.view.tiles2.TilesViewResolver;
+import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
+import org.springframework.web.servlet.view.tiles3.TilesView;
+import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
+
+import by.academy.mvc.controller.HomeController;
+
 import org.springframework.web.servlet.view.tiles2.SpringWildcardServletTilesApplicationContext;
 
 @Configuration
 @EnableWebMvc
 @ComponentScan( {"by.academy.mvc"} )
 public class WebAppCfg extends WebMvcConfigurerAdapter {
-
+	static Logger logger= Logger.getLogger(WebAppCfg.class.getName());
+	
 	@Override
 	 public void addResourceHandlers(ResourceHandlerRegistry registry) {
 	  registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
@@ -38,6 +43,7 @@ public class WebAppCfg extends WebMvcConfigurerAdapter {
 
 //	@Bean
 //	public TilesConfigurer getTilesConfigurer() {
+//		logger.info("+getTilesConfigurer");
 //		TilesConfigurer tilesConfigurer = new TilesConfigurer();
 //		tilesConfigurer.setCheckRefresh(true);
 //		tilesConfigurer.setDefinitions("/WEB-INF/pages/layout/tiles-templates.xml");
@@ -48,17 +54,19 @@ public class WebAppCfg extends WebMvcConfigurerAdapter {
 //
 //		return tilesConfigurer;
 //	}
-	
-
-	@Bean
-    public TilesViewResolver getTilesViewResolver() {
-        TilesViewResolver tilesViewResolver = new TilesViewResolver();
-        tilesViewResolver.setViewClass(TilesView.class);
-        return tilesViewResolver;
-    }
+//	
+//
+//	@Bean
+//    public TilesViewResolver getTilesViewResolver() {
+//		logger.info("+getTilesViewResolver");
+//        TilesViewResolver tilesViewResolver = new TilesViewResolver();
+//        tilesViewResolver.setViewClass(TilesView.class);
+//        return tilesViewResolver;
+//    }
 
 	@Bean
 	public UrlBasedViewResolver setupViewResolver() {
+		logger.info("+setupViewResolver");
 		UrlBasedViewResolver resolver = new UrlBasedViewResolver();
 		resolver.setPrefix("/WEB-INF/pages/");
 		resolver.setSuffix(".jsp");
@@ -66,25 +74,25 @@ public class WebAppCfg extends WebMvcConfigurerAdapter {
 		return resolver;
 	}
 	
-	@Bean
-	public ResourceBundleMessageSource messageSource() {
-		ResourceBundleMessageSource source = new ResourceBundleMessageSource();
-		source.setBasename("classpath:messages.properties");
-		source.setUseCodeAsDefaultMessage(true);
-		return source;
-	}
+//	@Bean
+//	public ResourceBundleMessageSource messageSource() {
+//		ResourceBundleMessageSource source = new ResourceBundleMessageSource();
+//		source.setBasename("classpath:messages.properties");
+//		source.setUseCodeAsDefaultMessage(true);
+//		return source;
+//	}
     
 //    @Bean
 //    public Validator validator() {
 //        return new UserValidator();
 //    }
 
-    @Bean(name = "messageSource")
-    public ReloadableResourceBundleMessageSource reloadableResourceBundleMessageSource() {
-        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasenames("classpath:content");
-        return messageSource;
-    }
+//    @Bean(name = "messageSource")
+//    public ReloadableResourceBundleMessageSource reloadableResourceBundleMessageSource() {
+//        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+//        messageSource.setBasenames("classpath:content");
+//        return messageSource;
+//    }
 
 }
 

@@ -5,13 +5,16 @@
 
     <tiles-definitions>
 
-    <!-- Templates -->
-    <definition name="base-template" template="/WEB-INF/pages/layout/defaultLayout.jsp">
-        <put-attribute name="title" value="Default title" />
-        <put-attribute name="header" value="/WEB-INF/pages/layout/header.jsp" />
-   <!--      <put-attribute name="navigation" value="/WEB-INF/templates/navigation.jsp" /> -->
-        <put-attribute name="content" value="" />
-        <put-attribute name="footer" value="/WEB-INF/pages/layout/footer.jsp" />
-    </definition>
-    
+	    <!-- Templates -->
+	    <definition name="base-template" template="/WEB-INF/pages/layout/defaultLayout.jsp">
+	        <put-attribute name="title" value="Default title" />
+	        <put-attribute name="header" value="/WEB-INF/pages/layout/header.jsp" />
+	   <!--      <put-attribute name="navigation" value="/WEB-INF/templates/navigation.jsp" /> -->
+	        <put-attribute name="content" value="" />
+	        <put-attribute name="footer" value="/WEB-INF/pages/layout/footer.jsp" />
+	    </definition>
+	    
+	    <definition name="home" extends="base-template">
+	    	<put-attribute name="body" value="/WEB-INF/pages/home.jsp" />
+	    </definition>
      </tiles-definitions>

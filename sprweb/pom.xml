@@ -10,11 +10,11 @@ xsi:schemaLocation="httр://maven.apache.org/POM/4.0.0 httр://maven.apache.org/
 	<packaging>war</packaging>
 	<name>Spring web container</name>
 
-	<dependencies>
+ 	<dependencies> 
 			<dependency>
 			<groupId>org.apache.tiles</groupId>
 			<artifactId>tiles-core</artifactId>
-			<version>2.2.2</version>
+			<version>3.0.5</version>
 		</dependency>
 	
 		<dependency>
