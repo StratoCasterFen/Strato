@@ -8,28 +8,28 @@
 <title>New User page</title>
 </head>
 <body>
-<h1>New User page</h1>
-<form:form method="POST" commandName="user" action="${pageContext.request.contextPath}/user/create.html" >
-<table>
-<tbody>
-<tr>
-<td>User name:</td>
-<td><form:input path="userName" /></td>
-<td><form:errors path="userName" cssStyle="color: red;"/></td>
-</tr>
-<tr>
-<td>Pasword:</td>
-<td><form:input path="password" /></td>
-<td><form:errors path="password" cssStyle="color: red;"/></td>
-</tr>
-<tr>
-<td><input type="submit" value="Create" /></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</form:form>
-<a href="${pageContext.request.contextPath}/">Home page</a>
+	<h1>New User page</h1>
+	<form:form method="POST" commandName="user" action="${pageContext.request.contextPath}/user/create.html">
+		<table>
+			<tbody>
+				<tr>
+					<td>User name:</td>
+					<td><form:input path="userName" /></td>
+					<td><form:errors path="userName" cssStyle="color: red;" /></td>
+				</tr>
+				<tr>
+					<td>Pasword:</td>
+					<td><form:input path="password" /></td>
+					<td><form:errors path="password" cssStyle="color: red;" /></td>
+				</tr>
+				<tr>
+					<td><input type="submit" value="Create" /></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</form:form>
+	<a href="${pageContext.request.contextPath}/">Home page</a>
 </body>
 </html>

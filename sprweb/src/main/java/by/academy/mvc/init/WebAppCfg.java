@@ -22,6 +22,7 @@ import org.springframework.web.servlet.view.tiles3.TilesView;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
 import by.academy.mvc.controller.HomeController;
+import by.academy.mvc.validation.UserValidator;
 
 import org.springframework.web.servlet.view.tiles2.SpringWildcardServletTilesApplicationContext;
 
@@ -82,17 +83,17 @@ public class WebAppCfg extends WebMvcConfigurerAdapter {
 //		return source;
 //	}
     
-//    @Bean
-//    public Validator validator() {
-//        return new UserValidator();
-//    }
+    @Bean
+    public Validator validator() {
+        return new UserValidator();
+    }
 
-//    @Bean(name = "messageSource")
-//    public ReloadableResourceBundleMessageSource reloadableResourceBundleMessageSource() {
-//        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-//        messageSource.setBasenames("classpath:content");
-//        return messageSource;
-//    }
+    @Bean(name = "messageSource")
+    public ReloadableResourceBundleMessageSource reloadableResourceBundleMessageSource() {
+        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+        messageSource.setBasenames("classpath:i18n/messages");
+        return messageSource;
+    }
 
 }
 

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity
 @Access(AccessType.FIELD)
@@ -18,6 +19,7 @@ public class User implements Serializable{
 	private Integer id;
 	
 	@Column(name= "UserName")
+	@Size(min=3, max=50, message="name must be between 3 and 50 characters long.")
 	private String  userName;
 	
 	@Column(name= "Password")
