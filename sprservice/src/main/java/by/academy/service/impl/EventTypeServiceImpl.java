@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import by.academy.dao.iRepo.EventTypeRepo;
 import by.academy.dao.iRepo.RoleRepo;
-import by.academy.dao.impl.UserServiceImpl;
 import by.academy.dao.interf.RoleService;
 import by.academy.pojos.EventType;
 import by.academy.pojos.Role;

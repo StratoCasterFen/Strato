@@ -1,4 +1,4 @@
-package by.academy.dao.interf;
+package by.academy.service.interf;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import by.academy.pojos.Role;
 import by.academy.pojos.User;
 
 public interface UserService {
-	User authorization(String userName, String password);
+//	User authorization(String userName, String password);
 
 	List<Role> getRolesByUserId(Integer userId);
 

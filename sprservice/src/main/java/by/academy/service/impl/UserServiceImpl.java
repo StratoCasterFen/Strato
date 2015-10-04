@@ -1,4 +1,4 @@
-package by.academy.dao.impl;
+package by.academy.service.impl;
 
 import java.util.List;
 
@@ -8,23 +8,24 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import by.academy.dao.iRepo.UserRepo;
-import by.academy.dao.interf.UserService;
+
 import by.academy.pojos.Role;
 import by.academy.pojos.User;
+import by.academy.service.interf.UserService;
 
-@Service
+@Service("userService")
 public class UserServiceImpl implements UserService{
 	static Logger logger= Logger.getLogger(UserServiceImpl.class.getName());
 	
 	@Autowired
 	private UserRepo userRepo;
 	
-	@Override
-	public User authorization(String userName, String password) {
-		logger.info("+authorization");
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public User authorization(String userName, String password) {
+//		logger.info("+authorization");
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 	@Override
 	public List<Role> getRolesByUserId(Integer userId) {

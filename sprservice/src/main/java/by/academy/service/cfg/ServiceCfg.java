@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Import;
 import by.academy.cfg.DaoCfg;
 
 @Configuration
-@ComponentScan(basePackages = {"by.academy.service"})
+@ComponentScan("by.academy.service.impl")
 @Import(DaoCfg.class)
 public class ServiceCfg {
 

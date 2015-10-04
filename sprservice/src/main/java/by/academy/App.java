@@ -25,6 +25,8 @@ import by.academy.dto.RoleDto;
 import by.academy.dto.UserDto;
 import by.academy.dto.UserRoleDto;
 import by.academy.hbutil.ConvertDate;
+import by.academy.service.cfg.ServiceCfg;
+import by.academy.service.interf.UserService;
 
 
 /**
@@ -36,16 +38,16 @@ public class App
 	private static Logger logger = LogManager.getLogger(App.class.getName());
 	public static void main(String[] args)  {
 		
-	    ApplicationContext context = new AnnotationConfigApplicationContext(DaoCfg.class, Beans.class);
+	    ApplicationContext context = new AnnotationConfigApplicationContext(ServiceCfg.class, Beans.class);
 	    		
-		CriminalService cs=context.getBean(CriminalService.class);
+	//	CriminalService cs=context.getBean(CriminalService.class);
 //		Criminal crim=new Criminal();
 //		crim.setCriminalName("Vini-PUH-pug");
 //		crim.setCriminalSurname("pig is he");
 //		cs.addCriminal(crim);
 		
 //		UserService us=context.getBean(UserService.class);
-		//us.getUserByName("Admin");
+//		us.getUserByName("Admin");
 		
 	}
 /*        CriminalService criminalService= new CriminalServiceImpl();

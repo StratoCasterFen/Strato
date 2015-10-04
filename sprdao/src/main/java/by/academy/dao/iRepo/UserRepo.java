@@ -9,9 +9,7 @@ import org.springframework.data.repository.query.Param;
 import by.academy.pojos.User;
 
 public interface UserRepo extends JpaRepository<User, Integer> {
-	
-	
-	
+
 	@Query("select u from User u where u.userName = :name")
 	User getUserByName(@Param("name") String userName); 
 	
