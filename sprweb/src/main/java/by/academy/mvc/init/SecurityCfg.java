@@ -27,10 +27,10 @@ public class SecurityCfg extends WebSecurityConfigurerAdapter {
 	 private UserDetailsServiceImpl userDetailsService;
 
     @Autowired
-    public void registerGlobalAuthentication(AuthenticationManagerBuilder auth) throws Exception {
+    public void registerGlobalAuthefntication(AuthenticationManagerBuilder auth) throws Exception {
     	logger.info("**********registerGlobalAuthentication***********");
-        auth.userDetailsService(userDetailsService)
-        .passwordEncoder(getMd5PasswordEncoder());
+        auth.userDetailsService(userDetailsService);
+       // .passwordEncoder(getMd5PasswordEncoder());
     }
 
     @Override
@@ -54,7 +54,7 @@ public class SecurityCfg extends WebSecurityConfigurerAdapter {
         http.logout()
                 .permitAll()
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/logout")
+                .logoutSuccessUrl("/login")
                 .invalidateHttpSession(true);
 
         http.authorizeRequests()
