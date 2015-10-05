@@ -16,9 +16,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
-import by.academy.dao.interf.UserService;
+
 //import by.academy.mvc.validation.UserValidator;
 import by.academy.pojos.User;
+import by.academy.service.interf.UserService;
 
 @Controller
 @RequestMapping(value="/user")

@@ -1,6 +1,7 @@
 package by.academy.service.interf;
 
 import java.util.List;
+import java.util.Set;
 
 import by.academy.pojos.Role;
 import by.academy.pojos.User;
@@ -8,7 +9,7 @@ import by.academy.pojos.User;
 public interface UserService {
 //	User authorization(String userName, String password);
 
-	List<Role> getRolesByUserId(Integer userId);
+	List getRolesByUserId(Integer userId);
 
 	User getUserById(Integer userId);
 

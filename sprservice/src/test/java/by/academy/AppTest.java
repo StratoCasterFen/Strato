@@ -1,6 +1,7 @@
 package by.academy;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
@@ -114,8 +115,9 @@ public class AppTest {
 //	    
 	    @Test
 	    public void getRolesByUserId() throws Exception {
-	    	logger.info("+getRolesByUserId");
+	    	logger.info("**************** getRolesByUserId *****************");
 	    	List<Role> users=userService.getRolesByUserId(2);
+	    	logger.info(users);
 	    	Assert.assertEquals(2l, users.size());
 	    }
 }

@@ -1,6 +1,7 @@
 package by.academy.service.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,33 +29,33 @@ public class UserServiceImpl implements UserService{
 //	}
 
 	@Override
-	public List<Role> getRolesByUserId(Integer userId) {
-		logger.info("+getRolesByUserId");
+	public List getRolesByUserId(Integer userId) {
+		logger.info("********getRolesByUserId*********");
 		return userRepo.getRolesForUser(userId);
 	}
 
 	@Override
 	public User getUserById(Integer userId) {
-		logger.info("+getUserById");
+		logger.info("************getUserById***********");
 		return userRepo.findOne(userId);
 	}
 
 	@Override
 	public List<User> getAllUsers() {
-		logger.info("+getAllUsers");
+		logger.info("*************getAllUsers***********");
 		return userRepo.findAll();
 	}
 
 	@Override
 	public User getUserByName(String userName) {
-		logger.info("+getUserByName");
+		logger.info("*************getUserByName*************");
 		return userRepo.getUserByName(userName);
 	}
 
 	@Override
 	@Transactional
 	public User addUser(User user) {
-		logger.info("+addUser");
+		logger.info("**************addUser************");
 		User savedUser=userRepo.saveAndFlush(user);
 		return savedUser;		
 	}
@@ -62,14 +63,14 @@ public class UserServiceImpl implements UserService{
 	@Override
 	@Transactional
 	public void deleteById(Integer userId) {
-		logger.info("+deleteById");
+		logger.info("**************deleteById***********");
 		userRepo.delete(userId);		
 	}
 
 	@Override
 	@Transactional
 	public void update(User user) {
-		logger.info("+update");
+		logger.info("****************update***************");
 		userRepo.saveAndFlush(user);	
 	}
 

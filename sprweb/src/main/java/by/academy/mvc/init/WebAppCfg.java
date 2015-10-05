@@ -67,7 +67,7 @@ public class WebAppCfg extends WebMvcConfigurerAdapter {
 
 	@Bean
 	public UrlBasedViewResolver setupViewResolver() {
-		logger.info("+setupViewResolver");
+		logger.info("**************setupViewResolver*************");
 		UrlBasedViewResolver resolver = new UrlBasedViewResolver();
 		resolver.setPrefix("/WEB-INF/pages/");
 		resolver.setSuffix(".jsp");

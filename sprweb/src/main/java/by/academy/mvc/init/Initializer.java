@@ -19,11 +19,12 @@ public class Initializer implements WebApplicationInitializer {
 
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
-		logger.info("+onStartup");
+		logger.info("**********onStartup***********");
 		AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
 		ctx.register(WebAppCfg.class);
 		ctx.register(ServiceCfg.class);
-	//	servletContext.addListener(new ContextLoaderListener(ctx));
+		ctx.register(SecurityCfg.class);
+		servletContext.addListener(new ContextLoaderListener(ctx));
 	
 		
 		ctx.setServletContext(servletContext);
