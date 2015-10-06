@@ -12,16 +12,20 @@
     href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
 </head>
 <body>
+<sec:authorize access="!isAuthenticated()">
+<jsp:forward page="/WEB-INF/pages/login.jsp"></jsp:forward>
+</sec:authorize>
     <div id="admin-section">
         <h3>Поздравляем, вы на закрытой странице!</h3>
 <!--         <a class="btn btn-primary" href="/j_spring_security_logout">Выход</a> -->
 
 		<div class="jumbotron" style="margin-top: 20px;">
-			
+			<sec:authorize access="isAuthenticated()">
 				<p>
 					Ваш логин:
 					<sec:authentication property="principal.username" />
 				</p>
+			</sec:authorize>	
 				<p>
 					<a class="btn btn-lg btn-danger" href="<c:url value="/logout" />"
 						role="button">Выйти</a>
