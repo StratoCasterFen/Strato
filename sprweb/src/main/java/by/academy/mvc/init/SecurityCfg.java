@@ -12,8 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
-import by.academy.service.impl.UserDetailsServiceImpl;
-import by.academy.service.interf.UserService;
+import by.academy.service.srv.UserDetailsServiceImpl;
 
 import javax.inject.Inject;
 
@@ -29,8 +28,8 @@ public class SecurityCfg extends WebSecurityConfigurerAdapter {
     @Autowired
     public void registerGlobalAuthefntication(AuthenticationManagerBuilder auth) throws Exception {
     	logger.info("**********registerGlobalAuthentication***********");
-        auth.userDetailsService(userDetailsService);
-       // .passwordEncoder(getMd5PasswordEncoder());
+        auth.userDetailsService(userDetailsService)
+        .passwordEncoder(getMd5PasswordEncoder());
     }
 
     @Override

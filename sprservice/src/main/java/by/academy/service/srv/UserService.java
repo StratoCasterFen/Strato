@@ -1,4 +1,4 @@
-package by.academy.service.interf;
+package by.academy.service.srv;
 
 import java.util.List;
 import java.util.Set;

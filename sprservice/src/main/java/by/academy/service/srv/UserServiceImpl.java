@@ -1,4 +1,4 @@
-package by.academy.service.impl;
+package by.academy.service.srv;
 
 import java.util.List;
 import java.util.Set;
@@ -12,7 +12,6 @@ import by.academy.dao.iRepo.UserRepo;
 
 import by.academy.pojos.Role;
 import by.academy.pojos.User;
-import by.academy.service.interf.UserService;
 
 @Service("userService")
 public class UserServiceImpl implements UserService{

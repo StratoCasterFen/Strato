@@ -6,7 +6,6 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import by.academy.mvc.init.WebAppCfg;
 import by.academy.pojos.User;
 
 @Component
@@ -28,7 +27,8 @@ public class UserValidator implements Validator {
 	//	Integer emplNumber = user.getEmplNumber();
 		
 		ValidationUtils.rejectIfEmpty(errors, "userName", "user.name.empty");
-	//	ValidationUtils.rejectIfEmpty(errors, EMPLOYEES_NUMBER, "shop.emplNumber.empty");
+		
+		ValidationUtils.rejectIfEmpty(errors, "password", "user.password.empty");
 		
 	//	if (emplNumber != null && emplNumber < 1)
 	//		errors.rejectValue(EMPLOYEES_NUMBER, "shop.emplNumber.lessThenOne");

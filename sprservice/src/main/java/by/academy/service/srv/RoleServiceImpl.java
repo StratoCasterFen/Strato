@@ -1,4 +1,4 @@
-package by.academy.dao.impl;
+package by.academy.service.srv;
 
 import java.util.List;
 
@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import by.academy.dao.iRepo.RoleRepo;
-import by.academy.dao.interf.RoleService;
 import by.academy.pojos.Role;
 
 @Service

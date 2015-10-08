@@ -31,6 +31,7 @@
 				</tr>
 			</table>
 		</fieldset>
+		<a href="${pageContext.request.contextPath}/user/create.html">Registration</a><br/>
 	</form>
 	 </div>
             <s:if test="${not empty error}">

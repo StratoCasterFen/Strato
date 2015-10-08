@@ -10,7 +10,6 @@ import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
-import by.academy.mvc.controller.HomeController;
 import by.academy.service.cfg.ServiceCfg;
 
 public class Initializer implements WebApplicationInitializer {

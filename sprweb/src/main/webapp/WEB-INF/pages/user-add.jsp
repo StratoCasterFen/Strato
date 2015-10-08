@@ -8,8 +8,9 @@
 <title>New User page</title>
 </head>
 <body>
-	<h1>New User page</h1>
+	<h2>New User page</h2>
 	<form:form method="POST" commandName="user" action="${pageContext.request.contextPath}/user/create.html">
+	<fieldset>
 		<table>
 			<tbody>
 				<tr>
@@ -23,12 +24,22 @@
 					<td><form:errors path="password" cssStyle="color: red;" /></td>
 				</tr>
 				<tr>
+					<td>Role:</td>
+						<td><select name="roles">
+								<c:forEach items="${roles}" var="role">
+									<option value=${role.roleName}>${role.roleName}</option>
+								</c:forEach>
+						</select></td>
+						<td></td>
+				</tr>
+				<tr>
 					<td><input type="submit" value="Create" /></td>
 					<td></td>
 					<td></td>
 				</tr>
 			</tbody>
 		</table>
+</fieldset>
 	</form:form>
 	<a href="${pageContext.request.contextPath}/">Home page</a>
 </body>

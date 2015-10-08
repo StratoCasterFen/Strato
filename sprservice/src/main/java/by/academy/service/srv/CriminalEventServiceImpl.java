@@ -1,13 +1,13 @@
-package by.academy.dao.impl;
+package by.academy.service.srv;
 
 import java.util.Date;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import by.academy.dao.iRepo.CriminalEventRepo;
-import by.academy.dao.interf.CriminalEventService;
 import by.academy.pojos.Criminal;
 import by.academy.pojos.CriminalEvent;
 import by.academy.pojos.EventType;
@@ -16,7 +16,8 @@ import by.academy.pojos.User;
 
 @Service
 public class CriminalEventServiceImpl implements CriminalEventService {
-
+	static Logger logger= Logger.getLogger(CriminalEventServiceImpl.class.getName());
+	
 	@Autowired
 	private CriminalEventRepo criminalEventRepo;
 	
@@ -27,25 +28,27 @@ public class CriminalEventServiceImpl implements CriminalEventService {
 
 	@Override
 	public CriminalEvent getCriminalEventById(Integer eventId) {
-		// TODO Auto-generated method stub
-		return null;
+		logger.info("********getCriminalEventById*********");
+		return criminalEventRepo.findOne(eventId);
 	}
 
 	@Override
-	public CriminalEvent addCriminal(CriminalEvent criminalEvent) {
-		// TODO Auto-generated method stub
-		return null;
+	public CriminalEvent addCriminalEvent(CriminalEvent criminalEvent) {
+		logger.info("********addCriminalEvent*********");
+		CriminalEvent savedcriminalEvent = criminalEventRepo.saveAndFlush(criminalEvent);
+		return savedcriminalEvent;	
 	}
 
 	@Override
 	public void deleteByID(Integer eventId) {
-		// TODO Auto-generated method stub
-
+		logger.info("********deleteByID*********");
+		criminalEventRepo.delete(eventId);
 	}
 
 	@Override
-	public void updateCriminal(CriminalEvent criminalEvent) {
-		// TODO Auto-generated method stub
+	public void updateCriminalEvent(CriminalEvent criminalEvent) {
+		logger.info("********updateCriminalEvent*********");
+		 criminalEventRepo.saveAndFlush(criminalEvent);
 	}
 
 	@Override

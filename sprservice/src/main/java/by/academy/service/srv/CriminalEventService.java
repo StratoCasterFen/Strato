@@ -1,4 +1,4 @@
-package by.academy.dao.interf;
+package by.academy.service.srv;
 
 import java.util.Date;
 import java.util.List;
@@ -14,11 +14,11 @@ public interface CriminalEventService {
 
 	CriminalEvent getCriminalEventById(Integer eventId);
 
-	CriminalEvent addCriminal(CriminalEvent criminalEvent);
+	CriminalEvent addCriminalEvent(CriminalEvent criminalEvent);
 
 	void deleteByID(Integer eventId);
 
-	void updateCriminal(CriminalEvent criminalEvent);
+	void updateCriminalEvent(CriminalEvent criminalEvent);
 	
 	List<CriminalEvent> getEventsByDate(Date date);
 
