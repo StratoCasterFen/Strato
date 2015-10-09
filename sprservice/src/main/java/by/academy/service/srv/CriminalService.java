@@ -1,4 +1,4 @@
-package by.academy.dao.interf;
+package by.academy.service.srv;
 
 import java.util.List;
 

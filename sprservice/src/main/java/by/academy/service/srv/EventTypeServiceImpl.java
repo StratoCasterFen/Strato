@@ -1,4 +1,4 @@
-package by.academy.service.impl;
+package by.academy.service.srv;
 
 import java.util.List;
 
@@ -8,11 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import by.academy.dao.iRepo.EventTypeRepo;
-import by.academy.dao.iRepo.RoleRepo;
-import by.academy.dao.interf.RoleService;
 import by.academy.pojos.EventType;
-import by.academy.pojos.Role;
-import by.academy.service.interf.EventTypeService;
 
 @Service
 public class EventTypeServiceImpl implements EventTypeService {
@@ -30,27 +26,26 @@ public class EventTypeServiceImpl implements EventTypeService {
 	@Override
 	@Transactional(rollbackFor=Exception.class)
 	public EventType addEventType(EventType eventType) {
-		
 		logger.info("+addEventType");
 		return eventTypeRepo.saveAndFlush(eventType);
 	}
 
 	@Override
 	public void deleteById(Integer eventTypeId) {
-		// TODO Auto-generated method stub
-		
+		logger.info("**************deleteById***********");
+		eventTypeRepo.delete(eventTypeId);
 	}
 
 	@Override
 	public void update(EventType eventType) {
-		// TODO Auto-generated method stub
-		
+		logger.info("**************update***********");
+		eventTypeRepo.saveAndFlush(eventType);
 	}
 
 	@Override
 	public List<EventType> getEventTypes() {
-		// TODO Auto-generated method stub
-		return null;
+		logger.info("**************getEventTypes***********");
+		return eventTypeRepo.findAll();
 	}
 	
 	

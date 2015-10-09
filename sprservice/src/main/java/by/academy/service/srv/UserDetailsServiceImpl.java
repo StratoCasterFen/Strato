@@ -1,4 +1,4 @@
-package by.academy.service.impl;
+package by.academy.service.srv;
 
 import java.util.HashSet;
 import java.util.List;
@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 import by.academy.pojos.Role;
 import by.academy.pojos.User;
-import by.academy.service.interf.UserService;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {

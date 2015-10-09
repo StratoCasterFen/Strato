@@ -21,16 +21,15 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import by.academy.dao.iRepo.UserRepo;
-import by.academy.dao.impl.RoleServiceImpl;
-import by.academy.dao.interf.CriminalEventService;
-import by.academy.dao.interf.CriminalService;
-import by.academy.dao.interf.RoleService;
 import by.academy.pojos.Criminal;
 import by.academy.pojos.CriminalEvent;
 import by.academy.pojos.Role;
 import by.academy.pojos.User;
 import by.academy.service.cfg.ServiceCfg;
-import by.academy.service.interf.UserService;
+import by.academy.service.srv.CriminalEventService;
+import by.academy.service.srv.CriminalService;
+import by.academy.service.srv.RoleService;
+import by.academy.service.srv.UserService;
 
 @DirtiesContext
 @RunWith(SpringJUnit4ClassRunner.class)

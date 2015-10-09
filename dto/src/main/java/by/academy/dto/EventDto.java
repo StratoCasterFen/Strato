@@ -1,7 +1,7 @@
 package by.academy.dto;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 public class EventDto implements Serializable{
 	
@@ -15,12 +15,12 @@ public class EventDto implements Serializable{
 	private Integer userId;
 	private Integer eventTypeId;
 	
-	public EventDto(String eventName, String description, Date eventDate, Integer criminalId, Integer userId,
+	public EventDto(String eventName, String description, java.util.Date date, Integer criminalId, Integer userId,
 			Integer eventTypeId) {
 		super();
 		this.eventName = eventName;
 		this.description = description;
-		this.eventDate = eventDate;
+		this.eventDate = date;
 		this.criminalId = criminalId;
 		this.userId = userId;
 		this.eventTypeId = eventTypeId;

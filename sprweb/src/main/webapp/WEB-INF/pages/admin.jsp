@@ -25,8 +25,25 @@
 					Ваш логин:
 					<sec:authentication property="principal.username" />
 				</p>
-			</sec:authorize>	
-				<p>
+			</sec:authorize>
+
+			<h1>Event list</h1>
+			<table border=1>
+				<thead>
+					<th><fmt:message key="events.eventName" /></th>
+					<%--     <th><fmt:message key="EventList.eventDescription"/></th> --%>
+					<th><fmt:message key="events.eventDate" /></th>
+				</thead>
+
+				<c:forEach items="${events}" var="crimEvents">
+					<tr>
+						<td>${events.eventName}</td>
+						<%--             <td>${crimEvents.description}</td> --%>
+						<td>${events.eventDate}</td>
+					</tr>
+				</c:forEach>
+			</table>
+			<p>
 					<a class="btn btn-lg btn-danger" href="<c:url value="/logout" />"
 						role="button">Выйти</a>
 				</p>

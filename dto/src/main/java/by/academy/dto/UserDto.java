@@ -1,6 +1,11 @@
 package by.academy.dto;
 
-public class UserDto {
+import java.io.Serializable;
+
+public class UserDto implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+	
 	private Integer id;
 	private String userName;
 	private String password;

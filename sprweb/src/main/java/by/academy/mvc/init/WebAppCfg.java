@@ -75,25 +75,27 @@ public class WebAppCfg extends WebMvcConfigurerAdapter {
 		return resolver;
 	}
 	
-//	@Bean
-//	public ResourceBundleMessageSource messageSource() {
-//		ResourceBundleMessageSource source = new ResourceBundleMessageSource();
-//		source.setBasename("classpath:messages.properties");
-//		source.setUseCodeAsDefaultMessage(true);
-//		return source;
-//	}
+	@Bean(name = "messageSource")
+	public ResourceBundleMessageSource messageSource() {
+		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+		messageSource.setBasename("classpath:messages.properties");
+	//	messageSource.setDefaultEncoding("UTF-8");
+	//	messageSource.setUseCodeAsDefaultMessage(true);
+		logger.info("**************messageSource*************"+messageSource);
+		return messageSource;
+	}
     
     @Bean
     public Validator validator() {
         return new UserValidator();
     }
 
-    @Bean(name = "messageSource")
-    public ReloadableResourceBundleMessageSource reloadableResourceBundleMessageSource() {
-        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasenames("classpath:i18n/messages");
-        return messageSource;
-    }
+//    @Bean(name = "messageSource")
+//    public ReloadableResourceBundleMessageSource reloadableResourceBundleMessageSource() {
+//        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+//        messageSource.setBasenames("classpath:messages");
+//        return messageSource;
+//    }
 
 }
 

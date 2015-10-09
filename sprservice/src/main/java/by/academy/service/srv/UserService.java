@@ -1,8 +1,9 @@
-package by.academy.service.interf;
+package by.academy.service.srv;
 
 import java.util.List;
 import java.util.Set;
 
+import by.academy.dto.UserRoleDto;
 import by.academy.pojos.Role;
 import by.academy.pojos.User;
 
@@ -17,9 +18,11 @@ public interface UserService {
 
 	User getUserByName(String userName);
 
-	User addUser(User user);
+	//User addUser(User user);
 
 	void deleteById(Integer userId);
 	
 	void update(User user);
+
+	User addUser(UserRoleDto userDto);
 }

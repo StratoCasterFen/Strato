@@ -12,8 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
-import by.academy.service.impl.UserDetailsServiceImpl;
-import by.academy.service.interf.UserService;
+import by.academy.service.srv.UserDetailsServiceImpl;
 
 import javax.inject.Inject;
 
@@ -23,14 +22,16 @@ import javax.inject.Inject;
 public class SecurityCfg extends WebSecurityConfigurerAdapter {
 	static Logger logger= Logger.getLogger(SecurityCfg.class.getName());
 	
-	 @Autowired
-	 private UserDetailsServiceImpl userDetailsService;
+	@Autowired
+	private UserDetailsServiceImpl userDetailsService;
+	@Autowired
+	private Md5PasswordEncoder md5pas;
 
     @Autowired
     public void registerGlobalAuthefntication(AuthenticationManagerBuilder auth) throws Exception {
     	logger.info("**********registerGlobalAuthentication***********");
-        auth.userDetailsService(userDetailsService);
-       // .passwordEncoder(getMd5PasswordEncoder());
+        auth.userDetailsService(userDetailsService)
+        .passwordEncoder(md5pas);
     }
 
     @Override
@@ -63,10 +64,4 @@ public class SecurityCfg extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/admin", false);
     }
     
-    @Bean
-    public Md5PasswordEncoder getMd5PasswordEncoder(){
-    	logger.info("**********getMd5PasswordEncoder***********"); 	
-    	
-        return new Md5PasswordEncoder();
-    }
 }

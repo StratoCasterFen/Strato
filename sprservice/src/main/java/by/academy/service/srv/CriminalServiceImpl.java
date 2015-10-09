@@ -1,4 +1,4 @@
-package by.academy.dao.impl;
+package by.academy.service.srv;
 
 import java.util.List;
 
@@ -7,10 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import by.academy.dao.iRepo.CriminalRepo;
-import by.academy.dao.interf.CriminalService;
 import by.academy.pojos.Criminal;
 
-@Service
+@Service("criminalService")
 public class CriminalServiceImpl implements CriminalService {
 	
 	@Autowired

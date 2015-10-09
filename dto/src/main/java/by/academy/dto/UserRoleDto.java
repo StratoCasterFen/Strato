@@ -1,12 +1,23 @@
 package by.academy.dto;
 
-import java.util.Set;
+import java.io.Serializable;
 
-public class UserRoleDto {
+import javax.validation.constraints.Size;
+
+public class UserRoleDto  implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+	
 	private Integer idUser;
+	@Size(min=3, max=50, message="name must be between 3 and 50 characters long.")
 	private String userName;
+	@Size(min=3, max=50, message="name must be between 3 and 50 characters long.")
 	private String password;
 	private Integer idRole;
+	
+	public UserRoleDto(){
+		
+	}
 	
 	public UserRoleDto(String userName, String password, Integer idRole) {
 		super();

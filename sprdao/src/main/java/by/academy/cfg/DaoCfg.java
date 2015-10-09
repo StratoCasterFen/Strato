@@ -44,7 +44,6 @@ import java.util.Properties;
 @EnableTransactionManagement
 @EnableJpaRepositories("by.academy")
 @PropertySource( {"classpath:db.config.properties"} )
-@Import(Beans.class)
 public class DaoCfg {
 	static Logger logger= Logger.getLogger(DaoCfg.class.getName());
 	
