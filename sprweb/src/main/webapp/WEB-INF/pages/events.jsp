@@ -2,6 +2,7 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java"%>
 <%@ page session="false"%>
+<%@ include file="layout/header.jsp"%>
 <!doctype html>
 <html lang="ru">
 <head>
@@ -16,36 +17,37 @@
 <jsp:forward page="/WEB-INF/pages/login.jsp"></jsp:forward>
 </sec:authorize>
     <div id="admin-section">
-        <h3>Поздравляем, вы на закрытой странице!</h3>
-<!--         <a class="btn btn-primary" href="/j_spring_security_logout">Выход</a> -->
-
-		<div class="jumbotron" style="margin-top: 20px;">
-			<sec:authorize access="isAuthenticated()">
-				<p>
-					Ваш логин:
-					<sec:authentication property="principal.username" />
-				</p>
-			</sec:authorize>
-
-			<h1>Event list</h1>
+			<h3>Event list</h3>
 			<table border=1>
 				<thead>
-					<th><fmt:message key="events.eventName" /></th>
-					<%--     <th><fmt:message key="EventList.eventDescription"/></th> --%>
-					<th><fmt:message key="events.eventDate" /></th>
+					<th><%-- <fmt:message key="events.eventName" /> --%>Date</th>
+					<th><%-- <fmt:message key="EventList.eventDescription"/> --%>Event</th>
+					<th><%-- <fmt:message key="eventsDto.eventDate" /> --%>Description</th>
+					<!-- <th>User</th> -->
 				</thead>
 
-				<c:forEach items="${events}" var="crimEvents">
+
+				<c:forEach var="event" items="${eventList}">
 					<tr>
-						<td>${events.eventName}</td>
-						<%--             <td>${crimEvents.description}</td> --%>
-						<td>${events.eventDate}</td>
+						<td>${event.eventDate}</td>
+						<td>${event.eventName}</td>
+						<td>${event.description}</td>
+						<td><a
+							href="${pageContext.request.contextPath}/event/edit/${event.id}.html">Edit</a><br />
+							<a
+							href="${pageContext.request.contextPath}/event/delete/${event.id}.html">Delete</a><br />
+						</td>
 					</tr>
 				</c:forEach>
+
+
+
 			</table>
+			<br>
 			<p>
 					<a class="btn btn-lg btn-danger" href="<c:url value="/logout" />"
 						role="button">Выйти</a>
+						<a class="btn btn-primary" href="/j_spring_security_logout">Выход</a> 
 				</p>
 
 		</div>

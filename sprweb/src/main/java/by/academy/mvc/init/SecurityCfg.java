@@ -61,7 +61,7 @@ public class SecurityCfg extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .and()
                 .formLogin()
-                .defaultSuccessUrl("/admin", false);
+                .defaultSuccessUrl("/event/list", false);
     }
     
 }

@@ -48,6 +48,7 @@ public class UserController {
 	public ModelAndView newUserPage() {
 		ModelAndView mav = new ModelAndView("user-add", "userRoleDto", new UserRoleDto());
 		List<RoleDto> rolesDto=roleService.getRoles();
+		logger.info(rolesDto);
 		mav.addObject("roles", rolesDto);
 		return mav;
 	}
@@ -59,6 +60,7 @@ public class UserController {
 			logger.error("++++++++ Errors in validation ++++++++++");
 			List<RoleDto> rolesDto=roleService.getRoles();
 			ModelAndView mav =new ModelAndView("user-add");
+			logger.info(rolesDto);
 			mav.addObject("roles", rolesDto);
 			return mav;}
 		
@@ -82,6 +84,7 @@ public class UserController {
 			logger.info("++++++++ user-add ++++++++++");
 			ModelAndView mav = new ModelAndView("user-add");
 			List<RoleDto> rolesDto=roleService.getRoles();
+			logger.info(rolesDto);
 			mav.addObject("roles", rolesDto);
 			return mav;
 		}

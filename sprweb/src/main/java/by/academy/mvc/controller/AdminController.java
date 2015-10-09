@@ -16,19 +16,52 @@ import by.academy.service.srv.CriminalEventService;
 import by.academy.service.srv.RoleService;
 
 @Controller
+@RequestMapping(value="/event")
 public class AdminController {
 	static Logger logger = Logger.getLogger(AdminController.class.getName());
 
 	@Autowired
 	private CriminalEventService eventService;
 
-	@RequestMapping(value = "/admin", method = RequestMethod.GET)
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView eventlistpage() {
 		logger.info("**********eventlistpage**********");
-		ModelAndView mav = new ModelAndView("admin");
-		List<EventDto> eventsDto = eventService.getCriminalEvents();
-		logger.info("^ "+eventsDto);
-		mav.addObject(eventsDto);//("events", eventsDto);
+		ModelAndView mav = new ModelAndView("events");
+		List<EventDto> eventList = eventService.getCriminalEvents();
+		logger.info(eventList);
+		mav.addObject("eventList", eventList);
+		logger.info(mav);
+		return mav;
+	}
+	
+	@RequestMapping(value = "/add", method = RequestMethod.GET)
+	public ModelAndView eventAddpage() {
+		logger.info("**********eventlistpage**********");
+		ModelAndView mav = new ModelAndView("events");
+		List<EventDto> eventList = eventService.getCriminalEvents();
+		logger.info(eventList);
+		mav.addObject("eventList", eventList);
+		logger.info(mav);
+		return mav;
+	}
+	@RequestMapping(value = "/delete{id}", method = RequestMethod.GET)
+	public ModelAndView eventDeletepage() {
+		logger.info("**********eventlistpage**********");
+		ModelAndView mav = new ModelAndView("events");
+		List<EventDto> eventList = eventService.getCriminalEvents();
+		logger.info(eventList);
+		mav.addObject("eventList", eventList);
+		logger.info(mav);
+		return mav;
+	}
+	@RequestMapping(value = "/edit{id}", method = RequestMethod.GET)
+	public ModelAndView eventEditpage() {
+		logger.info("**********eventlistpage**********");
+		ModelAndView mav = new ModelAndView("event-edit");
+		List<EventDto> eventList = eventService.getCriminalEvents();
+		logger.info(eventList);
+		mav.addObject("eventList", eventList);
+		logger.info(mav);
 		return mav;
 	}
 }

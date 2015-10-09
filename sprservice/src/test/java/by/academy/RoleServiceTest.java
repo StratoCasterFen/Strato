@@ -66,6 +66,7 @@ public class RoleServiceTest {
 	    public void testGetRoles() throws Exception {
 	    	logger.info("*************testGetRoles****************");
 	    	List actual=roleService.getRoles();
+	    	logger.info(actual);
 	    	Assert.assertEquals(2l, actual.size());
 	    }
 

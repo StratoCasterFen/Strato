@@ -5,7 +5,13 @@
 <fmt:setBundle basename="webkeys"/>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-  	<c:out value="User: ${username}"/><br>
+  	
+  			<sec:authorize access="isAuthenticated()">
+				<p>
+					You are:
+					<sec:authentication property="principal.username" />
+				</p>
+			</sec:authorize>
   	<table border=1>
 		<tr>
 			<td><a href="events?command=ADD_EVENT_PAGE"><fmt:message key="href.addEvent"/></a></td>
