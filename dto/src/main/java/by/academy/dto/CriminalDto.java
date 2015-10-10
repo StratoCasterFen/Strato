@@ -19,6 +19,9 @@ public class CriminalDto implements Serializable {
 		this.birthday = birthday;
 	}
 
+	public CriminalDto() {
+	}
+
 	public Integer getId() {
 		return id;
 	}

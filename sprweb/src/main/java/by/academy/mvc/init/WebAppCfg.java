@@ -67,7 +67,7 @@ public class WebAppCfg extends WebMvcConfigurerAdapter {
 
 	@Bean
 	public UrlBasedViewResolver setupViewResolver() {
-		logger.info("+setupViewResolver");
+		logger.info("**************setupViewResolver*************");
 		UrlBasedViewResolver resolver = new UrlBasedViewResolver();
 		resolver.setPrefix("/WEB-INF/pages/");
 		resolver.setSuffix(".jsp");
@@ -75,13 +75,6 @@ public class WebAppCfg extends WebMvcConfigurerAdapter {
 		return resolver;
 	}
 	
-//	@Bean
-//	public ResourceBundleMessageSource messageSource() {
-//		ResourceBundleMessageSource source = new ResourceBundleMessageSource();
-//		source.setBasename("classpath:messages.properties");
-//		source.setUseCodeAsDefaultMessage(true);
-//		return source;
-//	}
     
     @Bean
     public Validator validator() {
@@ -91,7 +84,7 @@ public class WebAppCfg extends WebMvcConfigurerAdapter {
     @Bean(name = "messageSource")
     public ReloadableResourceBundleMessageSource reloadableResourceBundleMessageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasenames("classpath:i18n/messages");
+        messageSource.setBasenames("classpath:messages");
         return messageSource;
     }
 

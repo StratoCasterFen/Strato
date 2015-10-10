@@ -1,8 +1,9 @@
-package by.academy.dao.interf;
+package by.academy.service.srv;
 
 import java.util.Date;
 import java.util.List;
 
+import by.academy.dto.EventDto;
 import by.academy.pojos.Criminal;
 import by.academy.pojos.CriminalEvent;
 import by.academy.pojos.EventType;
@@ -10,15 +11,15 @@ import by.academy.pojos.User;
 
 public interface CriminalEventService {
 	
-	List<CriminalEvent> getCriminalEvents();
+	List<EventDto> getCriminalEvents();
 
-	CriminalEvent getCriminalEventById(Integer eventId);
+	EventDto getCriminalEventById(Integer eventId);
 
-	CriminalEvent addCriminal(CriminalEvent criminalEvent);
+	CriminalEvent addCriminalEvent(CriminalEvent criminalEvent);
 
 	void deleteByID(Integer eventId);
 
-	void updateCriminal(CriminalEvent criminalEvent);
+	//void updateCriminalEvent(CriminalEvent criminalEvent);
 	
 	List<CriminalEvent> getEventsByDate(Date date);
 
@@ -27,5 +28,7 @@ public interface CriminalEventService {
 	List<CriminalEvent> getEventsByType(EventType eventType);
 
 	List<CriminalEvent> getEventsByUser(User user);
+
+	void updateCriminalEvent(EventDto eventDto);
 
 }

@@ -1,20 +1,17 @@
-package by.academy.dao.interf;
+package by.academy.service.srv;
 
 import java.util.List;
-
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 import by.academy.dto.CriminalDto;
 import by.academy.pojos.Criminal;
 
 public interface CriminalService {
 
-	List<Criminal> getCriminals();
+	List<CriminalDto> getCriminals();
 
 	Criminal getCriminalById(Integer criminalId);
 
-	Criminal addCriminal(Criminal criminal);
+//	Criminal addCriminal(Criminal criminal);
 
 	void deleteByID(Integer criminalId);
 
@@ -23,4 +20,6 @@ public interface CriminalService {
 	Criminal getCriminalByName(String cName);
 
 	Criminal getCriminalBySurName(String cSurname);
+
+	Criminal addCriminal(CriminalDto criminalDto);
 }

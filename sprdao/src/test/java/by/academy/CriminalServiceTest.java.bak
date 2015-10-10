@@ -18,11 +18,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import by.academy.cfg.DaoCfg;
 import by.academy.dao.impl.RoleServiceImpl;
-import by.academy.dao.impl.UserServiceImpl;
+
 import by.academy.dao.interf.CriminalEventService;
 import by.academy.dao.interf.CriminalService;
 import by.academy.dao.interf.RoleService;
-import by.academy.dao.interf.UserService;
+
 import by.academy.pojos.Criminal;
 import by.academy.pojos.CriminalEvent;
 import by.academy.pojos.Role;

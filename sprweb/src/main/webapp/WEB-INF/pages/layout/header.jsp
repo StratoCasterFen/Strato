@@ -5,13 +5,19 @@
 <fmt:setBundle basename="webkeys"/>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-  	<c:out value="User: ${username}"/><br>
+  	
+  			<sec:authorize access="isAuthenticated()">
+				<p>
+					You are:
+					<sec:authentication property="principal.username" />
+				</p>
+			</sec:authorize>
   	<table border=1>
 		<tr>
-			<td><a href="events?command=ADD_EVENT_PAGE"><fmt:message key="href.addEvent"/></a></td>
-			<td><a href="events?command=VIEW_EVENTS"><fmt:message key="href.viewEvents"/></a></td>
-			<td><a href="events?command=ADD_CRIMINAL_PAGE"><fmt:message key="href.addCriminal"/></a></td>
-			<td><a href="events?command=VIEW_CRIMINALS"><fmt:message key="href.viewCriminals"/></a></td>
+			<td><a href="add.html"><fmt:message key="href.addEvent"/></a></td>
+			<td><a href="list"><fmt:message key="href.viewEvents"/></a></td>
+			<td><a href="riminal/list"><fmt:message key="href.addCriminal"/></a></td>
+			<td><a href="criminal/add"><fmt:message key="href.viewCriminals"/></a></td>
 		</tr>
 	</table>
 	<hr>

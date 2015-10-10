@@ -6,29 +6,28 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import by.academy.mvc.init.WebAppCfg;
-import by.academy.pojos.User;
+import by.academy.dto.UserRoleDto;
 
 @Component
 public class UserValidator implements Validator {
 	static Logger logger= Logger.getLogger(UserValidator.class.getName());
 	
-	private final static String EMPLOYEES_NUMBER = "emplNumber";
 
 	@Override
 	public boolean supports(Class<?> clazz) {
-		return User.class.isAssignableFrom(clazz);
+		return UserRoleDto.class.isAssignableFrom(clazz);
 	}
 
 	@Override
 	public void validate(Object target, Errors errors) {
 		logger.info("++++++++ validate ++++++++++");
-		User user = (User) target;
+		UserRoleDto user = (UserRoleDto) target;
 		
 	//	Integer emplNumber = user.getEmplNumber();
 		
 		ValidationUtils.rejectIfEmpty(errors, "userName", "user.name.empty");
-	//	ValidationUtils.rejectIfEmpty(errors, EMPLOYEES_NUMBER, "shop.emplNumber.empty");
+		
+		ValidationUtils.rejectIfEmpty(errors, "password", "user.password.empty");
 		
 	//	if (emplNumber != null && emplNumber < 1)
 	//		errors.rejectValue(EMPLOYEES_NUMBER, "shop.emplNumber.lessThenOne");

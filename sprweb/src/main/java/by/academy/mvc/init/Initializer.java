@@ -8,9 +8,9 @@ import org.apache.log4j.Logger;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.DispatcherServlet;
 
-import by.academy.mvc.controller.HomeController;
 import by.academy.service.cfg.ServiceCfg;
 
 public class Initializer implements WebApplicationInitializer {
@@ -19,14 +19,21 @@ public class Initializer implements WebApplicationInitializer {
 
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
-		logger.info("+onStartup");
+		logger.info("**********onStartup***********");
 		AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
 		ctx.register(WebAppCfg.class);
 		ctx.register(ServiceCfg.class);
-	//	servletContext.addListener(new ContextLoaderListener(ctx));
+		ctx.register(SecurityCfg.class);
+		servletContext.addListener(new ContextLoaderListener(ctx));
 	
-		
 		ctx.setServletContext(servletContext);
+		
+		// security filter
+		servletContext.addFilter(
+                "springSecurityFilterChain",
+                new DelegatingFilterProxy("springSecurityFilterChain"))
+                .addMappingForUrlPatterns(null, false, "/*");
+
 
 		Dynamic servlet = servletContext.addServlet(DISPATCHER_SERVLET_NAME, new DispatcherServlet(ctx));
 		servlet.addMapping("/");
