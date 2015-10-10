@@ -70,6 +70,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public User addUser(UserRoleDto userDto) {
 		logger.info("**************addUser************");
+		
 		String md5pas=md5Password(userDto.getPassword());
 		userDto.setPassword(md5pas);
 		User user=ConvertDto.toUser(userDto);
@@ -92,7 +93,8 @@ public class UserServiceImpl implements UserService{
 		logger.info("****************update***************");
 		userRepo.saveAndFlush(user);	
 	}
-
+	
+	
 	private String md5Password(String password) {
 		return passwordEncoder.encodePassword(password, null);
 	}

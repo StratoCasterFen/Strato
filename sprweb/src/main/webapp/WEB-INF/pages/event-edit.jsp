@@ -10,7 +10,7 @@
 </head>
 <body>
 <h1>Edit event page</h1>
-<form:form method="POST" commandName="event" action="${pageContext.request.contextPath}/event/edit/${event.id}.html" >
+<form:form method="POST" commandName="event" action="${pageContext.request.contextPath}/event/edit/$44{event.id}.html" >
 <table>
 <tbody>
 <tr>

@@ -54,7 +54,7 @@ public class CriminalController {
 		String message = "New criminal "+criminalDto.getCriminalName()+" was successfully created.";
 		
 		criminalService.addCriminal(criminalDto);
-		mav.setViewName("redirect:/index.html");
+		mav.setViewName("redirect:../list.html");
 				
 		redirectAttributes.addFlashAttribute("message", message);	
 		return mav;		

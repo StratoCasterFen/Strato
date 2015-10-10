@@ -8,7 +8,7 @@
   	
   			<sec:authorize access="isAuthenticated()">
 				<p>
-					You are:
+					You are:${login}
 					<sec:authentication property="principal.username" />
 				</p>
 			</sec:authorize>

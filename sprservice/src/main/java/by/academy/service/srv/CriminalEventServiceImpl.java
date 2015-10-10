@@ -17,6 +17,7 @@ import by.academy.pojos.Criminal;
 import by.academy.pojos.CriminalEvent;
 import by.academy.pojos.EventType;
 import by.academy.pojos.User;
+import by.academy.service.srv.UserServiceImpl.ConvertDto;
 
 
 @Service("criminalEventService")
@@ -47,7 +48,6 @@ public class CriminalEventServiceImpl implements CriminalEventService {
 		}
 
 		private static EventDto fromEvent(CriminalEvent event) {
-			logger.info("Convert Event to EventDto");
 			if (event == null) {
 				logger.debug("event is null");
 				return null;
@@ -63,19 +63,23 @@ public class CriminalEventServiceImpl implements CriminalEventService {
 			return eventDto;
 		}
 
-		/*public static CriminalEvent toEvent(EventDto eventDto) {
-			logger.info("Convert eventDto to CriminalEvent");
-			if (eventDto == null) {
-				return null;
-			}
-			CriminalEvent event = new CriminalEvent();
-		//	criminal.setId(criminalDto.getId());
-			criminal.setCriminalName(criminalDto.getCriminalName());
-			criminal.setCriminalSurname(criminalDto.getCriminalSurname());
-			criminal.setBirthday(criminalDto.getBirthday());
-			
-			return criminal;
-		}*/
+	}
+	
+	
+	public CriminalEvent toEvent(EventDto eventDto) {
+		logger.info("Convert eventDto to CriminalEvent");
+		if (eventDto == null) {
+			return null;
+		}
+		CriminalEvent event = new CriminalEvent();
+		event.setId(eventDto.getId());
+		event.setEventDate(eventDto.getEventDate());
+		event.setEventName(eventDto.getEventName());
+		event.setEventDescription(eventDto.getDescription());
+		event.setEventType(eventTypeRepo.findOne(eventDto.getEventTypeId()));
+		event.setCriminal(criminalRepo.findOne(eventDto.getCriminalId()));
+		event.setUser(userRepo.findOne(eventDto.getUserId()));
+		return event;
 	}
 	
 	@Override
@@ -93,8 +97,9 @@ public class CriminalEventServiceImpl implements CriminalEventService {
 	}
 
 	@Override
-	public CriminalEvent addCriminalEvent(CriminalEvent criminalEvent) {
+	public CriminalEvent addCriminalEvent(EventDto eventDto) {
 		logger.info("********addCriminalEvent*********");
+		CriminalEvent criminalEvent=toEvent(eventDto);
 		CriminalEvent savedcriminalEvent = criminalEventRepo.saveAndFlush(criminalEvent);
 		return savedcriminalEvent;	
 	}

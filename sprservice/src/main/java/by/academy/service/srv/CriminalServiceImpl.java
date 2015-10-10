@@ -35,7 +35,6 @@ public class CriminalServiceImpl implements CriminalService {
 		}
 
 		private static CriminalDto fromCriminal(Criminal criminal) {
-			logger.info("Convert Criminal to CriminalDto");
 			if (criminal == null) {
 				logger.debug("criminal is null");
 				return null;
@@ -49,7 +48,7 @@ public class CriminalServiceImpl implements CriminalService {
 			return criminalDto;
 		}
 		private static Criminal toCriminal(CriminalDto criminalDto) {
-			logger.info("Convert CriminalDto to criminal");
+
 			if (criminalDto == null) {
 				logger.debug("criminalDto is null");
 				return null;

@@ -15,7 +15,7 @@ public interface CriminalEventService {
 
 	EventDto getCriminalEventById(Integer eventId);
 
-	CriminalEvent addCriminalEvent(CriminalEvent criminalEvent);
+//	CriminalEvent addCriminalEvent(CriminalEvent criminalEvent);
 
 	void deleteByID(Integer eventId);
 
@@ -30,5 +30,7 @@ public interface CriminalEventService {
 	List<CriminalEvent> getEventsByUser(User user);
 
 	void updateCriminalEvent(EventDto eventDto);
+
+	CriminalEvent addCriminalEvent(EventDto eventDto);
 
 }

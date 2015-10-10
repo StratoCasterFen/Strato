@@ -34,7 +34,6 @@ public class RoleServiceImpl implements RoleService {
 		}
 
 		private static RoleDto fromRole(Role role) {
-			logger.info("Convert Role to RoleDto");
 			if (role == null) {
 				logger.debug("Role is null");
 				return null;
